@@ -3,609 +3,380 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Veille marché énergie — Octopus Energy</title>
+<title>Veille marché énergie — Octopus Energy France</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-  :root {
-    --pink: #e6007e;
-    --pink-light: rgba(230,0,126,0.08);
-    --ink: #0f0f0f;
-    --ink-secondary: #4a4a4a;
-    --ink-muted: #888;
-    --surface: #f6f6f6;
-    --surface-2: #efefef;
-    --border: #e2e2e2;
-    --white: #ffffff;
-    --up: #c0392b;
-    --dn: #1a7f5a;
-    --blue: #1a5cad;
-    --blue-light: rgba(26,92,173,0.08);
-    --radius: 6px;
-    --radius-lg: 12px;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--white);
-    color: var(--ink);
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  /* HEADER */
-  .site-header {
-    background: var(--ink);
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 52px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .site-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--white);
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-  }
-  .logo-mark {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--pink);
-  }
-  .site-meta {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: #888;
-    letter-spacing: 0.02em;
-  }
-
-  /* NAV TABS */
-  .nav-tabs {
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    display: flex;
-    gap: 0;
-    position: sticky;
-    top: 52px;
-    z-index: 99;
-  }
-  .nav-tab {
-    padding: 12px 18px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--ink-muted);
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: color 0.15s, border-color 0.15s;
-    background: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    font-family: 'Inter', sans-serif;
-  }
-  .nav-tab:hover { color: var(--ink); }
-  .nav-tab.active { color: var(--pink); border-bottom-color: var(--pink); }
-
-  /* LAYOUT */
-  .page { display: none; padding: 2rem; max-width: 1100px; margin: 0 auto; }
-  .page.active { display: block; }
-
-  /* SECTION LABEL */
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--ink-muted);
-    letter-spacing: 0.05em;
-    margin-bottom: 14px;
-    text-transform: lowercase;
-  }
-
-  /* KPI GRID */
-  .kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    margin-bottom: 2rem;
-  }
-  .kpi {
-    background: var(--white);
-    padding: 1rem 1.25rem;
-  }
-  .kpi-label { font-size: 11px; color: var(--ink-muted); margin-bottom: 6px; }
-  .kpi-value { font-size: 22px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
-  .kpi-delta { font-family: 'DM Mono', monospace; font-size: 11px; margin-top: 4px; }
-  .up { color: var(--up); }
-  .dn { color: var(--dn); }
-  .neu { color: var(--ink-muted); }
-
-  /* BRIEF CARD */
-  .brief-card {
-    background: var(--ink);
-    color: var(--white);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-  }
-  .brief-card .section-label { color: #666; margin-bottom: 12px; }
-  .brief-source {
-    font-size: 11px;
-    color: #555;
-    font-family: 'DM Mono', monospace;
-    margin-bottom: 12px;
-  }
-  .brief-text {
-    font-size: 13px;
-    color: #ccc;
-    line-height: 1.7;
-    margin-bottom: 10px;
-  }
-  .brief-text:last-child { margin-bottom: 0; }
-  .brief-text strong { color: var(--white); font-weight: 500; }
-  .brief-highlight {
-    border-left: 2px solid var(--pink);
-    padding-left: 12px;
-    margin: 14px 0;
-  }
-  .brief-highlight p {
-    font-size: 13px;
-    color: #eee;
-    line-height: 1.6;
-  }
-
-  /* SECTION DIVIDER */
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 2rem 0;
-  }
-
-  /* POSITIONING HERO */
-  .position-hero {
-    display: grid;
-    grid-template-columns: auto 1fr 1fr;
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    margin-bottom: 1.5rem;
-  }
-  .pos-rank {
-    background: var(--pink);
-    padding: 1.5rem 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-width: 120px;
-  }
-  .pos-rank .rank-num {
-    font-size: 52px;
-    font-weight: 600;
-    color: var(--white);
-    letter-spacing: -0.05em;
-    line-height: 1;
-  }
-  .pos-rank .rank-label { font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 4px; }
-  .pos-metric {
-    background: var(--white);
-    padding: 1.25rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .pos-metric-label { font-size: 11px; color: var(--ink-muted); margin-bottom: 6px; }
-  .pos-metric-value { font-size: 26px; font-weight: 600; letter-spacing: -0.03em; }
-  .pos-metric-sub { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-muted); margin-top: 4px; }
-
-  /* CHART CARD */
-  .chart-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.25rem 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .chart-title {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--ink);
-    margin-bottom: 4px;
-  }
-  .chart-sub {
-    font-size: 11px;
-    color: var(--ink-muted);
-    margin-bottom: 1rem;
-  }
-  .chart-legend {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 12px;
-    flex-wrap: wrap;
-  }
-  .leg { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--ink-muted); }
-  .leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .leg-line { width: 16px; height: 2px; flex-shrink: 0; }
-
-  /* RANKING TABLE */
-  .ranking-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-  .ranking-table th {
-    text-align: left;
-    padding: 8px 12px;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--ink-muted);
-    border-bottom: 1px solid var(--border);
-    background: var(--surface);
-  }
-  .ranking-table th:last-child,
-  .ranking-table td:last-child { text-align: right; }
-  .ranking-table td {
-    padding: 9px 12px;
-    border-bottom: 1px solid var(--border);
-    color: var(--ink);
-  }
-  .ranking-table tr:last-child td { border-bottom: none; }
-  .ranking-table tr:hover td { background: var(--surface); }
-  .oct-row td { background: var(--blue-light) !important; color: var(--blue); font-weight: 500; }
-  .rank-n { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ink-muted); width: 28px; }
-  .offer-name { font-size: 11px; color: var(--ink-muted); display: block; margin-top: 1px; }
-  .tag {
-    display: inline-block;
-    font-size: 10px;
-    padding: 1px 6px;
-    border-radius: 3px;
-    font-weight: 500;
-    margin-left: 4px;
-    vertical-align: middle;
-  }
-  .tag-promo { background: #fff3cd; color: #856404; }
-  .tag-oct { background: var(--blue-light); color: var(--blue); }
-  .pct-pos { color: var(--up); font-family: 'DM Mono', monospace; font-size: 11px; }
-  .pct-neg { color: var(--dn); font-family: 'DM Mono', monospace; font-size: 11px; }
-  .price-val { font-family: 'DM Mono', monospace; font-size: 12px; }
-
-  /* SHEET LINK */
-  .sheet-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    color: var(--blue);
-    text-decoration: none;
-    padding: 8px 14px;
-    border: 1px solid var(--blue);
-    border-radius: var(--radius);
-    margin-top: 12px;
-    transition: background 0.1s;
-  }
-  .sheet-link:hover { background: var(--blue-light); }
-
-  /* FOOTER */
-  .page-footer {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--ink-muted);
-    padding: 2rem;
-    border-top: 1px solid var(--border);
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  @media (max-width: 640px) {
-    .nav-tabs { padding: 0 1rem; overflow-x: auto; }
-    .page { padding: 1rem; }
-    .position-hero { grid-template-columns: 1fr; }
-    .pos-rank { flex-direction: row; gap: 12px; padding: 1rem; }
-  }
+:root {
+  --pink:#e6007e; --pink-l:rgba(230,0,126,.08);
+  --ink:#0f0f0f; --ink-2:#4a4a4a; --ink-3:#888;
+  --surf:#f6f6f6; --surf-2:#efefef; --bdr:#e2e2e2;
+  --white:#fff; --up:#c0392b; --dn:#1a7f5a;
+  --blue:#1a5cad; --blue-l:rgba(26,92,173,.08);
+  --r:6px; --rl:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--ink);font-size:14px;line-height:1.5}
+/* HEADER */
+.site-header{background:var(--ink);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:100}
+.site-logo{display:flex;align-items:center;gap:10px;color:var(--white);font-size:14px;font-weight:500}
+.logo-mark{width:8px;height:8px;border-radius:50%;background:var(--pink)}
+.site-meta{font-family:'DM Mono',monospace;font-size:11px;color:#888;letter-spacing:.02em}
+/* NAV */
+.nav-tabs{background:var(--white);border-bottom:1px solid var(--bdr);padding:0 2rem;display:flex;gap:0;position:sticky;top:52px;z-index:99}
+.nav-tab{padding:12px 18px;font-size:13px;font-weight:500;color:var(--ink-3);cursor:pointer;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:'Inter',sans-serif;transition:color .15s,border-color .15s}
+.nav-tab:hover{color:var(--ink)}
+.nav-tab.active{color:var(--pink);border-bottom-color:var(--pink)}
+/* PAGES */
+.page{display:none;padding:2rem;max-width:1100px;margin:0 auto}
+.page.active{display:block}
+/* LABELS */
+.lbl{font-family:'DM Mono',monospace;font-size:11px;color:var(--ink-3);letter-spacing:.04em;margin-bottom:14px}
+/* BRIEF */
+.brief-card{background:var(--ink);color:var(--white);border-radius:var(--rl);padding:1.5rem;margin-bottom:2rem}
+.brief-card .lbl{color:#555;margin-bottom:10px}
+.brief-p{font-size:13px;color:#ccc;line-height:1.7;margin-bottom:10px}
+.brief-p:last-child{margin-bottom:0}
+.brief-p strong{color:var(--white);font-weight:500}
+.brief-hl{border-left:2px solid var(--pink);padding-left:12px;margin:14px 0}
+.brief-hl p{font-size:13px;color:#eee;line-height:1.65}
+/* DIVIDER */
+hr{border:none;border-top:1px solid var(--bdr);margin:2rem 0}
+/* SUB TABS */
+.sub-tabs{display:flex;gap:0;border-bottom:1px solid var(--bdr);margin-bottom:1.5rem}
+.sub-tab{padding:10px 16px;font-size:13px;font-weight:500;color:var(--ink-3);cursor:pointer;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:'Inter',sans-serif}
+.sub-tab:hover{color:var(--ink)}
+.sub-tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+.sub-pane{display:none}
+.sub-pane.active{display:block}
+/* POSITION HERO */
+.pos-hero{display:grid;grid-template-columns:auto 1fr 1fr;gap:1px;background:var(--bdr);border:1px solid var(--bdr);border-radius:var(--rl);overflow:hidden;margin-bottom:1.5rem}
+.pos-rank{background:var(--pink);padding:1.5rem 2rem;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:120px}
+.rank-n{font-size:52px;font-weight:500;color:var(--white);letter-spacing:-.05em;line-height:1}
+.rank-l{font-size:11px;color:rgba(255,255,255,.7);margin-top:4px}
+.pos-metric{background:var(--white);padding:1.25rem 1.5rem;display:flex;flex-direction:column;justify-content:center}
+.pm-l{font-size:11px;color:var(--ink-3);margin-bottom:6px}
+.pm-v{font-size:26px;font-weight:500;letter-spacing:-.03em}
+.pm-s{font-family:'DM Mono',monospace;font-size:11px;color:var(--ink-3);margin-top:4px}
+/* CHART CARD */
+.chart-card{background:var(--white);border:1px solid var(--bdr);border-radius:var(--rl);padding:1.25rem 1.5rem;margin-bottom:1.5rem}
+.chart-ttl{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px}
+.chart-sub{font-size:11px;color:var(--ink-3);margin-bottom:1rem}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+.leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--ink-2)}
+.leg-sq{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.leg-ln{width:16px;height:2px;flex-shrink:0}
+/* TABLE */
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:11.5px;white-space:nowrap}
+th,td{padding:5px 8px;border:.5px solid var(--bdr)}
+th{background:var(--surf);color:var(--ink-3);font-weight:500;text-align:center;font-size:11px}
+th.grp{background:var(--surf-2);color:var(--ink-2);font-weight:500}
+td{color:var(--ink);text-align:right}
+td.l{text-align:left}
+tr.oct td{background:var(--blue-l);color:var(--blue);font-weight:500}
+.neg{color:var(--dn)}
+.pos2{color:var(--up)}
+.neu{color:var(--ink-3)}
+tr.oct .neg,tr.oct .pos2,tr.oct .neu{color:var(--blue)}
+.promo-tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:3px;font-weight:500;margin-left:4px;background:#fff3cd;color:#856404}
+/* SHEET LINK */
+.sheet-link{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--blue);text-decoration:none;padding:8px 14px;border:1px solid var(--blue);border-radius:var(--r);margin-top:12px;transition:background .1s}
+.sheet-link:hover{background:var(--blue-l)}
+/* FOOTER */
+.page-footer{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-3);padding:2rem;border-top:1px solid var(--bdr);max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media(max-width:640px){
+  .nav-tabs,.sub-tabs{padding:0 1rem;overflow-x:auto}
+  .page{padding:1rem}
+  .pos-hero{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
 <header class="site-header">
-  <div class="site-logo">
-    <div class="logo-mark"></div>
-    Veille marché énergie
-  </div>
-  <span class="site-meta">semaine 38 · 14/09/2026</span>
+  <div class="site-logo"><div class="logo-mark"></div>Veille marché énergie</div>
+  <span class="site-meta">semaine 39 · 21/09/2026</span>
 </header>
 
 <nav class="nav-tabs">
-  <button class="nav-tab active" onclick="showTab('marche')">Marchés</button>
-  <button class="nav-tab" onclick="showTab('benchmark')">Benchmark gaz</button>
+  <button class="nav-tab active" onclick="showPage('marche',this)">Synthèse marché</button>
+  <button class="nav-tab" onclick="showPage('gaz',this)">Benchmark gaz</button>
 </nav>
 
-<!-- PAGE MARCHÉS -->
+<!-- PAGE MARCHÉ -->
 <div id="page-marche" class="page active">
-
-  <p class="section-label" style="margin-top:0">marchés de gros · semaine 38</p>
-
-  <div class="kpi-grid">
-    <div class="kpi">
-      <div class="kpi-label">PEG oct.-26</div>
-      <div class="kpi-value">79,03</div>
-      <div class="kpi-delta up">+10,9 % · €/MWh</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">PEG 2027</div>
-      <div class="kpi-value">58,38</div>
-      <div class="kpi-delta up">+11,8 % · €/MWh</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">PEG 2028</div>
-      <div class="kpi-value">36,04</div>
-      <div class="kpi-delta up">+6,3 % · €/MWh</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">Élec oct.-26</div>
-      <div class="kpi-value">144,94</div>
-      <div class="kpi-delta up">+11,3 % · €/MWh</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">Brent</div>
-      <div class="kpi-value">90,18</div>
-      <div class="kpi-delta up">+8,7 % · €/baril</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">CO2 EUA</div>
-      <div class="kpi-value">85,53</div>
-      <div class="kpi-delta up">+1,6 % · €/tonne</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">Charbon</div>
-      <div class="kpi-value">120,39</div>
-      <div class="kpi-delta neu">+0,1 % · €/tonne</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">PRVG sept. TTC</div>
-      <div class="kpi-value">0,1347</div>
-      <div class="kpi-delta neu">€/kWh</div>
-    </div>
-  </div>
-
+  <p class="lbl" style="margin-top:0">omnegy n°318 · 21 septembre 2026</p>
   <div class="brief-card">
-    <p class="section-label">synthèse omnegy n°317 · 14 sept. 2026</p>
-    <p class="brief-text">Le conflit autour d'Ormuz a changé d'échelle cette semaine : pétroliers iraniens détruits, Bab el-Mandeb passé sous contrôle houthi. Les deux routes de sortie du Golfe sont désormais sous menace.</p>
-    <div class="brief-highlight">
-      <p><strong>Le gaz européen a franchi 80 €/MWh pour la première fois depuis 2023.</strong> Le calendaire 2027 vaut aujourd'hui le double d'il y a un an. La hausse est concentrée sur 2026–2028 ; au-delà, le marché reste calme.</p>
+    <p class="lbl">synthèse hebdomadaire</p>
+    <p class="brief-p">Après les records de lundi (PEG oct. à 82,42 €/MWh, 2027 à 60,00 €/MWh), les marchés se sont détendus en cours de semaine pour clôturer quasi stables.</p>
+    <div class="brief-hl">
+      <p><strong>Gaz : +0,5 % sur 2027, −0,1 % sur octobre.</strong> L'oléoduc saoudien Est-Ouest reste à l'arrêt après les frappes de drones. Ormuz quasi fermé. Les deux routes de sortie du Golfe sont simultanément sous menace — une première.</p>
     </div>
-    <p class="brief-text">Les livraisons GNL aux terminaux européens ont chuté de 15 % en une semaine — c'est le canal par lequel la crise d'Ormuz se transmet directement au prix européen. Les flux norvégiens reprennent (+271 → 292 Mm³/j) et les stockages progressent (France : 72,5 → 75,4 %) mais ne compensent pas.</p>
-    <p class="brief-text"><strong>L'électricité suit :</strong> +13,1 % sur 2027. Nucléaire dégradé à 38,4 GW (61 % du parc) — le gaz cher fixe le prix marginal sur davantage d'heures, toutes échéances confondues.</p>
-    <p class="brief-text" style="margin-bottom:0;color:#aaa;">Impact commercial : nos prix HTT étant fixés sur 2 ans, <strong style="color:var(--white)">la hausse du marché renforce l'attractivité de nos offres fixes</strong> face aux offres indexées.</p>
+    <p class="brief-p">Électricité : mouvement en ciseaux. Court terme en hausse (+6,9 % sur octobre, nucléaire à 37,1 GW / 59 % du parc). Long terme en baisse (2027 −2,8 %, 2028 −8,4 %) — correction partielle de la semaine précédente.</p>
+    <p class="brief-p">Brent à 90,40 € (+0,2 %). CO2 à 86,89 € (+1,6 %). Charbon à 118,80 € (−1,3 %).</p>
+    <p class="brief-p" style="margin-bottom:0"><strong>Impact commercial : nos prix fixes restent très compétitifs</strong> face aux offres indexées qui subissent la volatilité du marché.</p>
   </div>
 
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:var(--bdr);border:1px solid var(--bdr);border-radius:var(--rl);overflow:hidden;margin-bottom:2rem">
+    <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PEG oct.-26</div><div style="font-size:20px;font-weight:500">78,95</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--up)">−0,1 % / MWh</div></div>
+    <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PEG 2027</div><div style="font-size:20px;font-weight:500">58,65</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+0,5 % / MWh</div></div>
+    <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PEG 2028</div><div style="font-size:20px;font-weight:500">36,96</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+2,6 % / MWh</div></div>
+    <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">Élec oct.-26</div><div style="font-size:20px;font-weight:500">155,00</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+6,9 % / MWh</div></div>
+    <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">Brent</div><div style="font-size:20px;font-weight:500">90,40</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+0,2 % / baril</div></div>
+    <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">CO2 EUA</div><div style="font-size:20px;font-weight:500">86,89</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+1,6 % / tonne</div></div>
+    <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">Charbon</div><div style="font-size:20px;font-weight:500">118,80</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--up)">−1,3 % / tonne</div></div>
+    <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PRVG sept. TTC</div><div style="font-size:20px;font-weight:500">0,1347</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--ink-3)">€/kWh chauffage</div></div>
+  </div>
 </div>
 
-<!-- PAGE BENCHMARK GAZ -->
-<div id="page-benchmark" class="page">
+<!-- PAGE GAZ -->
+<div id="page-gaz" class="page">
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSub('chauf',this)">Chauffage · 13 480 kWh</button>
+    <button class="sub-tab" onclick="showSub('cuis',this)">Cuisson / eau chaude · 1 260 kWh</button>
+  </div>
 
-  <p class="section-label" style="margin-top:0">benchmark gaz · paris 02 · zone 2 · 13 480 kwh/an · chauffage</p>
-
-  <div class="position-hero">
-    <div class="pos-rank">
-      <div class="rank-num">6</div>
-      <div class="rank-label">/ 29 offres</div>
+  <!-- CHAUFFAGE -->
+  <div id="sub-chauf" class="sub-pane active">
+    <p class="lbl">paris 02 · zone 2 · chauffage 4 000–300 000 kWh/an · cta 48,70 €/an</p>
+    <div class="pos-hero">
+      <div class="pos-rank"><div class="rank-n">5</div><div class="rank-l">/ 29 offres</div></div>
+      <div class="pos-metric"><div class="pm-l">Facture annuelle TTC</div><div class="pm-v" style="color:var(--blue)">2 115 €</div><div class="pm-s" style="color:var(--dn)">−3 % vs PRVG sept. (2 177 €)</div></div>
+      <div class="pos-metric"><div class="pm-l">kWh TTC</div><div class="pm-v">0,1302 €</div><div class="pm-s" style="color:var(--dn)">−3 % vs PRVG sept.</div></div>
     </div>
-    <div class="pos-metric">
-      <div class="pos-metric-label">Facture annuelle TTC</div>
-      <div class="pos-metric-value" style="color:var(--blue)">2 114 €</div>
-      <div class="pos-metric-sub">−3 % vs PRVG (2 177 €)</div>
+    <div class="chart-card">
+      <div class="chart-ttl">Évolution du rang Octopus — chauffage</div>
+      <div class="chart-sub">Axe inversé — rang 1 = offre la moins chère. S38 → S39 : rang 6 → 5.</div>
+      <div style="height:160px"><canvas id="rankChauf" role="img" aria-label="Évolution du rang Octopus chauffage S33 à S39"></canvas></div>
     </div>
-    <div class="pos-metric">
-      <div class="pos-metric-label">kWh TTC</div>
-      <div class="pos-metric-value">0,1302 €</div>
-      <div class="pos-metric-sub">−3 % vs PRVG (0,1347 €)</div>
+    <div class="chart-card">
+      <div class="chart-ttl">Comparatif facture TTC — top 15 offres chauffage</div>
+      <div class="chart-sub">Paris 02 · Zone 2 · 13 480 kWh/an · PRVG sept. = 2 177 €</div>
+      <div class="legend">
+        <span class="leg"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span>
+        <span class="leg"><span class="leg-sq" style="background:#c8c8c8"></span>Concurrents</span>
+        <span class="leg"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>PRVG 2 177 €</span>
+      </div>
+      <div style="height:420px"><canvas id="barChauf" role="img" aria-label="Comparatif factures TTC chauffage top 15"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-ttl">Classement complet — chauffage</div>
+      <div class="chart-sub">Formules : Abo HTT = Abo TTC/1,20 − 48,70 € · kWh HTT = kWh TTC/1,20 − 0,01666 € · Source MNE 21/09/2026</div>
+      <div class="tbl-wrap"><table id="tbl-chauf"></table></div>
+      <a class="sheet-link" href="https://docs.google.com/spreadsheets/d/1c7ELAJCFhnknmPBaCaYMvC9wXl_pkc4p4-ntBixhvcc/edit" target="_blank">↗ Voir le détail dans Google Sheets</a>
     </div>
   </div>
 
-  <div class="chart-card">
-    <div class="chart-title">Évolution du rang Octopus</div>
-    <div class="chart-sub">Axe inversé — rang 1 = offre la moins chère. À compléter chaque semaine.</div>
-    <div style="height:160px"><canvas id="rankChart"></canvas></div>
-  </div>
-
-  <div class="chart-card">
-    <div class="chart-title">Comparatif facture TTC annuelle — top 15 offres</div>
-    <div class="chart-sub">Paris 02 · Zone 2 · 13 480 kWh/an · Chauffage · PRVG sept. 2026 = 2 177 €</div>
-    <div class="chart-legend">
-      <span class="leg"><span class="leg-dot" style="background:var(--blue)"></span>Octopus</span>
-      <span class="leg"><span class="leg-dot" style="background:#c8c8c8"></span>Concurrents</span>
-      <span class="leg"><span class="leg-line" style="background:var(--up);opacity:.6"></span>PRVG 2 177 €</span>
+  <!-- CUISSON -->
+  <div id="sub-cuis" class="sub-pane">
+    <p class="lbl">paris 02 · zone 2 · cuisson / eau chaude 0–4 000 kWh/an · cta 14,20 €/an</p>
+    <div class="pos-hero">
+      <div class="pos-rank"><div class="rank-n">3</div><div class="rank-l">/ 26 offres</div></div>
+      <div class="pos-metric"><div class="pm-l">Facture annuelle TTC</div><div class="pm-v" style="color:var(--blue)">356 €</div><div class="pm-s" style="color:var(--dn)">−2 % vs PRVG sept. (364 €)</div></div>
+      <div class="pos-metric"><div class="pm-l">kWh TTC</div><div class="pm-v">0,1617 €</div><div class="pm-s" style="color:var(--dn)">−4 % vs PRVG sept. (0,1676 €)</div></div>
     </div>
-    <div style="height:400px"><canvas id="barChart"></canvas></div>
-  </div>
-
-  <div class="chart-card">
-    <div class="chart-title">Classement complet — facture TTC annuelle</div>
-    <div class="chart-sub">Source : comparateur MNE du 14/09/2026 · Formules : Abo HTT = Abo TTC/1,20 − 48,70 € · kWh HTT = kWh TTC/1,20 − 0,01666 €</div>
-    <div style="overflow-x:auto">
-      <table class="ranking-table" id="rankingTable"></table>
+    <div class="chart-card">
+      <div class="chart-ttl">Comparatif facture TTC — top 15 offres cuisson</div>
+      <div class="chart-sub">Paris 02 · Zone 2 · 1 260 kWh/an · PRVG sept. = 364 €</div>
+      <div class="legend">
+        <span class="leg"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span>
+        <span class="leg"><span class="leg-sq" style="background:#c8c8c8"></span>Concurrents</span>
+        <span class="leg"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>PRVG 364 €</span>
+      </div>
+      <div style="height:420px"><canvas id="barCuis" role="img" aria-label="Comparatif factures TTC cuisson top 15"></canvas></div>
     </div>
-    <a class="sheet-link" href="https://docs.google.com/spreadsheets/d/1c7ELAJCFhnknmPBaCaYMvC9wXl_pkc4p4-ntBixhvcc/edit" target="_blank">
-      ↗ Voir le détail complet dans Google Sheets
-    </a>
+    <div class="chart-card">
+      <div class="chart-ttl">Classement complet — cuisson / eau chaude</div>
+      <div class="chart-sub">Formules : Abo HTT = Abo TTC/1,20 − 14,20 € · kWh HTT = kWh TTC/1,20 − 0,01666 € · Source MNE 21/09/2026</div>
+      <div class="tbl-wrap"><table id="tbl-cuis"></table></div>
+      <a class="sheet-link" href="https://docs.google.com/spreadsheets/d/1c7ELAJCFhnknmPBaCaYMvC9wXl_pkc4p4-ntBixhvcc/edit" target="_blank">↗ Voir le détail dans Google Sheets</a>
+    </div>
   </div>
-
 </div>
 
 <footer class="page-footer">
-  <span>Source : comparateur MNE · Omnegy n°317 · 14/09/2026</span>
+  <span>Source : comparateur MNE 21/09/2026 · Omnegy n°318 · GT Octopus Gaz Fixe −4% sept. 2026</span>
   <span>Octopus Energy France · Veille commerciale</span>
 </footer>
 
 <script>
-const CTA=48.70, ACC=0.01666, TVA=1.20, CONSO=13480, PRVG_TTC=2177;
+const CTA_C=48.70,CTA_T1=14.20,ACC=0.01666,TVA=1.20;
+const CONSO_C=13480,CONSO_T1=1260;
+const PRVG_C={aT:360.79,kT:0.1347,fT:2177};
+const PRVG_T1={aT:152.46,kT:0.1676,fT:364};
 
-const src=[
-  {f:"Engie",          o:"Gaz Référence 3 ans (5% Gaz vert)",                  t:"Fixe 3 ans",    v:"5%",   aT:360.79, kT:0.1176, fT:1947, promo:true },
-  {f:"EDF",            o:"Avantage Gaz 2 ans",                                  t:"Fixe 2 ans",    v:"0%",   aT:294.83, kT:0.1245, fT:1973, promo:true },
-  {f:"Synelva",        o:"Objectif Gaz",                                         t:"Fixe 2 ans",    v:"0%",   aT:370.69, kT:0.1255, fT:2062, promo:false},
-  {f:"GeG",            o:"Mon Offre Gaz – Fixe 3 ans",                           t:"Fixe 3 ans",    v:"0%",   aT:586.56, kT:0.1096, fT:2064, promo:false},
-  {f:"Ekwateur",       o:"Gaz 85% Naturel / 15% Renouvelable – 1 an",            t:"Fixe 1 an",     v:"15%",  aT:517.44, kT:0.1182, fT:2111, promo:false},
-  {f:"Octopus",        o:"Eco-Conso Gaz Fixe",                                   t:"Fixe 2 ans",    v:"0%",   aT:359.63, kT:0.1302, fT:2114, promo:false},
-  {f:"Alterna",        o:"Mon Gaz Naturel Indexée T2",                           t:"Indexée",       v:"100%", aT:389.54, kT:0.1282, fT:2118, promo:false},
-  {f:"TotalEnergies",  o:"Offre Fixe 2 ans Gaz",                                 t:"Fixe 2 ans",    v:"0%",   aT:360.74, kT:0.1316, fT:2135, promo:false},
-  {f:"TotalEnergies",  o:"Offre Spéciale Gaz",                                   t:"Indexée",       v:"0%",   aT:360.74, kT:0.1318, fT:2138, promo:false},
-  {f:"EDF",            o:"Avantage Gaz Optimisé – Septembre",                    t:"Indexée",       v:"0%",   aT:373.39, kT:0.1333, fT:2170, promo:true },
-  {f:"Gaz de Bordeaux",o:"Novafixe Biogaz",                                      t:"Fixe 2 ans",    v:"20%",  aT:360.79, kT:0.1357, fT:2190, promo:false},
-  {f:"Plenitude",      o:"Plenifix 1 an Gaz",                                    t:"Fixe 1 an",     v:"0%",   aT:387.43, kT:0.1347, fT:2204, promo:false},
-  {f:"Gaz de Bordeaux",o:"Novaflex Gaz – Septembre",                             t:"Indexée",       v:"0%",   aT:360.79, kT:0.1371, fT:2209, promo:false},
-  {f:"Engie",          o:"Gaz Adapt 1 an (5% Gaz vert)",                         t:"Fixe 1 an",     v:"5%",   aT:387.85, kT:0.1372, fT:2238, promo:false},
-  {f:"Happ-e",         o:"Happ-e Gaz de Engie",                                  t:"Indexée",       v:"0%",   aT:387.85, kT:0.1380, fT:2248, promo:false},
-  {f:"Dyneff",         o:"Contrat+ Gaz Vert 15% – 1 an",                         t:"Fixe 1 an",     v:"15%",  aT:469.26, kT:0.1355, fT:2296, promo:false},
-  {f:"OHM",            o:"Gaz Extra Eco",                                         t:"Fixe 1 an",     v:"0%",   aT:359.58, kT:0.1452, fT:2316, promo:false},
-  {f:"Mint énergie",   o:"Biogaz Online",                                         t:"Indexée 1 an",  v:"5%",   aT:360.79, kT:0.1462, fT:2332, promo:false},
-  {f:"Alterna",        o:"Mon Biogaz Français – T2",                             t:"Fixe 1 an",     v:"100%", aT:389.54, kT:0.1458, fT:2354, promo:false},
-  {f:"OHM",            o:"Classique Gaz",                                         t:"Indexée",       v:"10%",  aT:359.57, kT:0.1514, fT:2401, promo:false},
-  {f:"GeG",            o:"Mon Offre Biogaz – Fixe 3 ans",                        t:"Fixe 3 ans",    v:"100%", aT:586.56, kT:0.1357, fT:2415, promo:false},
-  {f:"Dyneff",         o:"Contrat+ Gaz Vert 55% – 1 an",                         t:"Fixe 1 an",     v:"55%",  aT:469.26, kT:0.1475, fT:2457, promo:false},
-  {f:"Mint énergie",   o:"Biogaz Classic",                                        t:"Indexée 2 ans", v:"10%",  aT:360.79, kT:0.1526, fT:2418, promo:true },
-  {f:"OHM",            o:"Gaz Fixe 2 ans",                                        t:"Fixe 2 ans",    v:"0%",   aT:359.58, kT:0.1577, fT:2485, promo:false},
-  {f:"Mint énergie",   o:"Biogaz Smart",                                          t:"Indexée 3 ans", v:"15%",  aT:360.79, kT:0.1590, fT:2503, promo:true },
-  {f:"Ilek",           o:"Offre Énrfixe+ Gaz",                                   t:"Fixe 2 ans",    v:"100%", aT:438.36, kT:0.1554, fT:2533, promo:false},
-  {f:"OHM",            o:"Gaz Premi'Ohm",                                         t:"Fixe 3 ans",    v:"0%",   aT:359.58, kT:0.1639, fT:2569, promo:false},
-  {f:"Dyneff",         o:"Contrat+ Gaz Vert 100% – 1 an",                        t:"Fixe 1 an",     v:"100%", aT:469.26, kT:0.1610, fT:2639, promo:false},
-  {f:"Gédia",          o:"All Inclusive Gaz Particulier",                         t:"Fixe 1 an",     v:"0%",   aT:534.14, kT:0.1658, fT:2769, promo:false},
+const chauf=[
+  {f:"Engie",o:"Gaz Référence 3 ans (5% Gaz vert)",t:"Fixe 3 ans",v:"5%",aT:360.79,kT:0.1176,fT:1947,promo:true,promoF:1947},
+  {f:"EDF",o:"Avantage Gaz 2 ans",t:"Fixe 2 ans",v:"0%",aT:294.83,kT:0.1245,fT:1973,promo:true,promoF:1923},
+  {f:"Synelva",o:"Objectif Gaz",t:"Fixe 2 ans",v:"0%",aT:370.69,kT:0.1255,fT:2062,promo:false},
+  {f:"Ekwateur",o:"Gaz 85% Nat / 15% Renouv.",t:"Fixe 1 an",v:"15%",aT:517.44,kT:0.1182,fT:2111,promo:false},
+  {f:"Octopus",o:"Eco-Conso Gaz Fixe",t:"Fixe 2 ans",v:"0%",aT:360.89,kT:0.1302,fT:2115,promo:false},
+  {f:"Alterna",o:"Mon Gaz Naturel Indexée T2",t:"Indexée",v:"100%",aT:389.54,kT:0.1282,fT:2118,promo:false},
+  {f:"TotalEnergies",o:"Offre Fixe 2 ans Gaz",t:"Fixe 2 ans",v:"0%",aT:360.74,kT:0.1316,fT:2135,promo:false},
+  {f:"Gaz de Bordeaux",o:"Novafixe Biogaz",t:"Fixe 2 ans",v:"20%",aT:360.79,kT:0.1357,fT:2190,promo:false},
+  {f:"Plenitude",o:"Plenifix 1 an Gaz",t:"Fixe 1 an",v:"0%",aT:387.43,kT:0.1347,fT:2204,promo:false},
+  {f:"Gaz de Bordeaux",o:"Novaflex Gaz - Septembre",t:"Indexée",v:"0%",aT:360.79,kT:0.1371,fT:2209,promo:false},
+  {f:"Engie",o:"Gaz Adapt 1 an (5% Gaz vert)",t:"Fixe 1 an",v:"5%",aT:387.85,kT:0.1372,fT:2238,promo:false},
+  {f:"Happ-e",o:"Happ-e Gaz de Engie",t:"Indexée",v:"0%",aT:387.85,kT:0.1380,fT:2248,promo:false},
+  {f:"TotalEnergies",o:"Offre Spéciale Gaz (oct.)",t:"Indexée",v:"0%",aT:360.74,kT:0.1428,fT:2285,promo:false},
+  {f:"Dyneff",o:"Contrat+ Gaz Vert 15% - 1 an",t:"Fixe 1 an",v:"15%",aT:469.26,kT:0.1355,fT:2296,promo:false},
+  {f:"EDF",o:"Avantage Gaz Optimisé - Octobre",t:"Indexée",v:"0%",aT:366.18,kT:0.1442,fT:2310,promo:false},
+  {f:"OHM",o:"Gaz Extra Eco",t:"Fixe 1 an",v:"0%",aT:359.58,kT:0.1452,fT:2316,promo:false},
+  {f:"Mint énergie",o:"Biogaz Online",t:"Indexée 1 an",v:"5%",aT:360.79,kT:0.1462,fT:2332,promo:false},
+  {f:"Alterna",o:"Mon Biogaz Français - T2",t:"Fixe 1 an",v:"100%",aT:389.54,kT:0.1458,fT:2354,promo:false},
+  {f:"Gaz de Bordeaux",o:"Novaflex Gaz - Octobre",t:"Indexée",v:"0%",aT:360.79,kT:0.1479,fT:2354,promo:false},
+  {f:"OHM",o:"Classique Gaz",t:"Indexée",v:"10%",aT:359.57,kT:0.1514,fT:2401,promo:false},
+  {f:"GeG",o:"Mon Offre Gaz - Fixe 3 ans",t:"Fixe 3 ans",v:"0%",aT:586.56,kT:0.1354,fT:2412,promo:false},
+  {f:"Dyneff",o:"Contrat+ Gaz Vert 55% - 1 an",t:"Fixe 1 an",v:"55%",aT:469.26,kT:0.1475,fT:2457,promo:false},
+  {f:"Mint énergie",o:"Biogaz Classic",t:"Indexée 2 ans",v:"10%",aT:360.79,kT:0.1526,fT:2418,promo:true,promoF:2388},
+  {f:"OHM",o:"Gaz Fixe 2 ans",t:"Fixe 2 ans",v:"0%",aT:359.58,kT:0.1577,fT:2485,promo:false},
+  {f:"Mint énergie",o:"Biogaz Smart",t:"Indexée 3 ans",v:"15%",aT:360.79,kT:0.1590,fT:2503,promo:true,promoF:2463},
+  {f:"Ilek",o:"Offre Énrfixe+ Gaz",t:"Fixe 2 ans",v:"100%",aT:438.36,kT:0.1554,fT:2533,promo:false},
+  {f:"OHM",o:"Gaz Premi'Ohm",t:"Fixe 3 ans",v:"0%",aT:359.58,kT:0.1639,fT:2569,promo:false},
+  {f:"Dyneff",o:"Contrat+ Gaz Vert 100% - 1 an",t:"Fixe 1 an",v:"100%",aT:469.26,kT:0.1610,fT:2639,promo:false},
 ];
 
-const data = src.sort((a,b) => a.fT - b.fT).map((r,i) => ({
-  ...r,
-  rank: i+1,
-  aH: r.aT/TVA - CTA,
-  kH: r.kT/TVA - ACC,
-  fH: Math.round(r.aT/TVA - CTA + (r.kT/TVA - ACC)*CONSO)
-}));
+const cuis=[
+  {f:"EDF",o:"Avantage Gaz 2 ans",t:"Fixe 2 ans",v:"0%",aT:124.76,kT:0.1567,fT:322,promo:true,promoF:272},
+  {f:"Engie",o:"Gaz Référence 3 ans (5% Gaz vert)",t:"Fixe 3 ans",v:"5%",aT:152.46,kT:0.1469,fT:338,promo:false},
+  {f:"Synelva",o:"Objectif Gaz",t:"Fixe 2 ans",v:"0%",aT:147.70,kT:0.1642,fT:355,promo:false},
+  {f:"Octopus",o:"Eco-Conso Gaz Fixe",t:"Fixe 2 ans",v:"0%",aT:152.11,kT:0.1617,fT:356,promo:false},
+  {f:"TotalEnergies",o:"Offre Fixe 2 ans Gaz",t:"Fixe 2 ans",v:"0%",aT:152.41,kT:0.1701,fT:367,promo:false},
+  {f:"Engie",o:"Gaz Adapt 1 an (5% Gaz vert)",t:"Fixe 1 an",v:"5%",aT:152.46,kT:0.1753,fT:373,promo:false},
+  {f:"Happ-e",o:"Happ-e Gaz de Engie",t:"Indexée",v:"0%",aT:152.46,kT:0.1759,fT:374,promo:false},
+  {f:"TotalEnergies",o:"Offre Spéciale Gaz",t:"Indexée",v:"0%",aT:152.41,kT:0.1768,fT:375,promo:false},
+  {f:"Alterna",o:"Mon Gaz Naturel Indexée T1",t:"Indexée",v:"100%",aT:174.01,kT:0.1602,fT:376,promo:false},
+  {f:"Gaz de Bordeaux",o:"Novafixe Biogaz",t:"Fixe 2 ans",v:"20%",aT:152.46,kT:0.1774,fT:376,promo:false},
+  {f:"OHM",o:"Gaz Extra Eco",t:"Fixe 1 an",v:"0%",aT:152.06,kT:0.1780,fT:376,promo:false},
+  {f:"EDF",o:"Avantage Gaz Optimisé - Octobre",t:"Indexée",v:"0%",aT:152.70,kT:0.1779,fT:377,promo:false},
+  {f:"Gaz de Bordeaux",o:"Novaflex Gaz - Septembre",t:"Indexée",v:"0%",aT:152.46,kT:0.1783,fT:377,promo:false},
+  {f:"Mint énergie",o:"Biogaz Online",t:"Indexée 1 an",v:"5%",aT:152.46,kT:0.1783,fT:377,promo:false},
+  {f:"OHM",o:"Classique Gaz",t:"Indexée",v:"10%",aT:152.06,kT:0.1859,fT:386,promo:false},
+  {f:"Dyneff",o:"Contrat+ Gaz Vert 15% - 1 an",t:"Fixe 1 an",v:"15%",aT:163.48,kT:0.1772,fT:387,promo:false},
+  {f:"Mint énergie",o:"Biogaz Classic",t:"Indexée 2 ans",v:"10%",aT:152.46,kT:0.1862,fT:387,promo:true,promoF:357},
+  {f:"GeG",o:"Mon Offre Gaz - Fixe 3 ans",t:"Fixe 3 ans",v:"0%",aT:131.87,kT:0.2034,fT:388,promo:false},
+  {f:"Plenitude",o:"Plenifix 1 an Gaz",t:"Fixe 1 an",v:"0%",aT:179.10,kT:0.1676,fT:390,promo:false},
+  {f:"Gaz de Bordeaux",o:"Novaflex Gaz - Octobre",t:"Indexée",v:"0%",aT:152.46,kT:0.1891,fT:391,promo:false},
+  {f:"OHM",o:"Gaz Fixe 2 ans",t:"Fixe 2 ans",v:"0%",aT:152.06,kT:0.1938,fT:396,promo:false},
+  {f:"Mint énergie",o:"Biogaz Smart",t:"Indexée 3 ans",v:"15%",aT:152.46,kT:0.1941,fT:397,promo:true,promoF:357},
+  {f:"Dyneff",o:"Contrat+ Gaz Vert 55% - 1 an",t:"Fixe 1 an",v:"55%",aT:163.48,kT:0.1892,fT:402,promo:false},
+  {f:"OHM",o:"Gaz Premi'Ohm",t:"Fixe 3 ans",v:"0%",aT:152.06,kT:0.2017,fT:406,promo:false},
+  {f:"Alterna",o:"Mon Biogaz Français - T1",t:"Fixe 1 an",v:"100%",aT:174.01,kT:0.1861,fT:408,promo:false},
+  {f:"Dyneff",o:"Contrat+ Gaz Vert 100% - 1 an",t:"Fixe 1 an",v:"100%",aT:163.48,kT:0.2027,fT:419,promo:false},
+];
 
-// -- Rank evolution chart --
-const rankCtx = document.getElementById('rankChart').getContext('2d');
-new Chart(rankCtx, {
-  type: 'line',
-  data: {
-    labels: ['S33','S34','S35','S36','S37','S38'],
-    datasets: [{
-      data: [null, null, null, null, null, 6],
-      borderColor: '#e6007e',
-      backgroundColor: 'rgba(230,0,126,0.06)',
-      borderWidth: 2,
-      pointRadius: 5,
-      pointBackgroundColor: '#e6007e',
-      pointBorderColor: '#fff',
-      pointBorderWidth: 2,
-      tension: 0.3,
-      fill: true,
-      spanGaps: false
+function pc(v,r){return Math.round((v-r)/r*100);}
+function fp(v){const c=v<0?'neg':v===0?'neu':'pos2';return`<span class="${c}">${v>0?'+':''}${v}%</span>`;}
+function fe(v,d=2){return v.toLocaleString('fr-FR',{minimumFractionDigits:d,maximumFractionDigits:d})+' €';}
+function fk(v){return v.toLocaleString('fr-FR',{minimumFractionDigits:4,maximumFractionDigits:4})+' €';}
+
+function buildTable(data,cta,conso,prvg,tblId){
+  const sorted=data.slice().sort((a,b)=>a.fT-b.fT);
+  const prvgAH=prvg.aT/TVA-cta;
+  const prvgKH=prvg.kT/TVA-ACC;
+  const prvgFH=Math.round(prvgAH+prvgKH*conso);
+  const thead=`<thead>
+    <tr>
+      <th rowspan="2" class="l" style="text-align:left">#</th>
+      <th rowspan="2" class="l" style="text-align:left">Fournisseur</th>
+      <th rowspan="2" class="l" style="text-align:left;min-width:160px">Offre</th>
+      <th rowspan="2">Type</th>
+      <th rowspan="2">% vert</th>
+      <th colspan="4" class="grp">Abonnement annuel</th>
+      <th colspan="4" class="grp">kWh</th>
+      <th colspan="4" class="grp">Facture totale annuelle</th>
+      <th rowspan="2">Facture avec promo</th>
+    </tr>
+    <tr>
+      <th>HTT</th><th>% vs PRVG</th><th>TTC</th><th>% vs PRVG</th>
+      <th>HTT</th><th>% vs PRVG</th><th>TTC</th><th>% vs PRVG</th>
+      <th>HTT</th><th>% vs PRVG</th><th>TTC</th><th>% vs PRVG</th>
+    </tr>
+  </thead>`;
+  const tbody=sorted.map((r,i)=>{
+    const isO=r.f==='Octopus';
+    const aH=r.aT/TVA-cta;
+    const kH=r.kT/TVA-ACC;
+    const fH=Math.round(aH+kH*conso);
+    return`<tr class="${isO?'oct':''}">
+      <td class="l">${i+1}</td>
+      <td class="l">${r.f}${r.promo?'<span class="promo-tag">promo</span>':''}</td>
+      <td class="l" title="${r.o}">${r.o}</td>
+      <td class="l">${r.t}</td>
+      <td style="text-align:center">${r.v}</td>
+      <td>${fe(aH)}</td><td>${fp(pc(aH,prvgAH))}</td>
+      <td>${fe(r.aT)}</td><td>${fp(pc(r.aT,prvg.aT))}</td>
+      <td>${fk(kH)}</td><td>${fp(pc(kH,prvgKH))}</td>
+      <td>${fk(r.kT)}</td><td>${fp(pc(r.kT,prvg.kT))}</td>
+      <td>${fe(fH,0)}</td><td>${fp(pc(fH,prvgFH))}</td>
+      <td>${fe(r.fT,0)}</td><td>${fp(pc(r.fT,prvg.fT))}</td>
+      <td>${r.promo&&r.promoF?fe(r.promoF,0):''}</td>
+    </tr>`;
+  }).join('');
+  document.getElementById(tblId).innerHTML=thead+'<tbody>'+tbody+'</tbody>';
+}
+
+function buildBar(canvasId,data,prvg){
+  const sorted=data.slice().sort((a,b)=>a.fT-b.fT).slice(0,15);
+  new Chart(document.getElementById(canvasId),{
+    type:'bar',
+    data:{
+      labels:sorted.map(r=>r.f+(r.f==='Octopus'?' ★':'')),
+      datasets:[
+        {label:'Facture TTC',data:sorted.map(r=>r.fT),backgroundColor:sorted.map(r=>r.f==='Octopus'?'#1a5cad':'#d0d0d0'),borderRadius:3,borderSkipped:'start'},
+        {label:'PRVG',data:Array(15).fill(prvg.fT),type:'line',borderColor:'rgba(192,57,43,.6)',borderWidth:1.5,borderDash:[4,3],pointRadius:0,fill:false}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,indexAxis:'y',
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+' : '+Math.round(c.raw).toLocaleString('fr-FR')+' €'}}},
+      scales:{
+        x:{grid:{color:'#efefef'},ticks:{callback:v=>v.toLocaleString('fr-FR')+' €',font:{size:11},color:'#888'},border:{color:'#e2e2e2'}},
+        y:{grid:{display:false},ticks:{font:{size:11},color:'#444'},border:{color:'#e2e2e2'}}
+      }
+    }
+  });
+}
+
+buildTable(chauf,CTA_C,CONSO_C,PRVG_C,'tbl-chauf');
+buildTable(cuis,CTA_T1,CONSO_T1,PRVG_T1,'tbl-cuis');
+buildBar('barChauf',chauf,PRVG_C);
+buildBar('barCuis',cuis,PRVG_T1);
+
+new Chart(document.getElementById('rankChauf'),{
+  type:'line',
+  data:{
+    labels:['S33','S34','S35','S36','S37','S38','S39'],
+    datasets:[{
+      data:[null,null,null,null,null,6,5],
+      borderColor:'#e6007e',backgroundColor:'rgba(230,0,126,.06)',
+      borderWidth:2,pointRadius:5,pointBackgroundColor:'#e6007e',
+      pointBorderColor:'#fff',pointBorderWidth:2,tension:.3,fill:true,spanGaps:false
     }]
   },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => 'Rang ' + c.raw + ' / 29' } } },
-    scales: {
-      y: { reverse: true, min: 1, max: 15, grid: { color: '#efefef' }, ticks: { stepSize: 2, font: { size: 11 }, callback: v => '#' + v, color: '#888' }, border: { color: '#e2e2e2' } },
-      x: { grid: { display: false }, ticks: { font: { size: 11 }, color: '#888' }, border: { color: '#e2e2e2' } }
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'Rang '+c.raw+' / 29'}}},
+    scales:{
+      y:{reverse:true,min:1,max:15,grid:{color:'#efefef'},ticks:{stepSize:2,font:{size:11},callback:v=>'#'+v,color:'#888'},border:{color:'#e2e2e2'},title:{display:true,text:'← mieux',color:'#888',font:{size:10}}},
+      x:{grid:{display:false},ticks:{font:{size:11},color:'#888'},border:{color:'#e2e2e2'}}
     }
   }
 });
 
-// -- Bar chart top 15 --
-const top15 = data.slice(0, 15);
-const barCtx = document.getElementById('barChart').getContext('2d');
-new Chart(barCtx, {
-  type: 'bar',
-  data: {
-    labels: top15.map(r => r.f + (r.f === 'Octopus' ? ' ★' : '')),
-    datasets: [
-      {
-        label: 'Facture TTC',
-        data: top15.map(r => r.fT),
-        backgroundColor: top15.map(r => r.f === 'Octopus' ? '#1a5cad' : '#d8d8d8'),
-        borderRadius: 3,
-        borderSkipped: 'start'
-      },
-      {
-        label: 'PRVG',
-        data: Array(15).fill(PRVG_TTC),
-        type: 'line',
-        borderColor: 'rgba(192,57,43,0.6)',
-        borderWidth: 1.5,
-        borderDash: [4, 3],
-        pointRadius: 0,
-        fill: false
-      }
-    ]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    indexAxis: 'y',
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.dataset.label + ' : ' + c.raw.toLocaleString('fr-FR') + ' €' } } },
-    scales: {
-      x: { min: 1700, grid: { color: '#efefef' }, ticks: { callback: v => v.toLocaleString('fr-FR') + ' €', font: { size: 11 }, color: '#888' }, border: { color: '#e2e2e2' } },
-      y: { grid: { display: false }, ticks: { font: { size: 11 }, color: '#444' }, border: { color: '#e2e2e2' } }
-    }
-  }
-});
-
-// -- Ranking table --
-const table = document.getElementById('rankingTable');
-const pct = (v, r) => { const p = Math.round((v-r)/r*100); return `<span class="${p<=0?'pct-neg':'pct-pos'}">${p>0?'+':''}${p}%</span>`; };
-table.innerHTML = `
-  <thead><tr>
-    <th>#</th>
-    <th>Fournisseur</th>
-    <th>Type</th>
-    <th>% vert</th>
-    <th>Abo TTC/an</th>
-    <th>kWh TTC</th>
-    <th>Facture TTC</th>
-    <th>vs PRVG</th>
-  </tr></thead>
-  <tbody>
-    ${data.map(r => {
-      const isO = r.f === 'Octopus';
-      return `<tr class="${isO ? 'oct-row' : ''}">
-        <td class="rank-n">${r.rank}</td>
-        <td>
-          <span>${r.f}${r.promo ? '<span class="tag tag-promo">promo</span>' : ''}${isO ? '<span class="tag tag-oct">Octopus</span>' : ''}</span>
-          <span class="offer-name">${r.o}</span>
-        </td>
-        <td>${r.t}</td>
-        <td>${r.v}</td>
-        <td class="price-val">${r.aT.toLocaleString('fr-FR', {minimumFractionDigits:2})} €</td>
-        <td class="price-val">${r.kT.toFixed(4).replace('.',',')} €</td>
-        <td class="price-val" style="font-weight:500">${r.fT.toLocaleString('fr-FR')} €</td>
-        <td>${pct(r.fT, PRVG_TTC)}</td>
-      </tr>`;
-    }).join('')}
-  </tbody>`;
-
-// -- Tab navigation --
-function showTab(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
-  event.target.classList.add('active');
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+function showSub(id,btn){
+  document.querySelectorAll('.sub-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sub-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('sub-'+id).classList.add('active');
+  btn.classList.add('active');
 }
 </script>
 </body>
