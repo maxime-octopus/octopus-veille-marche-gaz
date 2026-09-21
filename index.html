@@ -166,7 +166,11 @@ function mkTableH(tblId){
 
 function mkBarE(id,data,trv,isHphc){
   const sorted=data.slice().sort((a,b)=>a.fT-b.fT).slice(0,15);
-  new Chart(document.getElementById(id),{
+  const canvas=document.getElementById(id);
+  if(!canvas) return;
+  canvas.width=canvas.parentElement.offsetWidth||700;
+  canvas.height=420;
+  new Chart(canvas,{
     type:'bar',
     data:{
       labels:sorted.map(r=>r.f+(r.f==='Octopus'?' ★':r.isTRV?' (TRV)':'')),
@@ -176,7 +180,7 @@ function mkBarE(id,data,trv,isHphc){
       ]
     },
     options:{
-      responsive:true,maintainAspectRatio:false,indexAxis:'y',
+      responsive:false,maintainAspectRatio:false,indexAxis:'y',
       plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>Math.round(c.raw).toLocaleString('fr-FR')+' €'}}},
       scales:{
         x:{grid:{color:'#efefef'},ticks:{callback:v=>v.toLocaleString('fr-FR')+' €',font:{size:11},color:'#888'},border:{color:'#e2e2e2'}},
@@ -187,11 +191,15 @@ function mkBarE(id,data,trv,isHphc){
 }
 
 function mkRankE(id,rank,total){
-  new Chart(document.getElementById(id),{
+  const canvas=document.getElementById(id);
+  if(!canvas) return;
+  canvas.width=canvas.parentElement.offsetWidth||700;
+  canvas.height=150;
+  new Chart(canvas,{
     type:'line',
     data:{labels:['S39'],datasets:[{data:[rank],borderColor:'#e6007e',backgroundColor:'rgba(230,0,126,.06)',borderWidth:2,pointRadius:8,pointBackgroundColor:'#e6007e',pointBorderColor:'#fff',pointBorderWidth:2,fill:true}]},
     options:{
-      responsive:true,maintainAspectRatio:false,
+      responsive:false,maintainAspectRatio:false,
       plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'Rang '+c.raw+' / '+total}}},
       scales:{
         y:{reverse:true,min:1,max:total,grid:{color:'#efefef'},ticks:{stepSize:Math.ceil(total/8),callback:v=>'#'+v,font:{size:11},color:'#888'},border:{color:'#e2e2e2'}},
@@ -201,13 +209,27 @@ function mkRankE(id,rank,total){
   });
 }
 
-// Charts élec initialisés à la demande (canvas caché sinon)
-let elecInitialized = false;
+// Charts élec — recréation des canvas à chaque affichage pour éviter le problème display:none
+function resetCanvas(id){
+  const old=document.getElementById(id);
+  if(!old) return;
+  const parent=old.parentNode;
+  const h=old.style.height||old.parentNode.style.height;
+  old.remove();
+  const c=document.createElement('canvas');
+  c.id=id;
+  parent.appendChild(c);
+}
+
+let tablesBuilt=false;
 function initElec(){
-  if(elecInitialized) return;
-  elecInitialized = true;
-  mkTableB('tEBS39');
-  mkTableH('tEHS39');
+  if(!tablesBuilt){
+    mkTableB('tEBS39');
+    mkTableH('tEHS39');
+    tablesBuilt=true;
+  }
+  resetCanvas('rankEB'); resetCanvas('rankEH');
+  resetCanvas('barEBS39'); resetCanvas('barEHS39');
   mkBarE('barEBS39',dEB,TRV_B.fT,false);
   mkBarE('barEHS39',dEH,TRV_H.fT,true);
   mkRankE('rankEB',16,29);
@@ -219,7 +241,7 @@ function se(id,btn){
   document.querySelectorAll('#pg-elec .stab').forEach(b=>b.classList.remove('on'));
   document.getElementById('se-'+id).classList.add('on');
   btn.classList.add('on');
-  setTimeout(initElec, 50);
+  initElec();
 }
 
 </script>
@@ -705,7 +727,7 @@ function sp(id,btn){
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('on'));
   document.getElementById('pg-'+id).classList.add('on');
   btn.classList.add('on');
-  if(id==='elec') setTimeout(initElec, 50);
+  if(id==='elec') initElec();
 }
 
 function ss(id,btn){
