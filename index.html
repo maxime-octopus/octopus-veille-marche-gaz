@@ -454,9 +454,13 @@ const WEEKS={
 };
 
 function switchWeek(w){
+  // Désactiver tous les week-panes
   document.querySelectorAll('.week-pane').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('[id$="-'+w+'"]').forEach(p=>p.classList.add('active'));
-  document.getElementById('header-week').textContent=WEEKS[w].label;
+  // Réactiver uniquement les panes de la semaine choisie
+  ['marche','chauf','cuis'].forEach(section=>{
+    const el=document.getElementById(section+'-'+w);
+    if(el) el.classList.add('active');
+  });
 }
 
 function showPage(id,btn){
