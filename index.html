@@ -201,18 +201,25 @@ function mkRankE(id,rank,total){
   });
 }
 
-mkTableB('tEBS39');
-mkTableH('tEHS39');
-mkBarE('barEBS39',dEB,TRV_B.fT,false);
-mkBarE('barEHS39',dEH,TRV_H.fT,true);
-mkRankE('rankEB',16,29);
-mkRankE('rankEH',20,30);
+// Charts élec initialisés à la demande (canvas caché sinon)
+let elecInitialized = false;
+function initElec(){
+  if(elecInitialized) return;
+  elecInitialized = true;
+  mkTableB('tEBS39');
+  mkTableH('tEHS39');
+  mkBarE('barEBS39',dEB,TRV_B.fT,false);
+  mkBarE('barEHS39',dEH,TRV_H.fT,true);
+  mkRankE('rankEB',16,29);
+  mkRankE('rankEH',20,30);
+}
 
 function se(id,btn){
   document.querySelectorAll('#pg-elec .spg').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('#pg-elec .stab').forEach(b=>b.classList.remove('on'));
   document.getElementById('se-'+id).classList.add('on');
   btn.classList.add('on');
+  setTimeout(initElec, 50);
 }
 
 </script>
@@ -698,6 +705,7 @@ function sp(id,btn){
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('on'));
   document.getElementById('pg-'+id).classList.add('on');
   btn.classList.add('on');
+  if(id==='elec') setTimeout(initElec, 50);
 }
 
 function ss(id,btn){
