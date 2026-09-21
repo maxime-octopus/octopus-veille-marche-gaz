@@ -477,11 +477,21 @@ document.addEventListener('DOMContentLoaded',function(){
   switchWeek('s39');
 });
 
+function getCurrentWeek(){
+  return document.getElementById('week-select').value;
+}
+
 function showPage(id,btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   btn.classList.add('active');
+  // Activer le bon week-pane pour cette page
+  if(id==='marche'){
+    document.querySelectorAll('#page-marche .week-pane').forEach(p=>p.classList.remove('active'));
+    const el=document.getElementById('marche-'+getCurrentWeek());
+    if(el) el.classList.add('active');
+  }
 }
 
 function showSub(id,btn){
@@ -489,11 +499,46 @@ function showSub(id,btn){
   document.querySelectorAll('.sub-tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('sub-'+id).classList.add('active');
   btn.classList.add('active');
-  const w=document.getElementById('week-select').value;
+  // Activer le bon week-pane pour ce sous-onglet
   document.querySelectorAll('#sub-'+id+' .week-pane').forEach(p=>p.classList.remove('active'));
-  const target=document.getElementById(id+'-'+w);
-  if(target) target.classList.add('active');
+  const el=document.getElementById(id+'-'+getCurrentWeek());
+  if(el) el.classList.add('active');
 }
+
+function switchWeek(w){
+  // Marché
+  document.querySelectorAll('#page-marche .week-pane').forEach(p=>p.classList.remove('active'));
+  const marcheEl=document.getElementById('marche-'+w);
+  if(marcheEl) marcheEl.classList.add('active');
+  // Sous-onglet gaz actif
+  const activeSub=document.querySelector('.sub-pane.active');
+  if(activeSub){
+    activeSub.querySelectorAll('.week-pane').forEach(p=>p.classList.remove('active'));
+    const subId=activeSub.id.replace('sub-','');
+    const subEl=document.getElementById(subId+'-'+w);
+    if(subEl) subEl.classList.add('active');
+  }
+}
+
+// Init au chargement — forcer S39 + page marché + sous-onglet chauffage
+window.addEventListener('load',function(){
+  // Reset tout
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.sub-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sub-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.week-pane').forEach(p=>p.classList.remove('active'));
+  // Activer page marché
+  document.getElementById('page-marche').classList.add('active');
+  document.querySelector('.nav-tab').classList.add('active');
+  // Activer semaine S39
+  document.getElementById('week-select').value='s39';
+  document.getElementById('marche-s39').classList.add('active');
+  // Activer sous-onglet chauffage S39
+  document.getElementById('sub-chauf').classList.add('active');
+  document.querySelector('.sub-tab').classList.add('active');
+  document.getElementById('chauf-s39').classList.add('active');
+});
 </script>
 </body>
 </html>
