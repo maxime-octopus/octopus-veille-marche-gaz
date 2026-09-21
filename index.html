@@ -4,414 +4,371 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Veille marché énergie — Octopus Energy France</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-:root{--pink:#e6007e;--pink-l:rgba(230,0,126,.08);--ink:#0f0f0f;--ink-2:#4a4a4a;--ink-3:#888;--surf:#f6f6f6;--surf-2:#efefef;--bdr:#e2e2e2;--white:#fff;--up:#c0392b;--dn:#1a7f5a;--blue:#1a5cad;--blue-l:rgba(26,92,173,.08);--r:6px;--rl:12px}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:var(--white);color:var(--ink);font-size:14px;line-height:1.5}
-.site-header{background:var(--ink);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:100}
-.site-logo{display:flex;align-items:center;gap:10px;color:var(--white);font-size:14px;font-weight:500}
-.logo-mark{width:8px;height:8px;border-radius:50%;background:var(--pink)}
-.site-meta{font-family:'DM Mono',monospace;font-size:11px;color:#888}
-.nav-tabs{background:var(--white);border-bottom:1px solid var(--bdr);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:52px;z-index:99}
-.nav-left{display:flex;gap:0}
-.nav-tab{padding:12px 18px;font-size:13px;font-weight:500;color:var(--ink-3);cursor:pointer;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:'Inter',sans-serif;transition:color .15s,border-color .15s}
-.nav-tab:hover{color:var(--ink)}
-.nav-tab.active{color:var(--pink);border-bottom-color:var(--pink)}
-.week-selector{display:flex;align-items:center;gap:8px;padding:8px 0}
-.week-selector label{font-size:12px;color:var(--ink-3);font-family:'DM Mono',monospace}
-.week-selector select{font-size:12px;font-family:'Inter',sans-serif;padding:4px 8px;border:1px solid var(--bdr);border-radius:var(--r);background:var(--white);color:var(--ink);cursor:pointer}
-.page{display:none;padding:2rem;max-width:1100px;margin:0 auto}
-.page.active{display:block}
-.lbl{font-family:'DM Mono',monospace;font-size:11px;color:var(--ink-3);letter-spacing:.04em;margin-bottom:14px}
-.brief-card{background:var(--ink);color:var(--white);border-radius:var(--rl);padding:1.5rem;margin-bottom:2rem}
-.brief-card .lbl{color:#555;margin-bottom:10px}
-.brief-p{font-size:13px;color:#ccc;line-height:1.7;margin-bottom:10px}
-.brief-p:last-child{margin-bottom:0}
-.brief-p strong{color:var(--white);font-weight:500}
-.brief-hl{border-left:2px solid var(--pink);padding-left:12px;margin:14px 0}
+body{font-family:'Inter',sans-serif;background:#fff;color:#0f0f0f;font-size:14px;line-height:1.5}
+.hd{background:#0f0f0f;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:100}
+.hd-logo{display:flex;align-items:center;gap:8px;color:#fff;font-size:14px;font-weight:500}
+.hd-dot{width:8px;height:8px;border-radius:50%;background:#e6007e}
+.hd-sel{font-size:12px;padding:5px 12px;border:none;border-radius:4px;background:rgba(255,255,255,.15);color:#fff;cursor:pointer;font-family:'Inter',sans-serif}
+.nav{background:#fff;border-bottom:1px solid #e2e2e2;padding:0 2rem;display:flex;position:sticky;top:52px;z-index:99}
+.nav-btn{padding:12px 18px;font-size:13px;font-weight:500;color:#888;cursor:pointer;border:none;border-bottom:2px solid transparent;background:none;font-family:'Inter',sans-serif}
+.nav-btn.on{color:#e6007e;border-bottom-color:#e6007e}
+.pg{display:none;padding:2rem;max-width:1100px;margin:0 auto}
+.pg.on{display:block}
+.lbl{font-family:'DM Mono',monospace;font-size:11px;color:#888;margin-bottom:12px}
+.brief{background:#0f0f0f;border-radius:12px;padding:1.5rem;margin-bottom:1.5rem}
+.brief p{font-size:13px;color:#ccc;line-height:1.7;margin-bottom:8px}
+.brief p:last-child{margin-bottom:0}
+.brief p strong{color:#fff;font-weight:500}
+.brief-hl{border-left:2px solid #e6007e;padding-left:12px;margin:12px 0}
 .brief-hl p{font-size:13px;color:#eee;line-height:1.65}
-hr{border:none;border-top:1px solid var(--bdr);margin:2rem 0}
-.sub-tabs{display:flex;gap:0;border-bottom:1px solid var(--bdr);margin-bottom:1.5rem}
-.sub-tab{padding:10px 16px;font-size:13px;font-weight:500;color:var(--ink-3);cursor:pointer;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:'Inter',sans-serif}
-.sub-tab:hover{color:var(--ink)}
-.sub-tab.active{color:var(--blue);border-bottom-color:var(--blue)}
-.sub-pane{display:none}
-.sub-pane.active{display:block}
-.week-pane{display:none}
-.week-pane.active{display:block}
-.pos-hero{display:grid;grid-template-columns:auto 1fr 1fr;gap:1px;background:var(--bdr);border:1px solid var(--bdr);border-radius:var(--rl);overflow:hidden;margin-bottom:1.5rem}
-.pos-rank{background:var(--pink);padding:1.5rem 2rem;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:120px}
-.rank-n{font-size:52px;font-weight:500;color:var(--white);letter-spacing:-.05em;line-height:1}
-.rank-l{font-size:11px;color:rgba(255,255,255,.7);margin-top:4px}
-.pos-metric{background:var(--white);padding:1.25rem 1.5rem;display:flex;flex-direction:column;justify-content:center}
-.pm-l{font-size:11px;color:var(--ink-3);margin-bottom:6px}
-.pm-v{font-size:26px;font-weight:500;letter-spacing:-.03em}
-.pm-s{font-family:'DM Mono',monospace;font-size:11px;color:var(--ink-3);margin-top:4px}
-.chart-card{background:var(--white);border:1px solid var(--bdr);border-radius:var(--rl);padding:1.25rem 1.5rem;margin-bottom:1.5rem}
-.chart-ttl{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px}
-.chart-sub{font-size:11px;color:var(--ink-3);margin-bottom:1rem}
-.legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px}
-.leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--ink-2)}
-.leg-sq{width:8px;height:8px;border-radius:2px;flex-shrink:0}
-.leg-ln{width:16px;height:2px;flex-shrink:0}
-.unavail{background:var(--surf);border:1px dashed var(--bdr);border-radius:var(--rl);padding:2rem;text-align:center;color:var(--ink-3);font-size:13px;margin-bottom:1.5rem}
-.tbl-wrap{overflow-x:auto}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;background:#e2e2e2;border:1px solid #e2e2e2;border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.kpi{background:#fff;padding:.9rem 1rem}
+.kpi-l{font-size:11px;color:#888;margin-bottom:4px}
+.kpi-v{font-size:20px;font-weight:500;line-height:1}
+.kpi-d{font-family:'DM Mono',monospace;font-size:11px;margin-top:3px}
+.up{color:#c0392b}.dn{color:#1a7f5a}.neu{color:#888}
+hr{border:none;border-top:1px solid #e2e2e2;margin:1.5rem 0}
+.stabs{display:flex;border-bottom:1px solid #e2e2e2;margin-bottom:1.5rem}
+.stab{padding:10px 16px;font-size:13px;font-weight:500;color:#888;cursor:pointer;border:none;border-bottom:2px solid transparent;background:none;font-family:'Inter',sans-serif}
+.stab.on{color:#1a5cad;border-bottom-color:#1a5cad}
+.spg{display:none}
+.spg.on{display:block}
+.hero{display:grid;grid-template-columns:auto 1fr 1fr;gap:1px;background:#e2e2e2;border:1px solid #e2e2e2;border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.hero-rank{background:#e6007e;padding:1.25rem 1.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:110px}
+.hero-n{font-size:44px;font-weight:500;color:#fff;line-height:1;letter-spacing:-.04em}
+.hero-l{font-size:11px;color:rgba(255,255,255,.7);margin-top:3px}
+.hero-m{background:#fff;padding:1rem 1.25rem;display:flex;flex-direction:column;justify-content:center}
+.hero-ml{font-size:11px;color:#888;margin-bottom:5px}
+.hero-mv{font-size:24px;font-weight:500;letter-spacing:-.02em}
+.hero-ms{font-family:'DM Mono',monospace;font-size:11px;color:#888;margin-top:3px}
+.card{background:#fff;border:1px solid #e2e2e2;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.5rem}
+.card-t{font-size:13px;font-weight:500;margin-bottom:3px}
+.card-s{font-size:11px;color:#888;margin-bottom:1rem}
+.leg{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.leg-i{display:flex;align-items:center;gap:5px;font-size:11px;color:#4a4a4a}
+.leg-sq{width:8px;height:8px;border-radius:2px}
+.leg-ln{width:16px;height:2px}
+.tw{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:11.5px;white-space:nowrap}
-th,td{padding:5px 8px;border:.5px solid var(--bdr)}
-th{background:var(--surf);color:var(--ink-3);font-weight:500;text-align:center;font-size:11px}
-th.grp{background:var(--surf-2);color:var(--ink-2);font-weight:500}
-td{color:var(--ink);text-align:right}
+th,td{padding:5px 8px;border:.5px solid #e2e2e2}
+th{background:#f6f6f6;color:#888;font-weight:500;text-align:center;font-size:11px}
+th.g{background:#efefef;color:#4a4a4a}
+td{color:#0f0f0f;text-align:right}
 td.l{text-align:left}
-tr.oct td{background:var(--blue-l);color:var(--blue);font-weight:500}
-.neg{color:var(--dn)}
-.pos2{color:var(--up)}
-.neu{color:var(--ink-3)}
-tr.oct .neg,tr.oct .pos2,tr.oct .neu{color:var(--blue)}
-.promo-tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:3px;font-weight:500;margin-left:4px;background:#fff3cd;color:#856404}
-.sheet-link{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--blue);text-decoration:none;padding:8px 14px;border:1px solid var(--blue);border-radius:var(--r);margin-top:12px;transition:background .1s}
-.sheet-link:hover{background:var(--blue-l)}
-.page-footer{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-3);padding:2rem;border-top:1px solid var(--bdr);max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-@media(max-width:640px){.nav-tabs{padding:0 1rem;flex-direction:column;gap:0;height:auto}.page{padding:1rem}.pos-hero{grid-template-columns:1fr}}
+tr.oc td{background:rgba(26,92,173,.08);color:#1a5cad;font-weight:500}
+.pn{color:#1a7f5a}.pp{color:#c0392b}.p0{color:#888}
+tr.oc .pn,tr.oc .pp,tr.oc .p0{color:#1a5cad}
+.pt{display:inline-block;font-size:10px;padding:1px 5px;border-radius:3px;font-weight:500;margin-left:3px;background:#fff3cd;color:#856404}
+.sl{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#1a5cad;text-decoration:none;padding:7px 12px;border:1px solid #1a5cad;border-radius:6px;margin-top:10px}
+.unavail{background:#f6f6f6;border:1px dashed #e2e2e2;border-radius:12px;padding:2rem;text-align:center;color:#888;font-size:13px}
+footer{font-family:'DM Mono',monospace;font-size:10px;color:#888;padding:2rem;border-top:1px solid #e2e2e2;max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="site-logo"><div class="logo-mark"></div>Veille marché énergie</div>
-  <select id="week-select" onchange="switchWeek(this.value)" style="font-size:12px;font-family:'Inter',sans-serif;padding:5px 12px;border:none;border-radius:4px;background:rgba(255,255,255,.15);color:#fff;cursor:pointer;outline:none">
-    <option value="s39" selected>S39 · 21/09/2026</option>
+<div class="hd">
+  <div class="hd-logo"><div class="hd-dot"></div>Veille marché énergie</div>
+  <select class="hd-sel" id="wsel" onchange="sw(this.value)">
+    <option value="s39">S39 · 21/09/2026</option>
     <option value="s38">S38 · 14/09/2026</option>
   </select>
-</header>
-
-<nav class="nav-tabs">
-  <div class="nav-left">
-    <button class="nav-tab active" onclick="showPage('marche',this)">Synthèse marché</button>
-    <button class="nav-tab" onclick="showPage('gaz',this)">Benchmark gaz</button>
-
-
-
-
-
-</nav>
-
-<!-- PAGE MARCHÉ -->
-<div id="page-marche" class="page active">
-
-  <!-- S39 MARCHÉ -->
-  <div id="marche-s39" class="week-pane active">
-    <p class="lbl" style="margin-top:0">omnegy n°318 · 21 septembre 2026</p>
-    <div class="brief-card">
-      <p class="lbl">synthèse hebdomadaire</p>
-      <p class="brief-p">Après les records de lundi (PEG oct. à 82,42 €/MWh, 2027 à 60,00 €/MWh), les marchés se sont détendus en cours de semaine pour clôturer quasi stables.</p>
-      <div class="brief-hl"><p><strong>Gaz : +0,5 % sur 2027, −0,1 % sur octobre.</strong> L'oléoduc saoudien Est-Ouest reste à l'arrêt après les frappes de drones. Ormuz quasi fermé. Les deux routes de sortie du Golfe sont simultanément sous menace.</p></div>
-      <p class="brief-p">Électricité : mouvement en ciseaux. Court terme en hausse (+6,9 % sur octobre, nucléaire à 37,1 GW / 59 % du parc). Long terme en baisse (2027 −2,8 %, 2028 −8,4 %).</p>
-      <p class="brief-p">Brent à 90,40 € (+0,2 %). CO2 à 86,89 € (+1,6 %). Charbon à 118,80 € (−1,3 %).</p>
-      <p class="brief-p" style="margin-bottom:0"><strong>Impact commercial : nos prix fixes restent très compétitifs</strong> face aux offres indexées qui subissent la volatilité.</p>
-  
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:var(--bdr);border:1px solid var(--bdr);border-radius:var(--rl);overflow:hidden">
-      <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PEG oct.-26</div><div style="font-size:20px;font-weight:500">78,95</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--up)">−0,1 % / MWh</div></div>
-      <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PEG 2027</div><div style="font-size:20px;font-weight:500">58,65</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+0,5 % / MWh</div></div>
-      <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PEG 2028</div><div style="font-size:20px;font-weight:500">36,96</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+2,6 % / MWh</div></div>
-      <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">Élec oct.-26</div><div style="font-size:20px;font-weight:500">155,00</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+6,9 % / MWh</div></div>
-      <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">Brent</div><div style="font-size:20px;font-weight:500">90,40</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+0,2 % / baril</div></div>
-      <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">CO2 EUA</div><div style="font-size:20px;font-weight:500">86,89</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+1,6 % / tonne</div></div>
-      <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">Charbon</div><div style="font-size:20px;font-weight:500">118,80</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--up)">−1,3 % / tonne</div></div>
-      <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PRVG sept. TTC</div><div style="font-size:20px;font-weight:500">0,1347</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--ink-3)">€/kWh chauffage</div></div>
-  
-
-
-  <!-- S38 MARCHÉ -->
-  <div id="marche-s38" class="week-pane">
-    <p class="lbl" style="margin-top:0">omnegy n°317 · 14 septembre 2026</p>
-    <div class="brief-card">
-      <p class="lbl">synthèse hebdomadaire</p>
-      <p class="brief-p">Le conflit autour d'Ormuz a changé d'échelle : pétroliers iraniens détruits, Bab el-Mandeb sous contrôle houthi.</p>
-      <div class="brief-hl"><p><strong>Le gaz européen a franchi 80 €/MWh pour la première fois depuis 2023.</strong> Le calendaire 2027 vaut aujourd'hui le double d'il y a un an. La hausse est concentrée sur 2026–2028.</p></div>
-      <p class="brief-p">Les livraisons GNL aux terminaux européens ont chuté de 15 % en une semaine. L'électricité suit : +13,1 % sur 2027, nucléaire dégradé à 38,4 GW (61 % du parc).</p>
-      <p class="brief-p">Brent à 90,18 € (+8,7 %). CO2 à 85,53 € (+1,6 %). Charbon à 120,39 € (+0,1 %).</p>
-      <p class="brief-p" style="margin-bottom:0"><strong>Impact commercial : la hausse du marché renforce l'attractivité de nos offres fixes</strong> face aux offres indexées.</p>
-  
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:var(--bdr);border:1px solid var(--bdr);border-radius:var(--rl);overflow:hidden">
-      <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PEG oct.-26</div><div style="font-size:20px;font-weight:500">79,03</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+10,9 % / MWh</div></div>
-      <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PEG 2027</div><div style="font-size:20px;font-weight:500">58,38</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+11,8 % / MWh</div></div>
-      <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PEG 2028</div><div style="font-size:20px;font-weight:500">36,04</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+6,3 % / MWh</div></div>
-      <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">Élec oct.-26</div><div style="font-size:20px;font-weight:500">144,94</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+11,3 % / MWh</div></div>
-      <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">Brent</div><div style="font-size:20px;font-weight:500">90,18</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+8,7 % / baril</div></div>
-      <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">CO2 EUA</div><div style="font-size:20px;font-weight:500">85,53</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+1,6 % / tonne</div></div>
-      <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">Charbon</div><div style="font-size:20px;font-weight:500">120,39</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+0,1 % / tonne</div></div>
-      <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PRVG sept. TTC</div><div style="font-size:20px;font-weight:500">0,1347</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--ink-3)">€/kWh chauffage</div></div>
-  
-
 </div>
 
-<!-- PAGE GAZ -->
-<div id="page-gaz" class="page">
-  <div class="sub-tabs">
-    <button class="sub-tab active" onclick="showSub('chauf',this)">Chauffage · 13 480 kWh</button>
-    <button class="sub-tab" onclick="showSub('cuis',this)">Cuisson / eau chaude · 1 260 kWh</button>
+<div class="nav">
+  <button class="nav-btn on" onclick="sp('marche',this)">Synthèse marché</button>
+  <button class="nav-btn" onclick="sp('gaz',this)">Benchmark gaz</button>
+</div>
 
+<!-- MARCHÉ -->
+<div id="pg-marche" class="pg on">
+
+  <div id="m-s39">
+    <p class="lbl" style="margin-top:0">omnegy n°318 · 21 septembre 2026</p>
+    <div class="brief">
+      <p>Après les records de lundi (PEG oct. à 82,42 €/MWh, 2027 à 60,00 €/MWh), les marchés se sont détendus pour clôturer quasi stables.</p>
+      <div class="brief-hl"><p><strong>Gaz : +0,5% sur 2027, −0,1% sur octobre.</strong> L'oléoduc saoudien Est-Ouest reste à l'arrêt. Ormuz quasi fermé. Les deux routes de sortie du Golfe sont sous menace simultanée.</p></div>
+      <p>Électricité : court terme en hausse (+6,9% sur oct., nucléaire 37,1 GW). Long terme en baisse (2027 −2,8%, 2028 −8,4%).</p>
+      <p>Brent 90,40 € (+0,2%). CO2 86,89 € (+1,6%). Charbon 118,80 € (−1,3%).</p>
+      <p><strong>Nos prix fixes restent très compétitifs</strong> face aux offres indexées qui subissent la volatilité.</p>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="kpi-l">PEG oct.-26</div><div class="kpi-v">78,95</div><div class="kpi-d up">−0,1% /MWh</div></div>
+      <div class="kpi"><div class="kpi-l">PEG 2027</div><div class="kpi-v">58,65</div><div class="kpi-d dn">+0,5% /MWh</div></div>
+      <div class="kpi"><div class="kpi-l">PEG 2028</div><div class="kpi-v">36,96</div><div class="kpi-d dn">+2,6% /MWh</div></div>
+      <div class="kpi"><div class="kpi-l">Élec oct.-26</div><div class="kpi-v">155,00</div><div class="kpi-d dn">+6,9% /MWh</div></div>
+      <div class="kpi"><div class="kpi-l">Brent</div><div class="kpi-v">90,40</div><div class="kpi-d dn">+0,2% /baril</div></div>
+      <div class="kpi"><div class="kpi-l">CO2 EUA</div><div class="kpi-v">86,89</div><div class="kpi-d dn">+1,6% /tonne</div></div>
+      <div class="kpi"><div class="kpi-l">Charbon</div><div class="kpi-v">118,80</div><div class="kpi-d up">−1,3% /tonne</div></div>
+      <div class="kpi"><div class="kpi-l">PRVG sept. TTC</div><div class="kpi-v">0,1347</div><div class="kpi-d neu">€/kWh chauffage</div></div>
+    </div>
+  </div>
+
+  <div id="m-s38" style="display:none">
+    <p class="lbl" style="margin-top:0">omnegy n°317 · 14 septembre 2026</p>
+    <div class="brief">
+      <p>Le conflit autour d'Ormuz a changé d'échelle : pétroliers détruits, Bab el-Mandeb sous contrôle houthi.</p>
+      <div class="brief-hl"><p><strong>Le gaz européen a franchi 80 €/MWh pour la première fois depuis 2023.</strong> Le calendaire 2027 vaut le double d'il y a un an.</p></div>
+      <p>GNL en recul de 15% en une semaine. Électricité : +13,1% sur 2027, nucléaire dégradé à 38,4 GW (61% du parc).</p>
+      <p>Brent 90,18 € (+8,7%). CO2 85,53 € (+1,6%). Charbon 120,39 € (+0,1%).</p>
+      <p><strong>La hausse du marché renforce l'attractivité de nos offres fixes.</strong></p>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="kpi-l">PEG oct.-26</div><div class="kpi-v">79,03</div><div class="kpi-d dn">+10,9% /MWh</div></div>
+      <div class="kpi"><div class="kpi-l">PEG 2027</div><div class="kpi-v">58,38</div><div class="kpi-d dn">+11,8% /MWh</div></div>
+      <div class="kpi"><div class="kpi-l">PEG 2028</div><div class="kpi-v">36,04</div><div class="kpi-d dn">+6,3% /MWh</div></div>
+      <div class="kpi"><div class="kpi-l">Élec oct.-26</div><div class="kpi-v">144,94</div><div class="kpi-d dn">+11,3% /MWh</div></div>
+      <div class="kpi"><div class="kpi-l">Brent</div><div class="kpi-v">90,18</div><div class="kpi-d dn">+8,7% /baril</div></div>
+      <div class="kpi"><div class="kpi-l">CO2 EUA</div><div class="kpi-v">85,53</div><div class="kpi-d dn">+1,6% /tonne</div></div>
+      <div class="kpi"><div class="kpi-l">Charbon</div><div class="kpi-v">120,39</div><div class="kpi-d dn">+0,1% /tonne</div></div>
+      <div class="kpi"><div class="kpi-l">PRVG sept. TTC</div><div class="kpi-v">0,1347</div><div class="kpi-d neu">€/kWh chauffage</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- GAZ -->
+<div id="pg-gaz" class="pg">
+  <div class="stabs">
+    <button class="stab on" onclick="ss('chauf',this)">Chauffage · 13 480 kWh</button>
+    <button class="stab" onclick="ss('cuis',this)">Cuisson / eau chaude · 1 260 kWh</button>
+  </div>
 
   <!-- CHAUFFAGE -->
-  <div id="sub-chauf" class="sub-pane active">
-
-    <!-- S39 CHAUFFAGE -->
-    <div id="chauf-s39" class="week-pane active">
-      <p class="lbl">paris 02 · zone 2 · chauffage · cta 48,70 €/an · semaine 39</p>
-      <div class="pos-hero">
-        <div class="pos-rank"><div class="rank-n">5</div><div class="rank-l">/ 29 offres</div></div>
-        <div class="pos-metric"><div class="pm-l">Facture annuelle TTC</div><div class="pm-v" style="color:var(--blue)">2 115 €</div><div class="pm-s" style="color:var(--dn)">−3 % vs PRVG sept. (2 177 €)</div></div>
-        <div class="pos-metric"><div class="pm-l">kWh TTC</div><div class="pm-v">0,1302 €</div><div class="pm-s" style="color:var(--dn)">−3 % vs PRVG sept.</div></div>
-    
-      <div class="chart-card">
-        <div class="chart-ttl">Évolution du rang Octopus — chauffage</div>
-        <div class="chart-sub">Axe inversé — rang 1 = offre la moins chère</div>
-        <div style="height:160px"><canvas id="rankChart" role="img" aria-label="Évolution du rang Octopus chauffage S38 à S39"></canvas></div>
-    
-      <div class="chart-card">
-        <div class="chart-ttl">Comparatif facture TTC — top 15 offres chauffage · S39</div>
-        <div class="chart-sub">Paris 02 · Zone 2 · 13 480 kWh/an · PRVG sept. = 2 177 €</div>
-        <div class="legend">
-          <span class="leg"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span>
-          <span class="leg"><span class="leg-sq" style="background:#d0d0d0"></span>Concurrents</span>
-          <span class="leg"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>PRVG 2 177 €</span>
-      
-        <div style="height:420px"><canvas id="barS39" role="img" aria-label="Comparatif factures TTC chauffage S39 top 15"></canvas></div>
-    
-      <div class="chart-card">
-        <div class="chart-ttl">Classement complet — chauffage · S39</div>
-        <div class="chart-sub">Abo HTT = Abo TTC/1,20 − 48,70 € · kWh HTT = kWh TTC/1,20 − 0,01666 € · MNE 21/09/2026</div>
-        <div class="tbl-wrap"><table id="tbl-s39"></table></div>
-        <a class="sheet-link" href="https://docs.google.com/spreadsheets/d/1kNCzrql-GmUmWkstSrqDxAXNmxgEoo4Pi09WaKzs-Cw/edit?gid=0#gid=0" target="_blank">↗ Voir le détail dans Google Sheets S39</a>
-    
-  
-
-    <!-- S38 CHAUFFAGE -->
-    <div id="chauf-s38" class="week-pane">
-      <p class="lbl">paris 02 · zone 2 · chauffage · cta 48,70 €/an · semaine 38</p>
-      <div class="pos-hero">
-        <div class="pos-rank"><div class="rank-n">6</div><div class="rank-l">/ 29 offres</div></div>
-        <div class="pos-metric"><div class="pm-l">Facture annuelle TTC</div><div class="pm-v" style="color:var(--blue)">2 114 €</div><div class="pm-s" style="color:var(--dn)">−3 % vs PRVG sept. (2 177 €)</div></div>
-        <div class="pos-metric"><div class="pm-l">kWh TTC</div><div class="pm-v">0,1302 €</div><div class="pm-s" style="color:var(--dn)">−3 % vs PRVG sept.</div></div>
-    
-      <div class="chart-card">
-        <div class="chart-ttl">Comparatif facture TTC — top 15 offres chauffage · S38</div>
-        <div class="chart-sub">Paris 02 · Zone 2 · 13 480 kWh/an · PRVG sept. = 2 177 €</div>
-        <div class="legend">
-          <span class="leg"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span>
-          <span class="leg"><span class="leg-sq" style="background:#d0d0d0"></span>Concurrents</span>
-          <span class="leg"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>PRVG 2 177 €</span>
-      
-        <div style="height:420px"><canvas id="barS38" role="img" aria-label="Comparatif factures TTC chauffage S38 top 15"></canvas></div>
-    
-      <div class="chart-card">
-        <div class="chart-ttl">Classement complet — chauffage · S38</div>
-        <div class="chart-sub">Abo HTT = Abo TTC/1,20 − 48,70 € · kWh HTT = kWh TTC/1,20 − 0,01666 € · MNE 14/09/2026</div>
-        <div class="tbl-wrap"><table id="tbl-s38"></table></div>
-        <a class="sheet-link" href="https://docs.google.com/spreadsheets/d/1c7ELAJCFhnknmPBaCaYMvC9wXl_pkc4p4-ntBixhvcc/edit?gid=1778747057#gid=1778747057" target="_blank">↗ Voir le détail dans Google Sheets S38</a>
-    
-  
-
+  <div id="sp-chauf" class="spg on">
+    <div id="c-s39">
+      <p class="lbl">paris 02 · zone 2 · chauffage · cta 48,70 €/an · s39</p>
+      <div class="hero">
+        <div class="hero-rank"><div class="hero-n">5</div><div class="hero-l">/ 29 offres</div></div>
+        <div class="hero-m"><div class="hero-ml">Facture annuelle TTC</div><div class="hero-mv" style="color:#1a5cad">2 115 €</div><div class="hero-ms" style="color:#1a7f5a">−3% vs PRVG sept. (2 177 €)</div></div>
+        <div class="hero-m"><div class="hero-ml">kWh TTC</div><div class="hero-mv">0,1302 €</div><div class="hero-ms" style="color:#1a7f5a">−3% vs PRVG sept.</div></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Évolution du rang Octopus</div>
+        <div class="card-s">Axe inversé — rang 1 = offre la moins chère · S38→S39 : 6→5</div>
+        <div style="height:150px"><canvas id="rankC"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Comparatif facture TTC — top 15 · chauffage S39</div>
+        <div class="card-s">Paris 02 · Zone 2 · 13 480 kWh/an · PRVG sept. = 2 177 €</div>
+        <div class="leg"><span class="leg-i"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span><span class="leg-i"><span class="leg-sq" style="background:#d0d0d0"></span>Concurrents</span><span class="leg-i"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>PRVG</span></div>
+        <div style="height:420px"><canvas id="barCS39"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Classement complet — chauffage S39</div>
+        <div class="card-s">Abo HTT = Abo TTC/1,20 − 48,70 € · kWh HTT = kWh TTC/1,20 − 0,01666 € · MNE 21/09/2026</div>
+        <div class="tw"><table id="tCS39"></table></div>
+        <a class="sl" href="https://docs.google.com/spreadsheets/d/1kNCzrql-GmUmWkstSrqDxAXNmxgEoo4Pi09WaKzs-Cw/edit?gid=0#gid=0" target="_blank">↗ Google Sheets S39</a>
+      </div>
+    </div>
+    <div id="c-s38" style="display:none">
+      <p class="lbl">paris 02 · zone 2 · chauffage · cta 48,70 €/an · s38</p>
+      <div class="hero">
+        <div class="hero-rank"><div class="hero-n">6</div><div class="hero-l">/ 29 offres</div></div>
+        <div class="hero-m"><div class="hero-ml">Facture annuelle TTC</div><div class="hero-mv" style="color:#1a5cad">2 114 €</div><div class="hero-ms" style="color:#1a7f5a">−3% vs PRVG sept. (2 177 €)</div></div>
+        <div class="hero-m"><div class="hero-ml">kWh TTC</div><div class="hero-mv">0,1302 €</div><div class="hero-ms" style="color:#1a7f5a">−3% vs PRVG sept.</div></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Comparatif facture TTC — top 15 · chauffage S38</div>
+        <div class="card-s">Paris 02 · Zone 2 · 13 480 kWh/an · PRVG sept. = 2 177 €</div>
+        <div class="leg"><span class="leg-i"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span><span class="leg-i"><span class="leg-sq" style="background:#d0d0d0"></span>Concurrents</span><span class="leg-i"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>PRVG</span></div>
+        <div style="height:420px"><canvas id="barCS38"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Classement complet — chauffage S38</div>
+        <div class="card-s">Abo HTT = Abo TTC/1,20 − 48,70 € · kWh HTT = kWh TTC/1,20 − 0,01666 € · MNE 14/09/2026</div>
+        <div class="tw"><table id="tCS38"></table></div>
+        <a class="sl" href="https://docs.google.com/spreadsheets/d/1c7ELAJCFhnknmPBaCaYMvC9wXl_pkc4p4-ntBixhvcc/edit?gid=1778747057#gid=1778747057" target="_blank">↗ Google Sheets S38</a>
+      </div>
+    </div>
+  </div>
 
   <!-- CUISSON -->
-  <div id="sub-cuis" class="sub-pane">
-
-    <!-- S39 CUISSON -->
-    <div id="cuis-s39" class="week-pane active">
-      <p class="lbl">paris 02 · zone 2 · cuisson / eau chaude · cta 14,20 €/an · semaine 39</p>
-      <div class="pos-hero">
-        <div class="pos-rank"><div class="rank-n">3</div><div class="rank-l">/ 26 offres</div></div>
-        <div class="pos-metric"><div class="pm-l">Facture annuelle TTC</div><div class="pm-v" style="color:var(--blue)">356 €</div><div class="pm-s" style="color:var(--dn)">−2 % vs PRVG sept. (364 €)</div></div>
-        <div class="pos-metric"><div class="pm-l">kWh TTC</div><div class="pm-v">0,1617 €</div><div class="pm-s" style="color:var(--dn)">−4 % vs PRVG sept. (0,1676 €)</div></div>
-    
-      <div class="chart-card">
-        <div class="chart-ttl">Comparatif facture TTC — top 15 offres cuisson · S39</div>
-        <div class="chart-sub">Paris 02 · Zone 2 · 1 260 kWh/an · PRVG sept. = 364 €</div>
-        <div class="legend">
-          <span class="leg"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span>
-          <span class="leg"><span class="leg-sq" style="background:#d0d0d0"></span>Concurrents</span>
-          <span class="leg"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>PRVG 364 €</span>
-      
-        <div style="height:420px"><canvas id="barCuisS39" role="img" aria-label="Comparatif factures TTC cuisson S39 top 15"></canvas></div>
-    
-      <div class="chart-card">
-        <div class="chart-ttl">Classement complet — cuisson · S39</div>
-        <div class="chart-sub">Abo HTT = Abo TTC/1,20 − 14,20 € · kWh HTT = kWh TTC/1,20 − 0,01666 € · MNE 21/09/2026</div>
-        <div class="tbl-wrap"><table id="tbl-cuis-s39"></table></div>
-        <a class="sheet-link" href="https://docs.google.com/spreadsheets/d/1kNCzrql-GmUmWkstSrqDxAXNmxgEoo4Pi09WaKzs-Cw/edit?gid=0#gid=0" target="_blank">↗ Voir le détail dans Google Sheets S39</a>
-    
-  
-
-    <!-- S38 CUISSON -->
-    <div id="cuis-s38" class="week-pane">
+  <div id="sp-cuis" class="spg">
+    <div id="u-s39">
+      <p class="lbl">paris 02 · zone 2 · cuisson / eau chaude · cta 14,20 €/an · s39</p>
+      <div class="hero">
+        <div class="hero-rank"><div class="hero-n">3</div><div class="hero-l">/ 26 offres</div></div>
+        <div class="hero-m"><div class="hero-ml">Facture annuelle TTC</div><div class="hero-mv" style="color:#1a5cad">356 €</div><div class="hero-ms" style="color:#1a7f5a">−2% vs PRVG sept. (364 €)</div></div>
+        <div class="hero-m"><div class="hero-ml">kWh TTC</div><div class="hero-mv">0,1617 €</div><div class="hero-ms" style="color:#1a7f5a">−4% vs PRVG sept.</div></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Comparatif facture TTC — top 15 · cuisson S39</div>
+        <div class="card-s">Paris 02 · Zone 2 · 1 260 kWh/an · PRVG sept. = 364 €</div>
+        <div class="leg"><span class="leg-i"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span><span class="leg-i"><span class="leg-sq" style="background:#d0d0d0"></span>Concurrents</span><span class="leg-i"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>PRVG</span></div>
+        <div style="height:420px"><canvas id="barUS39"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Classement complet — cuisson S39</div>
+        <div class="card-s">Abo HTT = Abo TTC/1,20 − 14,20 € · kWh HTT = kWh TTC/1,20 − 0,01666 € · MNE 21/09/2026</div>
+        <div class="tw"><table id="tUS39"></table></div>
+        <a class="sl" href="https://docs.google.com/spreadsheets/d/1kNCzrql-GmUmWkstSrqDxAXNmxgEoo4Pi09WaKzs-Cw/edit?gid=0#gid=0" target="_blank">↗ Google Sheets S39</a>
+      </div>
+    </div>
+    <div id="u-s38" style="display:none">
       <div class="unavail">Données cuisson non disponibles pour S38 — profil ajouté à partir de S39.</div>
-  
-
-
+    </div>
+  </div>
 </div>
 
-<footer class="page-footer">
-  <span>Sources : comparateur MNE · Omnegy · GT Octopus Gaz Fixe −4% sept. 2026</span>
+<footer>
+  <span>Sources : MNE · Omnegy · GT Octopus sept. 2026</span>
   <span>Octopus Energy France · Veille commerciale</span>
 </footer>
 
 <script>
-const CTA_C=48.70,CTA_T1=14.20,ACC=0.01666,TVA=1.20;
-const PRVG_C={aT:360.79,kT:0.1347,fT:2177};
-const PRVG_T1={aT:152.46,kT:0.1676,fT:364};
+const A=0.01666,T=1.20,PC={aT:360.79,kT:0.1347,fT:2177},PT={aT:152.46,kT:0.1676,fT:364};
 
-const dataS39=[
-  {f:"Engie",o:"Gaz Référence 3 ans (5% Gaz vert)",t:"Fixe 3 ans",v:"5%",aT:360.79,kT:0.1176,fT:1947,promo:true,promoF:1947},
-  {f:"EDF",o:"Avantage Gaz 2 ans",t:"Fixe 2 ans",v:"0%",aT:294.83,kT:0.1245,fT:1973,promo:true,promoF:1923},
-  {f:"Synelva",o:"Objectif Gaz",t:"Fixe 2 ans",v:"0%",aT:370.69,kT:0.1255,fT:2062,promo:false},
-  {f:"Ekwateur",o:"Gaz 85% Nat / 15% Renouv.",t:"Fixe 1 an",v:"15%",aT:517.44,kT:0.1182,fT:2111,promo:false},
-  {f:"Octopus",o:"Eco-Conso Gaz Fixe",t:"Fixe 2 ans",v:"0%",aT:360.89,kT:0.1302,fT:2115,promo:false},
-  {f:"Alterna",o:"Mon Gaz Naturel Indexée T2",t:"Indexée",v:"100%",aT:389.54,kT:0.1282,fT:2118,promo:false},
-  {f:"TotalEnergies",o:"Offre Fixe 2 ans Gaz",t:"Fixe 2 ans",v:"0%",aT:360.74,kT:0.1316,fT:2135,promo:false},
-  {f:"Gaz de Bordeaux",o:"Novafixe Biogaz",t:"Fixe 2 ans",v:"20%",aT:360.79,kT:0.1357,fT:2190,promo:false},
-  {f:"Plenitude",o:"Plenifix 1 an Gaz",t:"Fixe 1 an",v:"0%",aT:387.43,kT:0.1347,fT:2204,promo:false},
-  {f:"Gaz de Bordeaux",o:"Novaflex Gaz - Septembre",t:"Indexée",v:"0%",aT:360.79,kT:0.1371,fT:2209,promo:false},
-  {f:"Engie",o:"Gaz Adapt 1 an (5% Gaz vert)",t:"Fixe 1 an",v:"5%",aT:387.85,kT:0.1372,fT:2238,promo:false},
-  {f:"Happ-e",o:"Happ-e Gaz de Engie",t:"Indexée",v:"0%",aT:387.85,kT:0.1380,fT:2248,promo:false},
-  {f:"TotalEnergies",o:"Offre Spéciale Gaz",t:"Indexée",v:"0%",aT:360.74,kT:0.1428,fT:2285,promo:false},
-  {f:"Dyneff",o:"Contrat+ Gaz Vert 15% - 1 an",t:"Fixe 1 an",v:"15%",aT:469.26,kT:0.1355,fT:2296,promo:false},
-  {f:"EDF",o:"Avantage Gaz Optimisé - Octobre",t:"Indexée",v:"0%",aT:366.18,kT:0.1442,fT:2310,promo:false},
-  {f:"OHM",o:"Gaz Extra Eco",t:"Fixe 1 an",v:"0%",aT:359.58,kT:0.1452,fT:2316,promo:false},
-  {f:"Mint énergie",o:"Biogaz Online",t:"Indexée 1 an",v:"5%",aT:360.79,kT:0.1462,fT:2332,promo:false},
-  {f:"Alterna",o:"Mon Biogaz Français - T2",t:"Fixe 1 an",v:"100%",aT:389.54,kT:0.1458,fT:2354,promo:false},
-  {f:"Gaz de Bordeaux",o:"Novaflex Gaz - Octobre",t:"Indexée",v:"0%",aT:360.79,kT:0.1479,fT:2354,promo:false},
-  {f:"OHM",o:"Classique Gaz",t:"Indexée",v:"10%",aT:359.57,kT:0.1514,fT:2401,promo:false},
-  {f:"GeG",o:"Mon Offre Gaz - Fixe 3 ans",t:"Fixe 3 ans",v:"0%",aT:586.56,kT:0.1354,fT:2412,promo:false},
-  {f:"Dyneff",o:"Contrat+ Gaz Vert 55% - 1 an",t:"Fixe 1 an",v:"55%",aT:469.26,kT:0.1475,fT:2457,promo:false},
-  {f:"Mint énergie",o:"Biogaz Classic",t:"Indexée 2 ans",v:"10%",aT:360.79,kT:0.1526,fT:2418,promo:true,promoF:2388},
-  {f:"OHM",o:"Gaz Fixe 2 ans",t:"Fixe 2 ans",v:"0%",aT:359.58,kT:0.1577,fT:2485,promo:false},
-  {f:"Mint énergie",o:"Biogaz Smart",t:"Indexée 3 ans",v:"15%",aT:360.79,kT:0.1590,fT:2503,promo:true,promoF:2463},
-  {f:"Ilek",o:"Offre Énrfixe+ Gaz",t:"Fixe 2 ans",v:"100%",aT:438.36,kT:0.1554,fT:2533,promo:false},
-  {f:"OHM",o:"Gaz Premi'Ohm",t:"Fixe 3 ans",v:"0%",aT:359.58,kT:0.1639,fT:2569,promo:false},
-  {f:"Dyneff",o:"Contrat+ Gaz Vert 100% - 1 an",t:"Fixe 1 an",v:"100%",aT:469.26,kT:0.1610,fT:2639,promo:false},
+const dS39=[
+  {f:"Engie",o:"Gaz Référence 3 ans (5% Gaz vert)",t:"Fixe 3 ans",v:"5%",aT:360.79,kT:0.1176,fT:1947,pr:true,pf:1947},
+  {f:"EDF",o:"Avantage Gaz 2 ans",t:"Fixe 2 ans",v:"0%",aT:294.83,kT:0.1245,fT:1973,pr:true,pf:1923},
+  {f:"Synelva",o:"Objectif Gaz",t:"Fixe 2 ans",v:"0%",aT:370.69,kT:0.1255,fT:2062},
+  {f:"Ekwateur",o:"Gaz 85% Nat / 15% Renouv.",t:"Fixe 1 an",v:"15%",aT:517.44,kT:0.1182,fT:2111},
+  {f:"Octopus",o:"Eco-Conso Gaz Fixe",t:"Fixe 2 ans",v:"0%",aT:360.89,kT:0.1302,fT:2115},
+  {f:"Alterna",o:"Mon Gaz Naturel Indexée T2",t:"Indexée",v:"100%",aT:389.54,kT:0.1282,fT:2118},
+  {f:"TotalEnergies",o:"Offre Fixe 2 ans Gaz",t:"Fixe 2 ans",v:"0%",aT:360.74,kT:0.1316,fT:2135},
+  {f:"Gaz de Bordeaux",o:"Novafixe Biogaz",t:"Fixe 2 ans",v:"20%",aT:360.79,kT:0.1357,fT:2190},
+  {f:"Plenitude",o:"Plenifix 1 an Gaz",t:"Fixe 1 an",v:"0%",aT:387.43,kT:0.1347,fT:2204},
+  {f:"Gaz de Bordeaux",o:"Novaflex Gaz - Septembre",t:"Indexée",v:"0%",aT:360.79,kT:0.1371,fT:2209},
+  {f:"Engie",o:"Gaz Adapt 1 an (5% Gaz vert)",t:"Fixe 1 an",v:"5%",aT:387.85,kT:0.1372,fT:2238},
+  {f:"Happ-e",o:"Happ-e Gaz de Engie",t:"Indexée",v:"0%",aT:387.85,kT:0.1380,fT:2248},
+  {f:"TotalEnergies",o:"Offre Spéciale Gaz",t:"Indexée",v:"0%",aT:360.74,kT:0.1428,fT:2285},
+  {f:"Dyneff",o:"Contrat+ Gaz Vert 15%",t:"Fixe 1 an",v:"15%",aT:469.26,kT:0.1355,fT:2296},
+  {f:"EDF",o:"Avantage Gaz Optimisé - Oct.",t:"Indexée",v:"0%",aT:366.18,kT:0.1442,fT:2310},
+  {f:"OHM",o:"Gaz Extra Eco",t:"Fixe 1 an",v:"0%",aT:359.58,kT:0.1452,fT:2316},
+  {f:"Mint énergie",o:"Biogaz Online",t:"Indexée 1 an",v:"5%",aT:360.79,kT:0.1462,fT:2332},
+  {f:"Alterna",o:"Mon Biogaz Français - T2",t:"Fixe 1 an",v:"100%",aT:389.54,kT:0.1458,fT:2354},
+  {f:"Gaz de Bordeaux",o:"Novaflex Gaz - Octobre",t:"Indexée",v:"0%",aT:360.79,kT:0.1479,fT:2354},
+  {f:"OHM",o:"Classique Gaz",t:"Indexée",v:"10%",aT:359.57,kT:0.1514,fT:2401},
+  {f:"GeG",o:"Mon Offre Gaz - Fixe 3 ans",t:"Fixe 3 ans",v:"0%",aT:586.56,kT:0.1354,fT:2412},
+  {f:"Dyneff",o:"Contrat+ Gaz Vert 55%",t:"Fixe 1 an",v:"55%",aT:469.26,kT:0.1475,fT:2457},
+  {f:"Mint énergie",o:"Biogaz Classic",t:"Indexée 2 ans",v:"10%",aT:360.79,kT:0.1526,fT:2418,pr:true,pf:2388},
+  {f:"OHM",o:"Gaz Fixe 2 ans",t:"Fixe 2 ans",v:"0%",aT:359.58,kT:0.1577,fT:2485},
+  {f:"Mint énergie",o:"Biogaz Smart",t:"Indexée 3 ans",v:"15%",aT:360.79,kT:0.1590,fT:2503,pr:true,pf:2463},
+  {f:"Ilek",o:"Offre Énrfixe+ Gaz",t:"Fixe 2 ans",v:"100%",aT:438.36,kT:0.1554,fT:2533},
+  {f:"OHM",o:"Gaz Premi'Ohm",t:"Fixe 3 ans",v:"0%",aT:359.58,kT:0.1639,fT:2569},
+  {f:"Dyneff",o:"Contrat+ Gaz Vert 100%",t:"Fixe 1 an",v:"100%",aT:469.26,kT:0.1610,fT:2639},
 ];
 
-const dataS38=[
-  {f:"Engie",o:"Gaz Référence 3 ans (5% Gaz vert)",t:"Fixe 3 ans",v:"5%",aT:360.79,kT:0.1176,fT:1947,promo:true,promoF:1947},
-  {f:"EDF",o:"Avantage Gaz 2 ans",t:"Fixe 2 ans",v:"0%",aT:294.83,kT:0.1245,fT:1973,promo:true,promoF:1923},
-  {f:"Synelva",o:"Objectif Gaz",t:"Fixe 2 ans",v:"0%",aT:370.69,kT:0.1255,fT:2062,promo:false},
-  {f:"GeG",o:"Mon Offre Gaz - Fixe 3 ans",t:"Fixe 3 ans",v:"0%",aT:586.56,kT:0.1096,fT:2064,promo:false},
-  {f:"Ekwateur",o:"Gaz 85% Nat / 15% Renouv.",t:"Fixe 1 an",v:"15%",aT:517.44,kT:0.1182,fT:2111,promo:false},
-  {f:"Octopus",o:"Eco-Conso Gaz Fixe",t:"Fixe 2 ans",v:"0%",aT:359.63,kT:0.1302,fT:2114,promo:false},
-  {f:"Alterna",o:"Mon Gaz Naturel Indexée T2",t:"Indexée",v:"100%",aT:389.54,kT:0.1282,fT:2118,promo:false},
-  {f:"TotalEnergies",o:"Offre Fixe 2 ans Gaz",t:"Fixe 2 ans",v:"0%",aT:360.74,kT:0.1316,fT:2135,promo:false},
-  {f:"TotalEnergies",o:"Offre Spéciale Gaz",t:"Indexée",v:"0%",aT:360.74,kT:0.1318,fT:2138,promo:false},
-  {f:"EDF",o:"Avantage Gaz Optimisé - Septembre",t:"Indexée",v:"0%",aT:373.39,kT:0.1333,fT:2170,promo:true,promoF:2120},
-  {f:"Gaz de Bordeaux",o:"Novafixe Biogaz",t:"Fixe 2 ans",v:"20%",aT:360.79,kT:0.1357,fT:2190,promo:false},
-  {f:"Plenitude",o:"Plenifix 1 an Gaz",t:"Fixe 1 an",v:"0%",aT:387.43,kT:0.1347,fT:2204,promo:false},
-  {f:"Gaz de Bordeaux",o:"Novaflex Gaz - Septembre",t:"Indexée",v:"0%",aT:360.79,kT:0.1371,fT:2209,promo:false},
-  {f:"Engie",o:"Gaz Adapt 1 an (5% Gaz vert)",t:"Fixe 1 an",v:"5%",aT:387.85,kT:0.1372,fT:2238,promo:false},
-  {f:"Happ-e",o:"Happ-e Gaz de Engie",t:"Indexée",v:"0%",aT:387.85,kT:0.1380,fT:2248,promo:false},
-  {f:"Dyneff",o:"Contrat+ Gaz Vert 15% - 1 an",t:"Fixe 1 an",v:"15%",aT:469.26,kT:0.1355,fT:2296,promo:false},
-  {f:"OHM",o:"Gaz Extra Eco",t:"Fixe 1 an",v:"0%",aT:359.58,kT:0.1452,fT:2316,promo:false},
-  {f:"Mint énergie",o:"Biogaz Online",t:"Indexée 1 an",v:"5%",aT:360.79,kT:0.1462,fT:2332,promo:false},
-  {f:"Alterna",o:"Mon Biogaz Français - T2",t:"Fixe 1 an",v:"100%",aT:389.54,kT:0.1458,fT:2354,promo:false},
-  {f:"OHM",o:"Classique Gaz",t:"Indexée",v:"10%",aT:359.57,kT:0.1514,fT:2401,promo:false},
-  {f:"GeG",o:"Mon Offre Biogaz - Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:586.56,kT:0.1357,fT:2415,promo:false},
-  {f:"Dyneff",o:"Contrat+ Gaz Vert 55% - 1 an",t:"Fixe 1 an",v:"55%",aT:469.26,kT:0.1475,fT:2457,promo:false},
-  {f:"Mint énergie",o:"Biogaz Classic",t:"Indexée 2 ans",v:"10%",aT:360.79,kT:0.1526,fT:2418,promo:true,promoF:2388},
-  {f:"OHM",o:"Gaz Fixe 2 ans",t:"Fixe 2 ans",v:"0%",aT:359.58,kT:0.1577,fT:2485,promo:false},
-  {f:"Mint énergie",o:"Biogaz Smart",t:"Indexée 3 ans",v:"15%",aT:360.79,kT:0.1590,fT:2503,promo:true,promoF:2463},
-  {f:"Ilek",o:"Offre Énrfixe+ Gaz",t:"Fixe 2 ans",v:"100%",aT:438.36,kT:0.1554,fT:2533,promo:false},
-  {f:"OHM",o:"Gaz Premi'Ohm",t:"Fixe 3 ans",v:"0%",aT:359.58,kT:0.1639,fT:2569,promo:false},
-  {f:"Dyneff",o:"Contrat+ Gaz Vert 100% - 1 an",t:"Fixe 1 an",v:"100%",aT:469.26,kT:0.1610,fT:2639,promo:false},
-  {f:"Gédia",o:"All Inclusive Gaz Particulier",t:"Fixe 1 an",v:"0%",aT:534.14,kT:0.1658,fT:2769,promo:false},
+const dS38=[
+  {f:"Engie",o:"Gaz Référence 3 ans (5% Gaz vert)",t:"Fixe 3 ans",v:"5%",aT:360.79,kT:0.1176,fT:1947,pr:true,pf:1947},
+  {f:"EDF",o:"Avantage Gaz 2 ans",t:"Fixe 2 ans",v:"0%",aT:294.83,kT:0.1245,fT:1973,pr:true,pf:1923},
+  {f:"Synelva",o:"Objectif Gaz",t:"Fixe 2 ans",v:"0%",aT:370.69,kT:0.1255,fT:2062},
+  {f:"GeG",o:"Mon Offre Gaz - Fixe 3 ans",t:"Fixe 3 ans",v:"0%",aT:586.56,kT:0.1096,fT:2064},
+  {f:"Ekwateur",o:"Gaz 85% Nat / 15% Renouv.",t:"Fixe 1 an",v:"15%",aT:517.44,kT:0.1182,fT:2111},
+  {f:"Octopus",o:"Eco-Conso Gaz Fixe",t:"Fixe 2 ans",v:"0%",aT:359.63,kT:0.1302,fT:2114},
+  {f:"Alterna",o:"Mon Gaz Naturel Indexée T2",t:"Indexée",v:"100%",aT:389.54,kT:0.1282,fT:2118},
+  {f:"TotalEnergies",o:"Offre Fixe 2 ans Gaz",t:"Fixe 2 ans",v:"0%",aT:360.74,kT:0.1316,fT:2135},
+  {f:"TotalEnergies",o:"Offre Spéciale Gaz",t:"Indexée",v:"0%",aT:360.74,kT:0.1318,fT:2138},
+  {f:"EDF",o:"Avantage Gaz Optimisé - Sept.",t:"Indexée",v:"0%",aT:373.39,kT:0.1333,fT:2170,pr:true,pf:2120},
+  {f:"Gaz de Bordeaux",o:"Novafixe Biogaz",t:"Fixe 2 ans",v:"20%",aT:360.79,kT:0.1357,fT:2190},
+  {f:"Plenitude",o:"Plenifix 1 an Gaz",t:"Fixe 1 an",v:"0%",aT:387.43,kT:0.1347,fT:2204},
+  {f:"Gaz de Bordeaux",o:"Novaflex Gaz - Septembre",t:"Indexée",v:"0%",aT:360.79,kT:0.1371,fT:2209},
+  {f:"Engie",o:"Gaz Adapt 1 an (5% Gaz vert)",t:"Fixe 1 an",v:"5%",aT:387.85,kT:0.1372,fT:2238},
+  {f:"Happ-e",o:"Happ-e Gaz de Engie",t:"Indexée",v:"0%",aT:387.85,kT:0.1380,fT:2248},
+  {f:"Dyneff",o:"Contrat+ Gaz Vert 15%",t:"Fixe 1 an",v:"15%",aT:469.26,kT:0.1355,fT:2296},
+  {f:"OHM",o:"Gaz Extra Eco",t:"Fixe 1 an",v:"0%",aT:359.58,kT:0.1452,fT:2316},
+  {f:"Mint énergie",o:"Biogaz Online",t:"Indexée 1 an",v:"5%",aT:360.79,kT:0.1462,fT:2332},
+  {f:"Alterna",o:"Mon Biogaz Français - T2",t:"Fixe 1 an",v:"100%",aT:389.54,kT:0.1458,fT:2354},
+  {f:"OHM",o:"Classique Gaz",t:"Indexée",v:"10%",aT:359.57,kT:0.1514,fT:2401},
+  {f:"GeG",o:"Mon Offre Biogaz - Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:586.56,kT:0.1357,fT:2415},
+  {f:"Dyneff",o:"Contrat+ Gaz Vert 55%",t:"Fixe 1 an",v:"55%",aT:469.26,kT:0.1475,fT:2457},
+  {f:"Mint énergie",o:"Biogaz Classic",t:"Indexée 2 ans",v:"10%",aT:360.79,kT:0.1526,fT:2418,pr:true,pf:2388},
+  {f:"OHM",o:"Gaz Fixe 2 ans",t:"Fixe 2 ans",v:"0%",aT:359.58,kT:0.1577,fT:2485},
+  {f:"Mint énergie",o:"Biogaz Smart",t:"Indexée 3 ans",v:"15%",aT:360.79,kT:0.1590,fT:2503,pr:true,pf:2463},
+  {f:"Ilek",o:"Offre Énrfixe+ Gaz",t:"Fixe 2 ans",v:"100%",aT:438.36,kT:0.1554,fT:2533},
+  {f:"OHM",o:"Gaz Premi'Ohm",t:"Fixe 3 ans",v:"0%",aT:359.58,kT:0.1639,fT:2569},
+  {f:"Dyneff",o:"Contrat+ Gaz Vert 100%",t:"Fixe 1 an",v:"100%",aT:469.26,kT:0.1610,fT:2639},
+  {f:"Gédia",o:"All Inclusive Gaz Particulier",t:"Fixe 1 an",v:"0%",aT:534.14,kT:0.1658,fT:2769},
 ];
 
-const dataCuisS39=[
-  {f:"EDF",o:"Avantage Gaz 2 ans",t:"Fixe 2 ans",v:"0%",aT:124.76,kT:0.1567,fT:322,promo:true,promoF:272},
-  {f:"Engie",o:"Gaz Référence 3 ans",t:"Fixe 3 ans",v:"5%",aT:152.46,kT:0.1469,fT:338,promo:false},
-  {f:"Synelva",o:"Objectif Gaz",t:"Fixe 2 ans",v:"0%",aT:147.70,kT:0.1642,fT:355,promo:false},
-  {f:"Octopus",o:"Eco-Conso Gaz Fixe",t:"Fixe 2 ans",v:"0%",aT:152.11,kT:0.1617,fT:356,promo:false},
-  {f:"TotalEnergies",o:"Offre Fixe 2 ans Gaz",t:"Fixe 2 ans",v:"0%",aT:152.41,kT:0.1701,fT:367,promo:false},
-  {f:"Engie",o:"Gaz Adapt 1 an",t:"Fixe 1 an",v:"5%",aT:152.46,kT:0.1753,fT:373,promo:false},
-  {f:"Happ-e",o:"Happ-e Gaz de Engie",t:"Indexée",v:"0%",aT:152.46,kT:0.1759,fT:374,promo:false},
-  {f:"TotalEnergies",o:"Offre Spéciale Gaz",t:"Indexée",v:"0%",aT:152.41,kT:0.1768,fT:375,promo:false},
-  {f:"Alterna",o:"Mon Gaz Naturel Indexée T1",t:"Indexée",v:"100%",aT:174.01,kT:0.1602,fT:376,promo:false},
-  {f:"Gaz de Bordeaux",o:"Novafixe Biogaz",t:"Fixe 2 ans",v:"20%",aT:152.46,kT:0.1774,fT:376,promo:false},
-  {f:"OHM",o:"Gaz Extra Eco",t:"Fixe 1 an",v:"0%",aT:152.06,kT:0.1780,fT:376,promo:false},
-  {f:"EDF",o:"Avantage Gaz Optimisé - Octobre",t:"Indexée",v:"0%",aT:152.70,kT:0.1779,fT:377,promo:false},
-  {f:"Gaz de Bordeaux",o:"Novaflex Gaz - Septembre",t:"Indexée",v:"0%",aT:152.46,kT:0.1783,fT:377,promo:false},
-  {f:"Mint énergie",o:"Biogaz Online",t:"Indexée 1 an",v:"5%",aT:152.46,kT:0.1783,fT:377,promo:false},
-  {f:"OHM",o:"Classique Gaz",t:"Indexée",v:"10%",aT:152.06,kT:0.1859,fT:386,promo:false},
-  {f:"Dyneff",o:"Contrat+ Gaz Vert 15% - 1 an",t:"Fixe 1 an",v:"15%",aT:163.48,kT:0.1772,fT:387,promo:false},
-  {f:"Mint énergie",o:"Biogaz Classic",t:"Indexée 2 ans",v:"10%",aT:152.46,kT:0.1862,fT:387,promo:true,promoF:357},
-  {f:"GeG",o:"Mon Offre Gaz - Fixe 3 ans",t:"Fixe 3 ans",v:"0%",aT:131.87,kT:0.2034,fT:388,promo:false},
-  {f:"Plenitude",o:"Plenifix 1 an Gaz",t:"Fixe 1 an",v:"0%",aT:179.10,kT:0.1676,fT:390,promo:false},
-  {f:"Gaz de Bordeaux",o:"Novaflex Gaz - Octobre",t:"Indexée",v:"0%",aT:152.46,kT:0.1891,fT:391,promo:false},
-  {f:"OHM",o:"Gaz Fixe 2 ans",t:"Fixe 2 ans",v:"0%",aT:152.06,kT:0.1938,fT:396,promo:false},
-  {f:"Mint énergie",o:"Biogaz Smart",t:"Indexée 3 ans",v:"15%",aT:152.46,kT:0.1941,fT:397,promo:true,promoF:357},
-  {f:"Dyneff",o:"Contrat+ Gaz Vert 55% - 1 an",t:"Fixe 1 an",v:"55%",aT:163.48,kT:0.1892,fT:402,promo:false},
-  {f:"OHM",o:"Gaz Premi'Ohm",t:"Fixe 3 ans",v:"0%",aT:152.06,kT:0.2017,fT:406,promo:false},
-  {f:"Alterna",o:"Mon Biogaz Français - T1",t:"Fixe 1 an",v:"100%",aT:174.01,kT:0.1861,fT:408,promo:false},
-  {f:"Dyneff",o:"Contrat+ Gaz Vert 100% - 1 an",t:"Fixe 1 an",v:"100%",aT:163.48,kT:0.2027,fT:419,promo:false},
+const dUS39=[
+  {f:"EDF",o:"Avantage Gaz 2 ans",t:"Fixe 2 ans",v:"0%",aT:124.76,kT:0.1567,fT:322,pr:true,pf:272},
+  {f:"Engie",o:"Gaz Référence 3 ans",t:"Fixe 3 ans",v:"5%",aT:152.46,kT:0.1469,fT:338},
+  {f:"Synelva",o:"Objectif Gaz",t:"Fixe 2 ans",v:"0%",aT:147.70,kT:0.1642,fT:355},
+  {f:"Octopus",o:"Eco-Conso Gaz Fixe",t:"Fixe 2 ans",v:"0%",aT:152.11,kT:0.1617,fT:356},
+  {f:"TotalEnergies",o:"Offre Fixe 2 ans Gaz",t:"Fixe 2 ans",v:"0%",aT:152.41,kT:0.1701,fT:367},
+  {f:"Engie",o:"Gaz Adapt 1 an",t:"Fixe 1 an",v:"5%",aT:152.46,kT:0.1753,fT:373},
+  {f:"Happ-e",o:"Happ-e Gaz de Engie",t:"Indexée",v:"0%",aT:152.46,kT:0.1759,fT:374},
+  {f:"TotalEnergies",o:"Offre Spéciale Gaz",t:"Indexée",v:"0%",aT:152.41,kT:0.1768,fT:375},
+  {f:"Alterna",o:"Mon Gaz Naturel Indexée T1",t:"Indexée",v:"100%",aT:174.01,kT:0.1602,fT:376},
+  {f:"Gaz de Bordeaux",o:"Novafixe Biogaz",t:"Fixe 2 ans",v:"20%",aT:152.46,kT:0.1774,fT:376},
+  {f:"OHM",o:"Gaz Extra Eco",t:"Fixe 1 an",v:"0%",aT:152.06,kT:0.1780,fT:376},
+  {f:"EDF",o:"Avantage Gaz Optimisé - Oct.",t:"Indexée",v:"0%",aT:152.70,kT:0.1779,fT:377},
+  {f:"Gaz de Bordeaux",o:"Novaflex Gaz - Sept.",t:"Indexée",v:"0%",aT:152.46,kT:0.1783,fT:377},
+  {f:"Mint énergie",o:"Biogaz Online",t:"Indexée 1 an",v:"5%",aT:152.46,kT:0.1783,fT:377},
+  {f:"OHM",o:"Classique Gaz",t:"Indexée",v:"10%",aT:152.06,kT:0.1859,fT:386},
+  {f:"Dyneff",o:"Contrat+ Gaz Vert 15%",t:"Fixe 1 an",v:"15%",aT:163.48,kT:0.1772,fT:387},
+  {f:"Mint énergie",o:"Biogaz Classic",t:"Indexée 2 ans",v:"10%",aT:152.46,kT:0.1862,fT:387,pr:true,pf:357},
+  {f:"GeG",o:"Mon Offre Gaz - Fixe 3 ans",t:"Fixe 3 ans",v:"0%",aT:131.87,kT:0.2034,fT:388},
+  {f:"Plenitude",o:"Plenifix 1 an Gaz",t:"Fixe 1 an",v:"0%",aT:179.10,kT:0.1676,fT:390},
+  {f:"Gaz de Bordeaux",o:"Novaflex Gaz - Oct.",t:"Indexée",v:"0%",aT:152.46,kT:0.1891,fT:391},
+  {f:"OHM",o:"Gaz Fixe 2 ans",t:"Fixe 2 ans",v:"0%",aT:152.06,kT:0.1938,fT:396},
+  {f:"Mint énergie",o:"Biogaz Smart",t:"Indexée 3 ans",v:"15%",aT:152.46,kT:0.1941,fT:397,pr:true,pf:357},
+  {f:"Dyneff",o:"Contrat+ Gaz Vert 55%",t:"Fixe 1 an",v:"55%",aT:163.48,kT:0.1892,fT:402},
+  {f:"OHM",o:"Gaz Premi'Ohm",t:"Fixe 3 ans",v:"0%",aT:152.06,kT:0.2017,fT:406},
+  {f:"Alterna",o:"Mon Biogaz Français - T1",t:"Fixe 1 an",v:"100%",aT:174.01,kT:0.1861,fT:408},
+  {f:"Dyneff",o:"Contrat+ Gaz Vert 100%",t:"Fixe 1 an",v:"100%",aT:163.48,kT:0.2027,fT:419},
 ];
 
 function pc(v,r){return Math.round((v-r)/r*100);}
-function fp(v){const c=v<0?'neg':v===0?'neu':'pos2';return`<span class="${c}">${v>0?'+':''}${v}%`;}
+function fp(v){const c=v<0?'pn':v===0?'p0':'pp';return'<span class="'+c+'">'+(v>0?'+':'')+v+'%</span>';}
 function fe(v,d=2){return v.toLocaleString('fr-FR',{minimumFractionDigits:d,maximumFractionDigits:d})+' €';}
 function fk(v){return v.toLocaleString('fr-FR',{minimumFractionDigits:4,maximumFractionDigits:4})+' €';}
 
-function buildTable(data,cta,prvg,tblId){
-  const sorted=data.slice().sort((a,b)=>a.fT-b.fT);
-  const prvgAH=prvg.aT/TVA-cta, prvgKH=prvg.kT/TVA-ACC, prvgFH=Math.round(prvgAH+prvgKH*(cta===CTA_C?13480:1260));
-  const conso=cta===CTA_C?13480:1260;
-  const thead=`<thead><tr>
+function mkTable(data,cta,prvg,id){
+  const conso=cta===48.70?13480:1260;
+  const paH=prvg.aT/T-cta,pkH=prvg.kT/T-A,pfH=Math.round(paH+pkH*conso);
+  const h=`<thead><tr>
     <th rowspan="2" class="l" style="text-align:left">#</th>
     <th rowspan="2" class="l" style="text-align:left">Fournisseur</th>
     <th rowspan="2" class="l" style="text-align:left;min-width:155px">Offre</th>
     <th rowspan="2">Type</th><th rowspan="2">% vert</th>
-    <th colspan="4" class="grp">Abonnement annuel</th>
-    <th colspan="4" class="grp">kWh</th>
-    <th colspan="4" class="grp">Facture totale annuelle</th>
+    <th colspan="4" class="g">Abonnement annuel</th>
+    <th colspan="4" class="g">kWh</th>
+    <th colspan="4" class="g">Facture totale annuelle</th>
     <th rowspan="2">Avec promo</th>
   </tr><tr>
-    <th>HTT</th><th>% vs PRVG</th><th>TTC</th><th>% vs PRVG</th>
-    <th>HTT</th><th>% vs PRVG</th><th>TTC</th><th>% vs PRVG</th>
-    <th>HTT</th><th>% vs PRVG</th><th>TTC</th><th>% vs PRVG</th>
+    <th>HTT</th><th>%</th><th>TTC</th><th>%</th>
+    <th>HTT</th><th>%</th><th>TTC</th><th>%</th>
+    <th>HTT</th><th>%</th><th>TTC</th><th>%</th>
   </tr></thead>`;
-  const tbody=sorted.map((r,i)=>{
-    const isO=r.f==='Octopus';
-    const aH=r.aT/TVA-cta, kH=r.kT/TVA-ACC, fH=Math.round(aH+kH*conso);
-    return`<tr class="${isO?'oct':''}">
+  const rows=data.slice().sort((a,b)=>a.fT-b.fT).map((r,i)=>{
+    const o=r.f==='Octopus';
+    const aH=r.aT/T-cta,kH=r.kT/T-A,fH=Math.round(aH+kH*conso);
+    return`<tr class="${o?'oc':''}">
       <td class="l">${i+1}</td>
-      <td class="l">${r.f}${r.promo?'<span class="promo-tag">promo</span>':''}</td>
+      <td class="l">${r.f}${r.pr?'<span class="pt">promo</span>':''}</td>
       <td class="l" title="${r.o}">${r.o}</td>
       <td class="l">${r.t}</td><td style="text-align:center">${r.v}</td>
-      <td>${fe(aH)}</td><td>${fp(pc(aH,prvgAH))}</td>
+      <td>${fe(aH)}</td><td>${fp(pc(aH,paH))}</td>
       <td>${fe(r.aT)}</td><td>${fp(pc(r.aT,prvg.aT))}</td>
-      <td>${fk(kH)}</td><td>${fp(pc(kH,prvgKH))}</td>
+      <td>${fk(kH)}</td><td>${fp(pc(kH,pkH))}</td>
       <td>${fk(r.kT)}</td><td>${fp(pc(r.kT,prvg.kT))}</td>
-      <td>${fe(fH,0)}</td><td>${fp(pc(fH,prvgFH))}</td>
+      <td>${fe(fH,0)}</td><td>${fp(pc(fH,pfH))}</td>
       <td>${fe(r.fT,0)}</td><td>${fp(pc(r.fT,prvg.fT))}</td>
-      <td>${r.promo&&r.promoF?fe(r.promoF,0):''}</td>
+      <td>${r.pr&&r.pf?fe(r.pf,0):''}</td>
     </tr>`;
   }).join('');
-  document.getElementById(tblId).innerHTML=thead+'<tbody>'+tbody+'</tbody>';
+  document.getElementById(id).innerHTML=h+'<tbody>'+rows+'</tbody>';
 }
 
-function buildBar(canvasId,data,prvg){
-  const sorted=data.slice().sort((a,b)=>a.fT-b.fT).slice(0,15);
-  new Chart(document.getElementById(canvasId),{
+function mkBar(id,data,prvg){
+  const s=data.slice().sort((a,b)=>a.fT-b.fT).slice(0,15);
+  new Chart(document.getElementById(id),{
     type:'bar',
     data:{
-      labels:sorted.map(r=>r.f+(r.f==='Octopus'?' ★':'')),
+      labels:s.map(r=>r.f+(r.f==='Octopus'?' ★':'')),
       datasets:[
-        {label:'Facture TTC',data:sorted.map(r=>r.fT),backgroundColor:sorted.map(r=>r.f==='Octopus'?'#1a5cad':'#d0d0d0'),borderRadius:3,borderSkipped:'start'},
-        {label:'PRVG',data:Array(15).fill(prvg.fT),type:'line',borderColor:'rgba(192,57,43,.6)',borderWidth:1.5,borderDash:[4,3],pointRadius:0,fill:false}
+        {data:s.map(r=>r.fT),backgroundColor:s.map(r=>r.f==='Octopus'?'#1a5cad':'#d0d0d0'),borderRadius:3,borderSkipped:'start'},
+        {data:Array(15).fill(prvg.fT),type:'line',borderColor:'rgba(192,57,43,.6)',borderWidth:1.5,borderDash:[4,3],pointRadius:0,fill:false}
       ]
     },
     options:{
       responsive:true,maintainAspectRatio:false,indexAxis:'y',
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+' : '+Math.round(c.raw).toLocaleString('fr-FR')+' €'}}},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>Math.round(c.raw).toLocaleString('fr-FR')+' €'}}},
       scales:{
         x:{grid:{color:'#efefef'},ticks:{callback:v=>v.toLocaleString('fr-FR')+' €',font:{size:11},color:'#888'},border:{color:'#e2e2e2'}},
         y:{grid:{display:false},ticks:{font:{size:11},color:'#444'},border:{color:'#e2e2e2'}}
@@ -420,125 +377,47 @@ function buildBar(canvasId,data,prvg){
   });
 }
 
-buildTable(dataS39,CTA_C,PRVG_C,'tbl-s39');
-buildTable(dataS38,CTA_C,PRVG_C,'tbl-s38');
-buildTable(dataCuisS39,CTA_T1,PRVG_T1,'tbl-cuis-s39');
-buildBar('barS39',dataS39,PRVG_C);
-buildBar('barS38',dataS38,PRVG_C);
-buildBar('barCuisS39',dataCuisS39,PRVG_T1);
+// Construire tout au chargement
+mkTable(dS39,48.70,PC,'tCS39');
+mkTable(dS38,48.70,PC,'tCS38');
+mkTable(dUS39,14.20,PT,'tUS39');
+mkBar('barCS39',dS39,PC);
+mkBar('barCS38',dS38,PC);
+mkBar('barUS39',dUS39,PT);
 
-new Chart(document.getElementById('rankChart'),{
+new Chart(document.getElementById('rankC'),{
   type:'line',
-  data:{
-    labels:['S38','S39'],
-    datasets:[{
-      data:[6,5],
-      borderColor:'#e6007e',backgroundColor:'rgba(230,0,126,.06)',
-      borderWidth:2,pointRadius:6,pointBackgroundColor:'#e6007e',
-      pointBorderColor:'#fff',pointBorderWidth:2,tension:.3,fill:true
-    }]
-  },
-  options:{
-    responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'Rang '+c.raw+' / 29'}}},
-    scales:{
-      y:{reverse:true,min:1,max:15,grid:{color:'#efefef'},ticks:{stepSize:2,font:{size:11},callback:v=>'#'+v,color:'#888'},border:{color:'#e2e2e2'},title:{display:true,text:'← mieux',color:'#888',font:{size:10}}},
-      x:{grid:{display:false},ticks:{font:{size:11},color:'#888'},border:{color:'#e2e2e2'}}
-    }
-  }
+  data:{labels:['S38','S39'],datasets:[{data:[6,5],borderColor:'#e6007e',backgroundColor:'rgba(230,0,126,.06)',borderWidth:2,pointRadius:6,pointBackgroundColor:'#e6007e',pointBorderColor:'#fff',pointBorderWidth:2,tension:.3,fill:true}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'Rang '+c.raw+' / 29'}}},scales:{y:{reverse:true,min:1,max:10,grid:{color:'#efefef'},ticks:{stepSize:1,callback:v=>'#'+v,font:{size:11},color:'#888'},border:{color:'#e2e2e2'}},x:{grid:{display:false},ticks:{font:{size:11},color:'#888'},border:{color:'#e2e2e2'}}}}
 });
 
-const WEEKS={
-  s39:{label:'semaine 39 · 21/09/2026'},
-  s38:{label:'semaine 38 · 14/09/2026'}
-};
+// Navigation — simple show/hide
+function show(id){document.getElementById(id).style.display='block';}
+function hide(id){document.getElementById(id).style.display='none';}
 
-function switchWeek(w){
-  // Désactiver tous les week-panes
-  document.querySelectorAll('.week-pane').forEach(p=>p.classList.remove('active'));
-  // Récupérer la page active (marche ou gaz)
-  const activePage=document.querySelector('.page.active');
-  if(!activePage) return;
-  const pageId=activePage.id.replace('page-','');
-  // Activer le bon pane marché
-  const marcheEl=document.getElementById('marche-'+w);
-  if(marcheEl) marcheEl.classList.add('active');
-  // Activer le bon pane gaz (sous-onglet actif)
-  const activeSub=document.querySelector('.sub-pane.active');
-  if(activeSub){
-    const subId=activeSub.id.replace('sub-','');
-    const subEl=document.getElementById(subId+'-'+w);
-    if(subEl) subEl.classList.add('active');
-  }
+function sp(id,btn){
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('pg-'+id).classList.add('on');
+  btn.classList.add('on');
 }
 
-// Initialisation au chargement
-document.addEventListener('DOMContentLoaded',function(){
-  switchWeek('s39');
-});
-
-function getCurrentWeek(){
-  return document.getElementById('week-select').value;
+function ss(id,btn){
+  document.querySelectorAll('.spg').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.stab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('sp-'+id).classList.add('on');
+  btn.classList.add('on');
 }
 
-function showPage(id,btn){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  btn.classList.add('active');
-  // Activer le bon week-pane pour cette page
-  if(id==='marche'){
-    document.querySelectorAll('#page-marche .week-pane').forEach(p=>p.classList.remove('active'));
-    const el=document.getElementById('marche-'+getCurrentWeek());
-    if(el) el.classList.add('active');
-  }
-}
-
-function showSub(id,btn){
-  document.querySelectorAll('.sub-pane').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.sub-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('sub-'+id).classList.add('active');
-  btn.classList.add('active');
-  // Activer le bon week-pane pour ce sous-onglet
-  document.querySelectorAll('#sub-'+id+' .week-pane').forEach(p=>p.classList.remove('active'));
-  const el=document.getElementById(id+'-'+getCurrentWeek());
-  if(el) el.classList.add('active');
-}
-
-function switchWeek(w){
+function sw(w){
+  const other=w==='s39'?'s38':'s39';
   // Marché
-  document.querySelectorAll('#page-marche .week-pane').forEach(p=>p.classList.remove('active'));
-  const marcheEl=document.getElementById('marche-'+w);
-  if(marcheEl) marcheEl.classList.add('active');
-  // Sous-onglet gaz actif
-  const activeSub=document.querySelector('.sub-pane.active');
-  if(activeSub){
-    activeSub.querySelectorAll('.week-pane').forEach(p=>p.classList.remove('active'));
-    const subId=activeSub.id.replace('sub-','');
-    const subEl=document.getElementById(subId+'-'+w);
-    if(subEl) subEl.classList.add('active');
-  }
+  show('m-'+w); hide('m-'+other);
+  // Chauffage
+  show('c-'+w); hide('c-'+other);
+  // Cuisson
+  show('u-'+w); hide('u-'+other);
 }
-
-// Init au chargement — forcer S39 + page marché + sous-onglet chauffage
-window.addEventListener('load',function(){
-  // Reset tout
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.sub-pane').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.sub-tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.week-pane').forEach(p=>p.classList.remove('active'));
-  // Activer page marché
-  document.getElementById('page-marche').classList.add('active');
-  document.querySelector('.nav-tab').classList.add('active');
-  // Activer semaine S39
-  document.getElementById('week-select').value='s39';
-  document.getElementById('marche-s39').classList.add('active');
-  // Activer sous-onglet chauffage S39
-  document.getElementById('sub-chauf').classList.add('active');
-  document.querySelector('.sub-tab').classList.add('active');
-  document.getElementById('chauf-s39').classList.add('active');
-});
 </script>
 </body>
 </html>
