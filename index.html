@@ -456,12 +456,26 @@ const WEEKS={
 function switchWeek(w){
   // Désactiver tous les week-panes
   document.querySelectorAll('.week-pane').forEach(p=>p.classList.remove('active'));
-  // Réactiver uniquement les panes de la semaine choisie
-  ['marche','chauf','cuis'].forEach(section=>{
-    const el=document.getElementById(section+'-'+w);
-    if(el) el.classList.add('active');
-  });
+  // Récupérer la page active (marche ou gaz)
+  const activePage=document.querySelector('.page.active');
+  if(!activePage) return;
+  const pageId=activePage.id.replace('page-','');
+  // Activer le bon pane marché
+  const marcheEl=document.getElementById('marche-'+w);
+  if(marcheEl) marcheEl.classList.add('active');
+  // Activer le bon pane gaz (sous-onglet actif)
+  const activeSub=document.querySelector('.sub-pane.active');
+  if(activeSub){
+    const subId=activeSub.id.replace('sub-','');
+    const subEl=document.getElementById(subId+'-'+w);
+    if(subEl) subEl.classList.add('active');
+  }
 }
+
+// Initialisation au chargement
+document.addEventListener('DOMContentLoaded',function(){
+  switchWeek('s39');
+});
 
 function showPage(id,btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
