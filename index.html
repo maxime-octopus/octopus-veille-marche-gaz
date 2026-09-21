@@ -81,21 +81,21 @@ tr.oct .neg,tr.oct .pos2,tr.oct .neu{color:var(--blue)}
 
 <header class="site-header">
   <div class="site-logo"><div class="logo-mark"></div>Veille marché énergie</div>
-  <span class="site-meta" id="header-week">semaine 39 · 21/09/2026</span>
+  <select id="week-select" onchange="switchWeek(this.value)" style="font-size:12px;font-family:'Inter',sans-serif;padding:5px 12px;border:none;border-radius:4px;background:rgba(255,255,255,.15);color:#fff;cursor:pointer;outline:none">
+    <option value="s39" selected>S39 · 21/09/2026</option>
+    <option value="s38">S38 · 14/09/2026</option>
+  </select>
 </header>
 
 <nav class="nav-tabs">
   <div class="nav-left">
     <button class="nav-tab active" onclick="showPage('marche',this)">Synthèse marché</button>
     <button class="nav-tab" onclick="showPage('gaz',this)">Benchmark gaz</button>
-  </div>
-  <div class="week-selector">
-    <label>Semaine</label>
-    <select id="week-select" onchange="switchWeek(this.value)">
-      <option value="s39" selected>S39 · 21/09/2026</option>
-      <option value="s38">S38 · 14/09/2026</option>
-    </select>
-  </div>
+
+
+
+
+
 </nav>
 
 <!-- PAGE MARCHÉ -->
@@ -111,7 +111,7 @@ tr.oct .neg,tr.oct .pos2,tr.oct .neu{color:var(--blue)}
       <p class="brief-p">Électricité : mouvement en ciseaux. Court terme en hausse (+6,9 % sur octobre, nucléaire à 37,1 GW / 59 % du parc). Long terme en baisse (2027 −2,8 %, 2028 −8,4 %).</p>
       <p class="brief-p">Brent à 90,40 € (+0,2 %). CO2 à 86,89 € (+1,6 %). Charbon à 118,80 € (−1,3 %).</p>
       <p class="brief-p" style="margin-bottom:0"><strong>Impact commercial : nos prix fixes restent très compétitifs</strong> face aux offres indexées qui subissent la volatilité.</p>
-    </div>
+  
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:var(--bdr);border:1px solid var(--bdr);border-radius:var(--rl);overflow:hidden">
       <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PEG oct.-26</div><div style="font-size:20px;font-weight:500">78,95</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--up)">−0,1 % / MWh</div></div>
       <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PEG 2027</div><div style="font-size:20px;font-weight:500">58,65</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+0,5 % / MWh</div></div>
@@ -121,8 +121,8 @@ tr.oct .neg,tr.oct .pos2,tr.oct .neu{color:var(--blue)}
       <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">CO2 EUA</div><div style="font-size:20px;font-weight:500">86,89</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+1,6 % / tonne</div></div>
       <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">Charbon</div><div style="font-size:20px;font-weight:500">118,80</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--up)">−1,3 % / tonne</div></div>
       <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PRVG sept. TTC</div><div style="font-size:20px;font-weight:500">0,1347</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--ink-3)">€/kWh chauffage</div></div>
-    </div>
-  </div>
+  
+
 
   <!-- S38 MARCHÉ -->
   <div id="marche-s38" class="week-pane">
@@ -134,7 +134,7 @@ tr.oct .neg,tr.oct .pos2,tr.oct .neu{color:var(--blue)}
       <p class="brief-p">Les livraisons GNL aux terminaux européens ont chuté de 15 % en une semaine. L'électricité suit : +13,1 % sur 2027, nucléaire dégradé à 38,4 GW (61 % du parc).</p>
       <p class="brief-p">Brent à 90,18 € (+8,7 %). CO2 à 85,53 € (+1,6 %). Charbon à 120,39 € (+0,1 %).</p>
       <p class="brief-p" style="margin-bottom:0"><strong>Impact commercial : la hausse du marché renforce l'attractivité de nos offres fixes</strong> face aux offres indexées.</p>
-    </div>
+  
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:var(--bdr);border:1px solid var(--bdr);border-radius:var(--rl);overflow:hidden">
       <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PEG oct.-26</div><div style="font-size:20px;font-weight:500">79,03</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+10,9 % / MWh</div></div>
       <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PEG 2027</div><div style="font-size:20px;font-weight:500">58,38</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+11,8 % / MWh</div></div>
@@ -144,8 +144,8 @@ tr.oct .neg,tr.oct .pos2,tr.oct .neu{color:var(--blue)}
       <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">CO2 EUA</div><div style="font-size:20px;font-weight:500">85,53</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+1,6 % / tonne</div></div>
       <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">Charbon</div><div style="font-size:20px;font-weight:500">120,39</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--dn)">+0,1 % / tonne</div></div>
       <div style="background:var(--white);padding:.9rem 1rem"><div style="font-size:11px;color:var(--ink-3);margin-bottom:5px">PRVG sept. TTC</div><div style="font-size:20px;font-weight:500">0,1347</div><div style="font-family:'DM Mono',monospace;font-size:11px;margin-top:3px;color:var(--ink-3)">€/kWh chauffage</div></div>
-    </div>
-  </div>
+  
+
 </div>
 
 <!-- PAGE GAZ -->
@@ -153,7 +153,7 @@ tr.oct .neg,tr.oct .pos2,tr.oct .neu{color:var(--blue)}
   <div class="sub-tabs">
     <button class="sub-tab active" onclick="showSub('chauf',this)">Chauffage · 13 480 kWh</button>
     <button class="sub-tab" onclick="showSub('cuis',this)">Cuisson / eau chaude · 1 260 kWh</button>
-  </div>
+
 
   <!-- CHAUFFAGE -->
   <div id="sub-chauf" class="sub-pane active">
@@ -165,12 +165,12 @@ tr.oct .neg,tr.oct .pos2,tr.oct .neu{color:var(--blue)}
         <div class="pos-rank"><div class="rank-n">5</div><div class="rank-l">/ 29 offres</div></div>
         <div class="pos-metric"><div class="pm-l">Facture annuelle TTC</div><div class="pm-v" style="color:var(--blue)">2 115 €</div><div class="pm-s" style="color:var(--dn)">−3 % vs PRVG sept. (2 177 €)</div></div>
         <div class="pos-metric"><div class="pm-l">kWh TTC</div><div class="pm-v">0,1302 €</div><div class="pm-s" style="color:var(--dn)">−3 % vs PRVG sept.</div></div>
-      </div>
+    
       <div class="chart-card">
         <div class="chart-ttl">Évolution du rang Octopus — chauffage</div>
         <div class="chart-sub">Axe inversé — rang 1 = offre la moins chère</div>
         <div style="height:160px"><canvas id="rankChart" role="img" aria-label="Évolution du rang Octopus chauffage S38 à S39"></canvas></div>
-      </div>
+    
       <div class="chart-card">
         <div class="chart-ttl">Comparatif facture TTC — top 15 offres chauffage · S39</div>
         <div class="chart-sub">Paris 02 · Zone 2 · 13 480 kWh/an · PRVG sept. = 2 177 €</div>
@@ -178,16 +178,16 @@ tr.oct .neg,tr.oct .pos2,tr.oct .neu{color:var(--blue)}
           <span class="leg"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span>
           <span class="leg"><span class="leg-sq" style="background:#d0d0d0"></span>Concurrents</span>
           <span class="leg"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>PRVG 2 177 €</span>
-        </div>
+      
         <div style="height:420px"><canvas id="barS39" role="img" aria-label="Comparatif factures TTC chauffage S39 top 15"></canvas></div>
-      </div>
+    
       <div class="chart-card">
         <div class="chart-ttl">Classement complet — chauffage · S39</div>
         <div class="chart-sub">Abo HTT = Abo TTC/1,20 − 48,70 € · kWh HTT = kWh TTC/1,20 − 0,01666 € · MNE 21/09/2026</div>
         <div class="tbl-wrap"><table id="tbl-s39"></table></div>
         <a class="sheet-link" href="https://docs.google.com/spreadsheets/d/1kNCzrql-GmUmWkstSrqDxAXNmxgEoo4Pi09WaKzs-Cw/edit?gid=0#gid=0" target="_blank">↗ Voir le détail dans Google Sheets S39</a>
-      </div>
-    </div>
+    
+  
 
     <!-- S38 CHAUFFAGE -->
     <div id="chauf-s38" class="week-pane">
@@ -196,7 +196,7 @@ tr.oct .neg,tr.oct .pos2,tr.oct .neu{color:var(--blue)}
         <div class="pos-rank"><div class="rank-n">6</div><div class="rank-l">/ 29 offres</div></div>
         <div class="pos-metric"><div class="pm-l">Facture annuelle TTC</div><div class="pm-v" style="color:var(--blue)">2 114 €</div><div class="pm-s" style="color:var(--dn)">−3 % vs PRVG sept. (2 177 €)</div></div>
         <div class="pos-metric"><div class="pm-l">kWh TTC</div><div class="pm-v">0,1302 €</div><div class="pm-s" style="color:var(--dn)">−3 % vs PRVG sept.</div></div>
-      </div>
+    
       <div class="chart-card">
         <div class="chart-ttl">Comparatif facture TTC — top 15 offres chauffage · S38</div>
         <div class="chart-sub">Paris 02 · Zone 2 · 13 480 kWh/an · PRVG sept. = 2 177 €</div>
@@ -204,17 +204,17 @@ tr.oct .neg,tr.oct .pos2,tr.oct .neu{color:var(--blue)}
           <span class="leg"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span>
           <span class="leg"><span class="leg-sq" style="background:#d0d0d0"></span>Concurrents</span>
           <span class="leg"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>PRVG 2 177 €</span>
-        </div>
+      
         <div style="height:420px"><canvas id="barS38" role="img" aria-label="Comparatif factures TTC chauffage S38 top 15"></canvas></div>
-      </div>
+    
       <div class="chart-card">
         <div class="chart-ttl">Classement complet — chauffage · S38</div>
         <div class="chart-sub">Abo HTT = Abo TTC/1,20 − 48,70 € · kWh HTT = kWh TTC/1,20 − 0,01666 € · MNE 14/09/2026</div>
         <div class="tbl-wrap"><table id="tbl-s38"></table></div>
         <a class="sheet-link" href="https://docs.google.com/spreadsheets/d/1c7ELAJCFhnknmPBaCaYMvC9wXl_pkc4p4-ntBixhvcc/edit?gid=1778747057#gid=1778747057" target="_blank">↗ Voir le détail dans Google Sheets S38</a>
-      </div>
-    </div>
-  </div>
+    
+  
+
 
   <!-- CUISSON -->
   <div id="sub-cuis" class="sub-pane">
@@ -226,7 +226,7 @@ tr.oct .neg,tr.oct .pos2,tr.oct .neu{color:var(--blue)}
         <div class="pos-rank"><div class="rank-n">3</div><div class="rank-l">/ 26 offres</div></div>
         <div class="pos-metric"><div class="pm-l">Facture annuelle TTC</div><div class="pm-v" style="color:var(--blue)">356 €</div><div class="pm-s" style="color:var(--dn)">−2 % vs PRVG sept. (364 €)</div></div>
         <div class="pos-metric"><div class="pm-l">kWh TTC</div><div class="pm-v">0,1617 €</div><div class="pm-s" style="color:var(--dn)">−4 % vs PRVG sept. (0,1676 €)</div></div>
-      </div>
+    
       <div class="chart-card">
         <div class="chart-ttl">Comparatif facture TTC — top 15 offres cuisson · S39</div>
         <div class="chart-sub">Paris 02 · Zone 2 · 1 260 kWh/an · PRVG sept. = 364 €</div>
@@ -234,23 +234,23 @@ tr.oct .neg,tr.oct .pos2,tr.oct .neu{color:var(--blue)}
           <span class="leg"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span>
           <span class="leg"><span class="leg-sq" style="background:#d0d0d0"></span>Concurrents</span>
           <span class="leg"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>PRVG 364 €</span>
-        </div>
+      
         <div style="height:420px"><canvas id="barCuisS39" role="img" aria-label="Comparatif factures TTC cuisson S39 top 15"></canvas></div>
-      </div>
+    
       <div class="chart-card">
         <div class="chart-ttl">Classement complet — cuisson · S39</div>
         <div class="chart-sub">Abo HTT = Abo TTC/1,20 − 14,20 € · kWh HTT = kWh TTC/1,20 − 0,01666 € · MNE 21/09/2026</div>
         <div class="tbl-wrap"><table id="tbl-cuis-s39"></table></div>
         <a class="sheet-link" href="https://docs.google.com/spreadsheets/d/1kNCzrql-GmUmWkstSrqDxAXNmxgEoo4Pi09WaKzs-Cw/edit?gid=0#gid=0" target="_blank">↗ Voir le détail dans Google Sheets S39</a>
-      </div>
-    </div>
+    
+  
 
     <!-- S38 CUISSON -->
     <div id="cuis-s38" class="week-pane">
       <div class="unavail">Données cuisson non disponibles pour S38 — profil ajouté à partir de S39.</div>
-    </div>
+  
 
-  </div>
+
 </div>
 
 <footer class="page-footer">
