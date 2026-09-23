@@ -188,7 +188,7 @@ footer{font-family:'DM Mono',monospace;font-size:10px;color:#888;padding:2rem;bo
     <div id="gu-s39" style="display:block">
       <p class="lbl">paris 02 · zone 2 · cuisson / eau chaude · cta 14,20 €/an · s39</p>
       <div class="hero">
-        <div class="hero-rank"><div class="hr-n">3</div><div class="hr-l">/ 26 offres</div></div>
+        <div class="hero-rank"><div class="hr-n">4</div><div class="hr-l">/ 26 offres</div></div>
         <div class="hero-m"><div class="hm-l">Facture annuelle TTC</div><div class="hm-v" style="color:#1a5cad">356 €</div><div class="hm-s dn">−2% vs PRVG sept. (364 €)</div></div>
         <div class="hero-m"><div class="hm-l">kWh TTC</div><div class="hm-v">0,1617 €</div><div class="hm-s dn">−4% vs PRVG sept. (0,1676 €)</div></div>
       </div>
@@ -222,7 +222,7 @@ footer{font-family:'DM Mono',monospace;font-size:10px;color:#888;padding:2rem;bo
     <div id="eb-s39" style="display:block">
       <p class="lbl">paris 02 · enedis · base 6 kva · 3 000 kWh/an · cta 15,35 €/an · s39</p>
       <div class="hero">
-        <div class="hero-rank"><div class="hr-n">16</div><div class="hr-l">/ 29 offres</div></div>
+        <div class="hero-rank"><div class="hr-n">28</div><div class="hr-l">/ 54 offres</div></div>
         <div class="hero-m"><div class="hm-l">Facture TTC — Eco Fixe Sept. 26</div><div class="hm-v" style="color:#1a5cad">796 €</div><div class="hm-s pp">+1% vs TRV (791 €)</div></div>
         <div class="hero-m"><div class="hm-l">kWh TTC — Eco Fixe Sept. 26</div><div class="hm-v">0,2017 €</div><div class="hm-s pp">+1% vs TRV (0,2001 €)</div></div>
       </div>
@@ -241,7 +241,7 @@ footer{font-family:'DM Mono',monospace;font-size:10px;color:#888;padding:2rem;bo
         <div class="card-t">Classement complet — Base 6 kVA S39</div>
         <div class="card-s">Abo HTT = Abo TTC/1,20 − 15,35 € · kWh HTT = kWh TTC/1,20 − 0,03062 € · MNE 21/09/2026</div>
         <div class="tw"><table id="tEBS39"></table></div>
-        <a class="sl" href="https://docs.google.com/spreadsheets/d/1kNCzrql-GmUmWkstSrqDxAXNmxgEoo4Pi09WaKzs-Cw/edit?gid=0#gid=0" target="_blank">↗ Google Sheets S39</a>
+        <a class="sl" href="https://docs.google.com/spreadsheets/d/17HoAJJxNyZQKeqgS2WQR4_IQNHfg08OXlnQRlraJ5Gk/edit" target="_blank">↗ Google Sheets S39</a>
       </div>
     </div>
   </div>
@@ -250,7 +250,7 @@ footer{font-family:'DM Mono',monospace;font-size:10px;color:#888;padding:2rem;bo
     <div id="eh-s39" style="display:block">
       <p class="lbl">paris 02 · enedis · hphc 9 kva · 6 500 kWh/an (hp 3 705 / hc 2 795) · cta 20,04 €/an · s39</p>
       <div class="hero">
-        <div class="hero-rank"><div class="hr-n">20</div><div class="hr-l">/ 30 offres</div></div>
+        <div class="hero-rank"><div class="hr-n">31</div><div class="hr-l">/ 69 offres</div></div>
         <div class="hero-m"><div class="hm-l">Facture TTC — Eco Fixe Sept. 26</div><div class="hm-v" style="color:#1a5cad">1 486 €</div><div class="hm-s pp">+1% vs TRV (1 476 €)</div></div>
         <div class="hero-m"><div class="hm-l">kWh HP TTC — Eco Fixe Sept. 26</div><div class="hm-v">0,2160 €</div><div class="hm-s pp">+1% vs TRV (0,2142 €)</div></div>
       </div>
@@ -269,7 +269,7 @@ footer{font-family:'DM Mono',monospace;font-size:10px;color:#888;padding:2rem;bo
         <div class="card-t">Classement complet — HPHC 9 kVA S39</div>
         <div class="card-s">Abo HTT = Abo TTC/1,20 − 20,04 € · kWh HTT = kWh TTC/1,20 − 0,03062 € · MNE 21/09/2026</div>
         <div class="tw"><table id="tEHS39"></table></div>
-        <a class="sl" href="https://docs.google.com/spreadsheets/d/1kNCzrql-GmUmWkstSrqDxAXNmxgEoo4Pi09WaKzs-Cw/edit?gid=0#gid=0" target="_blank">↗ Google Sheets S39</a>
+        <a class="sl" href="https://docs.google.com/spreadsheets/d/17HoAJJxNyZQKeqgS2WQR4_IQNHfg08OXlnQRlraJ5Gk/edit" target="_blank">↗ Google Sheets S39</a>
       </div>
     </div>
   </div>
@@ -388,68 +388,132 @@ const TRV_H={aT:238.56,hpT:0.2142,hcT:0.1589,fT:1476};
 const HP=3705,HC=2795,CB=3000;
 
 const dEB=[
-  {f:"Gaz de Bordeaux",o:"Novafixe Elec",t:"Fixe 2 ans",v:"100%",aT:190.36,kT:0.1805,fT:732},
-  {f:"Mint énergie",o:"Online & Green",t:"Indexée 1 an",v:"25%",aT:190.36,kT:0.1821,fT:737},
-  {f:"GeG",o:"Mon Offre Elec Verte Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:190.81,kT:0.1837,fT:742},
-  {f:"TotalEnergies",o:"Offre Access Electricité",t:"Indexée 3 ans",v:"0%",aT:190.36,kT:0.1837,fT:742},
-  {f:"EDF",o:"Zen Fixe",t:"Fixe 1 an",v:"0%",aT:206.63,kT:0.1847,fT:761},
-  {f:"Dyneff",o:"Contrat+ Electricité",t:"Indexée",v:"0%",aT:187.79,kT:0.1907,fT:761,pr:true,pf:661},
-  {f:"Gaz de Bordeaux",o:"Novaflex Elec",t:"Indexée",v:"100%",aT:190.36,kT:0.1919,fT:766},
-  {f:"Engie",o:"Offre Essentielle Verte",t:"Indexée",v:"100%",aT:190.36,kT:0.1919,fT:766},
-  {f:"EDF",o:"Zen Online",t:"Indexée",v:"0%",aT:190.36,kT:0.1925,fT:768,pr:true,pf:694},
-  {f:"Mint énergie",o:"Classic & Green",t:"Fixe 1 an",v:"50%",aT:188.34,kT:0.1937,fT:769},
-  {f:"Plenitude",o:"Plenifix 1 an Electricité",t:"Fixe 1 an",v:"100%",aT:219.61,kT:0.1837,fT:771},
-  {f:"Engie",o:"Prudence - Élec Verte Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:184.30,kT:0.1968,fT:775},
-  {f:"TRV / Eco Conso",o:"Tarif Réglementé de Vente",t:"TRV indexé",v:"100%",aT:190.32,kT:0.2001,fT:791,isTRV:true},
-  {f:"Electra",o:"Mon Contrat Elec Vert Fixe",t:"Fixe",v:"100%",aT:190.36,kT:0.2001,fT:791},
-  {f:"TotalEnergies",o:"Offre Heures Eco Electricité",t:"Indexée",v:"0%",aT:190.36,kT:0.2001,fT:791},
-  {f:"Octopus",o:"Eco Fixe Septembre 26",t:"Fixe 2 ans",v:"100%",aT:190.32,kT:0.2017,fT:795},
-  {f:"EDF",o:"Vert Electrique",t:"Indexée",v:"100%",aT:190.36,kT:0.2022,fT:797},
-  {f:"Engie",o:"Offre Prudence Vertvolt",t:"Fixe 1 an",v:"100%",aT:184.30,kT:0.2068,fT:805},
-  {f:"Engie",o:"Offre Constance Fixe 2 ans",t:"Fixe 2 ans",v:"100%",aT:214.40,kT:0.1968,fT:805},
-  {f:"Engie",o:"Elec Référence Verte 3 ans",t:"Fixe 3 ans",v:"100%",aT:186.98,kT:0.2099,fT:817},
-  {f:"OHM",o:"OHM Classique",t:"Indexée",v:"100%",aT:173.16,kT:0.2147,fT:817,pr:true,pf:722},
-  {f:"TotalEnergies",o:"Offre Fixe 2 ans Electricité",t:"Fixe 2 ans",v:"0%",aT:190.36,kT:0.2117,fT:825},
-  {f:"Mint énergie",o:"Smart & Green",t:"Fixe 2 ans",v:"100%",aT:227.22,kT:0.2015,fT:832},
-  {f:"Engie",o:"Offre Garance Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:244.36,kT:0.1968,fT:835},
-  {f:"Engie",o:"Elec Adapt 1 an",t:"Indexée 1 an",v:"100%",aT:190.36,kT:0.2211,fT:854},
-  {f:"OHM",o:"OHM Fixe 2 ans",t:"Fixe 2 ans",v:"100%",aT:190.36,kT:0.2213,fT:854},
-  {f:"Happ-e",o:"Offre Electricité Happ-e 1 an",t:"Fixe 1 an",v:"12%",aT:185.03,kT:0.2258,fT:862},
-  {f:"Engie",o:"Offre Garance Vertvolt Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:244.36,kT:0.2068,fT:865},
-  {f:"OHM",o:"OHM Premi'Ohm",t:"Fixe 3 ans",v:"100%",aT:190.36,kT:0.2249,fT:865},
+{f:"Gaz de Bordeaux",o:"Novafixe Elec",t:"Fixe 2 ans",v:"100%",aT:190.36,kT:0.1805,fT:732},
+{f:"Mint \u00e9nergie",o:"Online & Green",t:"Index\u00e9e 1 an",v:"25%",aT:190.36,kT:0.1821,fT:737},
+{f:"GeG",o:"Mon Offre Elec Verte Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:190.81,kT:0.1837,fT:742},
+{f:"TotalEnergies",o:"Offre Access Electricit\u00e9",t:"Index\u00e9e 3 ans",v:"0%",aT:190.36,kT:0.1837,fT:742},
+{f:"GeG",o:"Mon Offre Elec Verte Direct Producteur Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:208.01,kT:0.1837,fT:759},
+{f:"Dyneff",o:"Contrat+ Electricit\u00e9",t:"Index\u00e9e",v:"0%",aT:187.79,kT:0.1907,fT:761,pr:true,pf:661},
+{f:"EDF",o:"Zen Fixe",t:"Fixe 1 an",v:"0%",aT:206.63,kT:0.1847,fT:761},
+{f:"Engie",o:"100% Locale & Renouvelable Vertvolt Tr\u00e8s Engag\u00e9",t:"Fixe",v:"100%",aT:189.0,kT:0.1923,fT:766,comm:"Multi-plage HP/HC \u00e9t\u00e9/hiver \u2014 kWh moyen pond\u00e9r\u00e9 sur conso annuelle"},
+{f:"Gaz de Bordeaux",o:"Novaflex Elec",t:"Index\u00e9e",v:"100%",aT:190.36,kT:0.1919,fT:766},
+{f:"Engie",o:"Offre Essentielle Verte",t:"Index\u00e9e",v:"100%",aT:190.36,kT:0.1919,fT:766},
+{f:"Alterna",o:"Mon Electricit\u00e9 Heures Super Creuses Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:211.96,kT:0.1853,fT:768,comm:"Multi-plage HP/HC/HSC \u00e9t\u00e9/hiver \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"EDF",o:"Zen Online",t:"Index\u00e9e",v:"0%",aT:190.36,kT:0.1925,fT:768,pr:true,pf:694},
+{f:"Mint \u00e9nergie",o:"Classic & Green",t:"Fixe 1 an",v:"50%",aT:188.34,kT:0.1937,fT:769},
+{f:"Plenitude",o:"Plenifix 1 an Electricit\u00e9",t:"Fixe 1 an",v:"100%",aT:219.61,kT:0.1837,fT:771},
+{f:"Engie",o:"Prudence - \u00c9lec Verte Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:184.3,kT:0.1968,fT:775},
+{f:"Octopus",o:"Cocon Fixe (OctoEco saisonnalis\u00e9)",t:"Fixe 2 ans saisonnalis\u00e9",v:"100%",aT:190.36,kT:0.1947,fT:775,isO:true,comm:"Saisonnalis\u00e9 \u2014 \u00e9t\u00e9 0,1673\u20ac/hiver 0,2181\u20ac (d\u00e9riv\u00e9 profil horaire Cocon HPHC), pond\u00e9ration 46% \u00e9t\u00e9/54% hiver (convention interne, non officielle CRE/RTE)"},
+{f:"Octopus",o:"Intelligent Octopus (VE)",t:"Fixe VE",v:"100%",aT:190.36,kT:0.1968,fT:781,isO:true,comm:"Offre v\u00e9hicule \u00e9lectrique \u2014 prix maison"},
+{f:"Dyneff",o:"Contrat+ Electricit\u00e9 Verte",t:"Index\u00e9e",v:"100%",aT:187.79,kT:0.1985,fT:783},
+{f:"Ekwateur",o:"Electricit\u00e9 100% Renouvelable Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:238.68,kT:0.1822,fT:785,pr:true,pf:686,comm:"Profil 9 kVA affich\u00e9 dans le comparateur (hors profil 6 kVA standard)"},
+{f:"EDF",o:"Zen Week-End Plus",t:"Fixe",v:"0%",aT:190.36,kT:0.1985,fT:786,comm:"Multi-plage semaine/WE/1 jour \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"Engie",o:"Offre Electricite Serenite",t:"Index\u00e9e",v:"0%",aT:190.36,kT:0.1992,fT:788},
+{f:"Alterna",o:"Mon Electricit\u00e9 Fran\u00e7aise Index\u00e9e",t:"Index\u00e9e",v:"100%",aT:211.96,kT:0.1919,fT:788},
+{f:"Alterna",o:"Mon Electricit\u00e9 Fran\u00e7aise Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:211.96,kT:0.1919,fT:790,pr:true,pf:690},
+{f:"EDF",o:"Vert Electrique Week-End",t:"Fixe",v:"100%",aT:190.36,kT:0.2002,fT:791,comm:"Multi-plage semaine/WE \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"TRV / Eco Conso",o:"Tarif Bleu R\u00e9glement\u00e9",t:"TRV",v:"0%",aT:190.36,kT:0.2001,fT:791,isTRV:true,comm:"Ligne de r\u00e9f\u00e9rence"},
+{f:"Electra",o:"Mon Contrat Elec Vert Fixe",t:"Fixe",v:"100%",aT:190.36,kT:0.2001,fT:791},
+{f:"TotalEnergies",o:"Offre Heures Eco Electricit\u00e9",t:"Index\u00e9e",v:"0%",aT:190.36,kT:0.2001,fT:791},
+{f:"Octopus",o:"Eco-Fixe Septembre 26",t:"Fixe 2 ans",v:"100%",aT:190.36,kT:0.2017,fT:796,pr:true,pf:697,isO:true},
+{f:"Engie",o:"100% Locale & Renouvelable Vertvolt Tr\u00e8s Engag\u00e9 (v2)",t:"Fixe",v:"100%",aT:197.2,kT:0.2001,fT:801,pr:true,pf:701},
+{f:"Engie",o:"Vert Electrique R\u00e9gional",t:"Fixe",v:"100%",aT:190.36,kT:0.2037,fT:802},
+{f:"Alterna",o:"Mon Electricit\u00e9 du Coin Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:211.96,kT:0.1968,fT:805},
+{f:"Engie",o:"Prudence avec Producteur ENR Vertvolt",t:"Fixe 1 an",v:"100%",aT:184.3,kT:0.2068,fT:805},
+{f:"Engie",o:"Offre Constance - Fixe 2 ans",t:"Fixe 2 ans",v:"100%",aT:214.4,kT:0.1968,fT:805},
+{f:"Enercoop",o:"Particulier avec Centrale Photovolta\u00efque",t:"Fixe",v:"100%",aT:205.0,kT:0.2001,fT:806,comm:"Offre autoconsommateurs \u2014 batterie virtuelle"},
+{f:"Engie",o:"Offre Electricite Serenite 100% Verte",t:"Index\u00e9e",v:"0%",aT:190.36,kT:0.2052,fT:817},
+{f:"Engie",o:"Elec R\u00e9f\u00e9rence Verte 3 ans",t:"Fixe 3 ans",v:"100%",aT:186.98,kT:0.2099,fT:817},
+{f:"Octopus",o:"Eco-conso fixe 3 ans Septembre 26",t:"Fixe 3 ans",v:"100%",aT:190.32,kT:0.2099,fT:820,isO:true,comm:"Fixe 3 ans \u2014 disponible tous compteurs"},
+{f:"OHM",o:"OHM Classique",t:"Index\u00e9e",v:"100%",aT:173.16,kT:0.2147,fT:822,pr:true,pf:722},
+{f:"EDF",o:"Zen Week-End",t:"Fixe",v:"0%",aT:190.36,kT:0.2115,fT:825,comm:"Multi-plage semaine/WE \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"TotalEnergies",o:"Offre Fixe 2 ans Electricit\u00e9",t:"Fixe 2 ans",v:"0%",aT:190.36,kT:0.2117,fT:832,pr:true,pf:757},
+{f:"Mint \u00e9nergie",o:"Smart & Green",t:"Fixe 2 ans",v:"100%",aT:227.22,kT:0.2015,fT:835},
+{f:"Engie",o:"Offre Garance - Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:244.36,kT:0.1968,fT:835},
+{f:"Engie",o:"Offre Constance avec Producteur ENR Vertvolt",t:"Fixe 2 ans",v:"100%",aT:214.4,kT:0.2068,fT:845},
+{f:"SMB",o:"Essentielle - SMB Particulier",t:"Fixe",v:"100%",aT:191.42,kT:0.2179,fT:854},
+{f:"Engie",o:"Elec Adapt 1 an",t:"Index\u00e9e 1 an",v:"100%",aT:190.36,kT:0.2211,fT:854},
+{f:"OHM",o:"OHM Fixe 2 ans",t:"Fixe 2 ans",v:"100%",aT:190.36,kT:0.2213,fT:862},
+{f:"Happ-e",o:"Offre Electricit\u00e9 Happ-e 1 an",t:"Fixe 1 an",v:"12%",aT:185.03,kT:0.2258,fT:865},
+{f:"Engie",o:"Offre Garance avec Producteur ENR Vertvolt",t:"Fixe 3 ans",v:"100%",aT:244.36,kT:0.2068,fT:865},
+{f:"OHM",o:"OHM Premi'Ohm",t:"Fixe 3 ans",v:"100%",aT:190.36,kT:0.2249,fT:898},
+{f:"Happ-e",o:"Offre Electricit\u00e9 Happ-e 1 an Option Vertelec+",t:"Fixe 1 an",v:"100%",aT:220.88,kT:0.2258,fT:944},
+{f:"Enercoop",o:"Offre Base",t:"Fixe",v:"100%",aT:181.72,kT:0.2541,fT:953},
+{f:"Ilek",o:"Offre \u00c9nrfixe+ Elec",t:"Fixe 2 ans",v:"100%",aT:301.24,kT:0.2172,fT:972},
+{f:"G\u00e9dia",o:"All Inclusive Particuliers",t:"Fixe 2 ans",v:"0%",aT:190.36,kT:0.2605,fT:1105},
+{f:"Papernest",o:"Offre 100% Renouvelable Papernest",t:"Fixe 1 an",v:"100%",aT:387.72,kT:0.2391,fT:1105}
 ];
 
 const dEH=[
-  {f:"Gaz de Bordeaux",o:"Novafixe Elec",t:"Fixe 2 ans",v:"100%",aT:238.61,hpT:0.1929,hcT:0.1442,fT:1357,pr:true,pf:1261},
-  {f:"Mint énergie",o:"Online & Green",t:"Indexée 1 an",v:"25%",aT:241.96,hpT:0.1947,hcT:0.1455,fT:1370},
-  {f:"TotalEnergies",o:"Offre Access Electricité",t:"Indexée 3 ans",v:"0%",aT:241.96,hpT:0.1965,hcT:0.1467,fT:1380},
-  {f:"Plenitude",o:"Plenifix 1 an Electricité",t:"Fixe 1 an",v:"100%",aT:268.63,hpT:0.1965,hcT:0.1467,fT:1407},
-  {f:"Dyneff",o:"Contrat+ Electricité",t:"Indexée",v:"0%",aT:234.71,hpT:0.1965,hcT:0.1603,fT:1411},
-  {f:"GeG",o:"Mon Offre Elec Verte Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:239.83,hpT:0.1983,hcT:0.1583,fT:1417},
-  {f:"Engie",o:"Offre Essentielle Verte",t:"Indexée",v:"100%",aT:238.61,hpT:0.2053,hcT:0.1528,fT:1426},
-  {f:"Gaz de Bordeaux",o:"Novaflex Elec",t:"Indexée",v:"100%",aT:238.61,hpT:0.2054,hcT:0.1528,fT:1427},
-  {f:"Dyneff",o:"Contrat+ Electricité Verte",t:"Indexée",v:"100%",aT:234.71,hpT:0.1995,hcT:0.1633,fT:1430},
-  {f:"EDF",o:"Zen Online",t:"Indexée",v:"0%",aT:238.61,hpT:0.2059,hcT:0.1531,fT:1430},
-  {f:"Mint énergie",o:"Classic & Green",t:"Fixe 1 an",v:"50%",aT:238.79,hpT:0.2062,hcT:0.1576,fT:1443,pr:true,pf:1347},
-  {f:"EDF",o:"Zen Fixe",t:"Fixe 1 an",v:"0%",aT:297.22,hpT:0.1966,hcT:0.1507,fT:1447},
-  {f:"Engie",o:"Prudence - Élec Verte Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:235.90,hpT:0.2106,hcT:0.1565,fT:1454},
-  {f:"Alterna",o:"Mon Elec Française Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:269.98,hpT:0.2053,hcT:0.1528,fT:1458},
-  {f:"Alterna",o:"Mon Elec Française Indexée",t:"Indexée",v:"100%",aT:269.98,hpT:0.2053,hcT:0.1528,fT:1458},
-  {f:"Engie (Sérenité)",o:"Offre Electricite Serenite",t:"Indexée",v:"0%",aT:238.61,hpT:0.2133,hcT:0.1583,fT:1471},
-  {f:"TRV / Eco Conso",o:"Tarif Réglementé de Vente",t:"TRV indexé",v:"0%",aT:238.56,hpT:0.2142,hcT:0.1589,fT:1476,isTRV:true},
-  {f:"Octopus",o:"Eco Fixe Septembre 26",t:"Fixe 2 ans",v:"100%",aT:238.56,hpT:0.2160,hcT:0.1601,fT:1486},
-  {f:"Engie",o:"Offre Constance Fixe 2 ans",t:"Fixe 2 ans",v:"100%",aT:266.02,hpT:0.2106,hcT:0.1565,fT:1484,pr:true,pf:1387},
-  {f:"EDF",o:"Vert Electrique",t:"Indexée",v:"100%",aT:238.61,hpT:0.2206,hcT:0.1543,fT:1487},
-  {f:"Alterna",o:"Mon Elec Du Coin Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:270.76,hpT:0.2106,hcT:0.1565,fT:1489},
-  {f:"Engie",o:"Offre Garance Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:295.94,hpT:0.2106,hcT:0.1565,fT:1514,pr:true,pf:1417},
-  {f:"Mint énergie",o:"Smart & Green",t:"Fixe 2 ans",v:"100%",aT:265.00,hpT:0.2147,hcT:0.1636,fT:1518},
-  {f:"Engie",o:"Elec Référence Verte 3 ans",t:"Fixe 3 ans",v:"100%",aT:230.12,hpT:0.2217,hcT:0.1740,fT:1538},
-  {f:"OHM",o:"OHM Classique",t:"Indexée",v:"100%",aT:220.73,hpT:0.2302,hcT:0.1699,fT:1548},
-  {f:"TotalEnergies",o:"Offre Fixe 2 ans Electricité",t:"Fixe 2 ans",v:"0%",aT:241.96,hpT:0.2268,hcT:0.1676,fT:1551},
-  {f:"Engie",o:"Elec Adapt 1 an",t:"Indexée 1 an",v:"100%",aT:238.61,hpT:0.2370,hcT:0.1746,fT:1605},
-  {f:"OHM",o:"OHM Fixe 2 ans",t:"Fixe 2 ans",v:"100%",aT:242.18,hpT:0.2373,hcT:0.1747,fT:1610},
-  {f:"OHM",o:"OHM Premi'Ohm",t:"Fixe 3 ans",v:"100%",aT:238.61,hpT:0.2412,hcT:0.1775,fT:1628},
-  {f:"Happ-e",o:"Offre Electricité Happ-e 1 an",t:"Fixe 1 an",v:"12%",aT:228.00,hpT:0.2381,hcT:0.1863,fT:1631},
+{f:"EDF",o:"Tempo",t:"Tempo (Bleu/Blanc/Rouge)",v:"0%",aT:236.45,hpT:0.1713,hcT:0.1713,fT:1350,comm:"Tarif Tempo 3 couleurs (22j rouges) \u2014 non comparable HP/HC classique, kWh moyen pond\u00e9r\u00e9 sur facture"},
+{f:"Gaz de Bordeaux",o:"Novafixe Elec",t:"Fixe 2 ans",v:"100%",aT:238.61,hpT:0.1929,hcT:0.1442,fT:1357,pr:true,pf:1261},
+{f:"EDF",o:"Zen Estival",t:"Fixe",v:"0%",aT:238.61,hpT:0.1741,hcT:0.1741,fT:1370,comm:"6 plages \u00e9t\u00e9/hiver (HSC/HC/HP) \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"Mint \u00e9nergie",o:"Online & Green",t:"Index\u00e9e 1 an",v:"25%",aT:241.96,hpT:0.1947,hcT:0.1455,fT:1380},
+{f:"TotalEnergies",o:"Offre Access Electricit\u00e9",t:"Index\u00e9e 3 ans",v:"0%",aT:241.96,hpT:0.1965,hcT:0.1467,fT:1407},
+{f:"Plenitude",o:"Plenifix 1 an Electricit\u00e9",t:"Fixe 1 an",v:"100%",aT:268.63,hpT:0.1965,hcT:0.1467,fT:1411},
+{f:"Dyneff",o:"Contrat+ Electricit\u00e9",t:"Index\u00e9e",v:"0%",aT:234.71,hpT:0.1965,hcT:0.1603,fT:1417},
+{f:"GeG",o:"Mon Offre Elec Verte Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:239.83,hpT:0.1983,hcT:0.1583,fT:1426},
+{f:"Engie",o:"Offre Essentielle Verte",t:"Index\u00e9e",v:"100%",aT:238.61,hpT:0.2053,hcT:0.1528,fT:1427},
+{f:"Gaz de Bordeaux",o:"Novaflex Elec",t:"Index\u00e9e",v:"100%",aT:238.61,hpT:0.2054,hcT:0.1528,fT:1430},
+{f:"Dyneff",o:"Contrat+ Electricit\u00e9 Verte",t:"Index\u00e9e",v:"100%",aT:234.71,hpT:0.1995,hcT:0.1633,fT:1430},
+{f:"EDF",o:"Zen Online",t:"Index\u00e9e",v:"0%",aT:238.61,hpT:0.2059,hcT:0.1531,fT:1437},
+{f:"GeG",o:"Mon Offre Elec Verte Direct Producteur Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:261.29,hpT:0.1983,hcT:0.1579,fT:1443,pr:true,pf:1368},
+{f:"Mint \u00e9nergie",o:"Classic & Green",t:"Fixe 1 an",v:"50%",aT:238.79,hpT:0.2062,hcT:0.1576,fT:1447,pr:true,pf:1347},
+{f:"EDF",o:"Zen Fixe",t:"Fixe 1 an",v:"0%",aT:297.22,hpT:0.1966,hcT:0.1507,fT:1454},
+{f:"Engie",o:"Prudence - \u00c9lec Verte Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:235.9,hpT:0.2106,hcT:0.1565,fT:1458},
+{f:"Alterna",o:"Mon Elec Fran\u00e7aise Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:269.98,hpT:0.2053,hcT:0.1528,fT:1458},
+{f:"Alterna",o:"Mon Elec Fran\u00e7aise Index\u00e9e",t:"Index\u00e9e",v:"100%",aT:269.98,hpT:0.2053,hcT:0.1528,fT:1460},
+{f:"Octopus",o:"Intelligent Octopus (VE)",t:"Fixe VE",v:"100%",aT:241.96,hpT:0.2106,hcT:0.1565,fT:1468,isO:true,comm:"Offre v\u00e9hicule \u00e9lectrique \u2014 prix maison"},
+{f:"Octopus",o:"Octopus Go (VE)",t:"Fixe VE",v:"100%",aT:241.96,hpT:0.2302,hcT:0.1335,fT:1471,isO:true,comm:"Offre v\u00e9hicule \u00e9lectrique heures creuses renforc\u00e9es \u2014 prix maison"},
+{f:"Engie (S\u00e9renit\u00e9)",o:"Offre Electricite Serenite",t:"Index\u00e9e",v:"0%",aT:238.61,hpT:0.2133,hcT:0.1583,fT:1474},
+{f:"Alterna",o:"Mon Electricit\u00e9 Heures Super Creuses Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:267.41,hpT:0.1859,hcT:0.1859,fT:1476,comm:"6 plages HP/HC/HSC \u00e9t\u00e9/hiver \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"TRV / Eco Conso",o:"Tarif Bleu R\u00e9glement\u00e9",t:"TRV",v:"0%",aT:238.61,hpT:0.2142,hcT:0.1589,fT:1476,pr:true,pf:1376,isTRV:true,comm:"Ligne de r\u00e9f\u00e9rence"},
+{f:"EDF",o:"Zen Week-End Plus",t:"Fixe",v:"0%",aT:238.61,hpT:0.1905,hcT:0.1905,fT:1477,comm:"5 plages semaine/WE/1 jour \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"Engie",o:"100% Locale & Renouvelable Vertvolt Tr\u00e8s Engag\u00e9",t:"Fixe",v:"100%",aT:257.84,hpT:0.1877,hcT:0.1877,fT:1478,comm:"4 plages HP/HC \u00e9t\u00e9/hiver \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"TotalEnergies",o:"Offre Charge'Heures Electricit\u00e9",t:"Index\u00e9e",v:"100%",aT:238.79,hpT:0.1908,hcT:0.1908,fT:1479,pr:true,pf:1379,comm:"3 plages HP/HC/HSC \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"Engie",o:"Vert Electrique Week-End",t:"Fixe",v:"100%",aT:238.61,hpT:0.191,hcT:0.191,fT:1480,comm:"4 plages semaine/WE \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"TotalEnergies",o:"Offre Heures Eco Electricit\u00e9",t:"Index\u00e9e",v:"0%",aT:241.96,hpT:0.2142,hcT:0.1589,fT:1484},
+{f:"Engie",o:"Offre Constance - Fixe 2 ans",t:"Fixe 2 ans",v:"100%",aT:266.02,hpT:0.2106,hcT:0.1565,fT:1487,pr:true,pf:1387},
+{f:"Engie",o:"Vert Electrique",t:"Fixe",v:"100%",aT:238.61,hpT:0.2206,hcT:0.1543,fT:1489},
+{f:"Octopus",o:"Eco-Fixe Septembre 26",t:"Fixe 2 ans",v:"100%",aT:241.96,hpT:0.216,hcT:0.1601,fT:1490,isO:true},
+{f:"Alterna",o:"Mon Electricit\u00e9 du Coin Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:270.76,hpT:0.2106,hcT:0.1565,fT:1490},
+{f:"Enercoop",o:"Particulier avec Centrale Photovolta\u00efque",t:"Fixe",v:"100%",aT:257.82,hpT:0.2142,hcT:0.1589,fT:1504,pr:true,pf:1404},
+{f:"Octopus",o:"Cocon Fixe (OctoEco saisonnalis\u00e9)",t:"Fixe 2 ans saisonnalis\u00e9",v:"100%",aT:241.96,hpT:0.2192,hcT:0.1623,fT:1508,isO:true,comm:"Saisonnalis\u00e9 \u2014 HP \u00e9t\u00e9 0,1876/HC \u00e9t\u00e9 0,1405/HP hiver 0,2461/HC hiver 0,1809 \u2014 r\u00e9partition r\u00e9elle HP 3705/HC 2795 (\u00e9t\u00e9 2990/hiver 3510 kWh)"},
+{f:"Engie",o:"Vert Electrique R\u00e9gional",t:"Fixe",v:"100%",aT:238.61,hpT:0.2237,hcT:0.156,fT:1508},
+{f:"Engie",o:"100% Locale & Renouvelable Vertvolt Tr\u00e8s Engag\u00e9 (v2)",t:"Fixe",v:"0%",aT:275.35,hpT:0.2013,hcT:0.1835,fT:1510},
+{f:"Engie",o:"Offre Electricite Serenite 100% Verte",t:"Index\u00e9e",v:"0%",aT:238.61,hpT:0.2193,hcT:0.1643,fT:1514,pr:true,pf:1414},
+{f:"EDF",o:"Zen Week-End Option Flex",t:"Fixe",v:"0%",aT:238.61,hpT:0.1962,hcT:0.1962,fT:1514,comm:"6 plages Jour Eco/Sobri\u00e9t\u00e9 HP/HC \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"Engie",o:"Offre Garance - Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:295.94,hpT:0.2106,hcT:0.1565,fT:1517,pr:true,pf:1417},
+{f:"Engie",o:"Vert Electrique Auto",t:"Fixe",v:"100%",aT:238.61,hpT:0.2404,hcT:0.1386,fT:1518,comm:"Offre sp\u00e9ciale v\u00e9hicule \u00e9lectrique"},
+{f:"Engie",o:"Prudence avec Producteur ENR Vertvolt",t:"Fixe 1 an",v:"100%",aT:235.9,hpT:0.2206,hcT:0.1665,fT:1518,pr:true,pf:1443},
+{f:"Mint \u00e9nergie",o:"Smart & Green",t:"Fixe 2 ans",v:"100%",aT:265.0,hpT:0.2147,hcT:0.1636,fT:1525},
+{f:"TotalEnergies",o:"Offre Heures Eco+ Electricit\u00e9",t:"Index\u00e9e",v:"0%",aT:238.79,hpT:0.199,hcT:0.199,fT:1532,pr:true,pf:1432,comm:"3 plages HP/HC/Vigilance \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"Octopus",o:"Eco-conso fixe 3 ans Septembre 26",t:"Fixe 3 ans",v:"100%",aT:238.56,hpT:0.2249,hcT:0.1662,fT:1536,isO:true,comm:"Fixe 3 ans \u2014 disponible tous compteurs"},
+{f:"EDF",o:"Zen Week-End",t:"Fixe",v:"0%",aT:238.61,hpT:0.1999,hcT:0.1999,fT:1538,comm:"4 plages semaine/WE \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"Engie",o:"Elec R\u00e9f\u00e9rence Verte 3 ans",t:"Fixe 3 ans",v:"100%",aT:230.12,hpT:0.2217,hcT:0.174,fT:1548},
+{f:"OHM",o:"OHM Classique",t:"Index\u00e9e",v:"100%",aT:220.73,hpT:0.2302,hcT:0.1699,fT:1549},
+{f:"Engie",o:"Offre Constance avec Producteur ENR Vertvolt",t:"Fixe 2 ans",v:"100%",aT:266.02,hpT:0.2206,hcT:0.1665,fT:1550},
+{f:"OHM",o:"OHM Week End",t:"Fixe",v:"0%",aT:246.48,hpT:0.2007,hcT:0.2007,fT:1551,comm:"3 plages semaine HP/HC + WE \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"TotalEnergies",o:"Offre Fixe 2 ans Electricit\u00e9",t:"Fixe 2 ans",v:"0%",aT:241.96,hpT:0.2268,hcT:0.1676,fT:1578},
+{f:"Engie",o:"Offre Garance avec Producteur ENR Vertvolt",t:"Fixe 3 ans",v:"100%",aT:295.94,hpT:0.2206,hcT:0.1665,fT:1579},
+{f:"Ekwateur",o:"Electricit\u00e9 100% Renouvelable Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:285.12,hpT:0.2193,hcT:0.1721,fT:1589,comm:"Profil 12 kVA affich\u00e9 dans le comparateur"},
+{f:"Ilek",o:"Offre Voiture Electrique",t:"Fixe VE",v:"100%",aT:471.06,hpT:0.2142,hcT:0.1589,fT:1605,comm:"3 plages HP/HC/SHC d\u00e9di\u00e9e VE \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"Engie",o:"Elec Adapt 1 an",t:"Index\u00e9e 1 an",v:"100%",aT:238.61,hpT:0.237,hcT:0.1746,fT:1605},
+{f:"OHM",o:"OHM Fixe 2 ans",t:"Fixe 2 ans",v:"100%",aT:242.18,hpT:0.2373,hcT:0.1747,fT:1614},
+{f:"SMB",o:"Essentielle - SMB Particulier",t:"Fixe",v:"100%",aT:244.24,hpT:0.2377,hcT:0.175,fT:1628},
+{f:"OHM",o:"OHM Premi'Ohm",t:"Fixe 3 ans",v:"100%",aT:238.61,hpT:0.2412,hcT:0.1775,fT:1631},
+{f:"Happ-e",o:"Offre Electricit\u00e9 Happ-e 1 an",t:"Fixe 1 an",v:"12%",aT:228.0,hpT:0.2381,hcT:0.1863,fT:1651,pr:true,pf:1598},
+{f:"Total Direct Energie",o:"Elec'Car 1 an avec Option Elec'Car+",t:"Fixe VE",v:"100%",aT:238.61,hpT:0.2668,hcT:0.1518,fT:1667,comm:"Offre VE d\u00e9di\u00e9e \u2014 prix maison"},
+{f:"Happ-e",o:"Offre Electricit\u00e9 Happ-e 1 an Option Vertelec+",t:"Fixe 1 an",v:"100%",aT:263.86,hpT:0.2381,hcT:0.1863,fT:1681},
+{f:"Ekwateur",o:"Electricit\u00e9 100% Renouvelable Exclusive VE",t:"Fixe 1 an",v:"100%",aT:364.08,hpT:0.2229,hcT:0.1757,fT:1690,comm:"Profil 12 kVA, offre d\u00e9di\u00e9e VE"},
+{f:"Enercoop",o:"Flexibilit\u00e9 - 2 Saisons + Jour de Pointe",t:"Fixe",v:"100%",aT:240.05,hpT:0.2263,hcT:0.2263,fT:1711,comm:"5 plages \u00e9t\u00e9/hiver + pointe \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"Enercoop",o:"Flexibilit\u00e9 - 2 Saisons",t:"Fixe",v:"100%",aT:253.01,hpT:0.2411,hcT:0.2411,fT:1820,comm:"4 plages \u00e9t\u00e9/hiver \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"Ilek",o:"Offre \u00c9nrfixe+ Elec",t:"Fixe 2 ans",v:"100%",aT:471.06,hpT:0.2314,hcT:0.1761,fT:1846},
+{f:"G\u00e9dia",o:"All Inclusive Particuliers",t:"Fixe 2 ans",v:"0%",aT:238.61,hpT:0.2799,hcT:0.2041,fT:1848},
+{f:"Enercoop",o:"Flexibilit\u00e9 - Heures Creuses",t:"Fixe",v:"100%",aT:288.43,hpT:0.2776,hcT:0.1898,fT:1864},
+{f:"Enercoop",o:"Flexibilit\u00e9 - Nuit & Week-End",t:"Fixe",v:"100%",aT:245.81,hpT:0.2554,hcT:0.2554,fT:1906,comm:"2 plages HP/HC \u00e9largies nuit+WE \u2014 kWh moyen pond\u00e9r\u00e9"},
+{f:"Electra",o:"Mon Contrat Elec Vert Fixe",t:"Fixe",v:"100%",aT:238.61,hpT:0.2905,hcT:0.2115,fT:2175},
+{f:"Papernest",o:"Offre 100% Renouvelable Papernest",t:"Fixe 1 an",v:"100%",aT:674.78,hpT:0.2566,hcT:0.1965,fT:2175}
 ];
 
 // =========================================================
@@ -503,7 +567,7 @@ function mkTableGaz(data,cta,acc,prvg,conso,tblId){
       <td>${fk4(r.kT)}</td><td>${fp(pc(r.kT,prvg.kT))}</td>
       <td>${fe(fH,0)}</td><td>${fp(pc(fH,pfH))}</td>
       <td>${fe(r.fT,0)}</td><td>${fp(pc(r.fT,prvg.fT))}</td>
-      <td>${r.pr&&r.pf?fe(r.pf,0):''}</td>
+      <td>${r.pr&&r.pf?fe(r.pf,0):''}</td><td class="l" style="font-size:10px;color:#888;max-width:200px;white-space:normal">${r.comm||''}</td>
     </tr>`;
   }).join('');
   document.getElementById(tblId).innerHTML=h+'<tbody>'+rows+'</tbody>';
@@ -537,7 +601,7 @@ function mkTableElecB(tblId){
       <td>${fk4(r.kT)}</td><td>${fp(pc(r.kT,TRV_B.kT))}</td>
       <td>${fe(fH,0)}</td><td>${fp(pc(fH,pfH))}</td>
       <td>${fe(r.fT,0)}</td><td>${fp(pc(r.fT,TRV_B.fT))}</td>
-      <td>${r.pr&&r.pf?fe(r.pf,0):''}</td>
+      <td>${r.pr&&r.pf?fe(r.pf,0):''}</td><td class="l" style="font-size:10px;color:#888;max-width:200px;white-space:normal">${r.comm||''}</td>
     </tr>`;
   }).join('');
   document.getElementById(tblId).innerHTML=h+'<tbody>'+rows+'</tbody>';
