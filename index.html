@@ -55,10 +55,10 @@ th{background:#f6f6f6;color:#888;font-weight:500;text-align:center;font-size:11p
 th.g{background:#efefef;color:#4a4a4a}
 td{color:#0f0f0f;text-align:right}
 td.l{text-align:left}
-tr.oc td{background:rgba(26,92,173,.08);color:#1a5cad;font-weight:500}
+tr.oc td{background:rgba(230,0,126,.09);color:#e6007e;font-weight:500}
 tr.trv td{background:#f6f6f6;color:#555;font-style:italic}
 .pn{color:#1a7f5a}.pp{color:#c0392b}.p0{color:#888}
-tr.oc .pn,tr.oc .pp,tr.oc .p0{color:#1a5cad}
+tr.oc .pn,tr.oc .pp,tr.oc .p0{color:#e6007e}
 .pt{display:inline-block;font-size:10px;padding:1px 5px;border-radius:3px;font-weight:500;margin-left:3px;background:#fff3cd;color:#856404}
 .sl{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#1a5cad;text-decoration:none;padding:7px 12px;border:1px solid #1a5cad;border-radius:6px;margin-top:10px}
 .unavail{background:#f6f6f6;border:1px dashed #e2e2e2;border-radius:12px;padding:2rem;text-align:center;color:#888;font-size:13px}
@@ -70,6 +70,7 @@ footer{font-family:'DM Mono',monospace;font-size:10px;color:#888;padding:2rem;bo
 <div class="hd">
   <div class="hd-logo"><div class="hd-dot"></div>Veille marché énergie</div>
   <select class="hd-sel" id="wsel" onchange="sw(this.value)">
+    <option value="s40">S40 · 28/09/2026</option>
     <option value="s39">S39 · 21/09/2026</option>
     <option value="s38">S38 · 14/09/2026</option>
   </select>
@@ -77,14 +78,37 @@ footer{font-family:'DM Mono',monospace;font-size:10px;color:#888;padding:2rem;bo
 
 <div class="nav">
   <button class="nav-btn on" id="btn-marche" onclick="showPage('marche',this)">Synthèse marché</button>
-  <button class="nav-btn" id="btn-gaz" onclick="showPage('gaz',this)">Benchmark gaz</button>
   <button class="nav-btn" id="btn-elec" onclick="showPage('elec',this)">Benchmark élec</button>
+  <button class="nav-btn" id="btn-gaz" onclick="showPage('gaz',this)">Benchmark gaz</button>
 </div>
 
 <!-- ======= MARCHÉ ======= -->
 <div id="pg-marche" class="pg on">
 
-  <div id="m-s39" style="display:block">
+  <div id="m-s40" style="display:block">
+    <p class="lbl" style="margin-top:0">omnegy n°319 · 28 septembre 2026</p>
+    <div class="brief">
+      <p>Une piste diplomatique entre l'Iran et les États-Unis sur le détroit d'Ormuz a fait nettement reculer le gaz de court terme, malgré des flux norvégiens en baisse et une disponibilité nucléaire dégradée. Le pétrole reste au-dessus de 100 $ le baril, la mer Rouge restant menacée.</p>
+      <div class="bhl"><p><strong>Géopolitique — une ouverture, mais rien n'a encore changé sur le terrain.</strong> L'Iran propose de rouvrir Ormuz sous sept jours en échange de la levée du blocus naval américain, du dégel de ses avoirs et d'un allègement des sanctions pétrolières. Washington et Téhéran explorent une sortie de conflit sur cette base. Le trafic dans le détroit reste environ 75 % sous son niveau d'avant-crise.</p></div>
+      <p><strong>Gaz : −10,1% sur octobre, −4,6% sur 2027.</strong> Le contrat d'octobre passe de 78,95 à 71,00 €/MWh (plus bas de la semaine lundi à 72,49, rebond jeudi à 74,05). 2027 revient à 55,95 €/MWh ; seul 2028 progresse (37,82 €/MWh, +2,3%). Flux norvégiens en baisse (269,6 → 240 Mm³/j), GNL en hausse (3,66 → 3,89 TWh/j). Stocks Europe 70,5% (+1,4 pt), France 81,6% (+3,1 pts).</p>
+      <p><strong>Électricité : le gaz l'emporte sur le nucléaire.</strong> Octobre recule de 155,00 à 149,02 €/MWh (−3,9%) et le T4 2026 à 152,37 €/MWh (−2,9%), alors que la disponibilité nucléaire tombe à 32,8 GW (37,1 GW la semaine précédente). Températures supérieures de 2,9 °C aux normales. 2027 stable à 87,30 €/MWh, long terme en repli (2028 : 56,60 €/MWh, −2,5%).</p>
+      <p><strong>Pétrole :</strong> Brent à 104,32 $ (91,59 €, +1,3% en euros, quasi stable en dollars) après un aller-retour entre 99,25 $ mardi et 106,60 $ jeudi. <strong>CO2 :</strong> EUA 86,79 €/t (−0,1%). <strong>Charbon :</strong> Rotterdam 120,06 € (+1,1%).</p>
+      <p><strong>Gaz mondial :</strong> JKM asiatique à 77,33 €/MWh (−5,3% en euros), l'écart avec le PEG d'octobre dépasse 6 €/MWh (3 € une semaine plus tôt) : l'Asie redevient plus attractive pour les cargaisons de GNL. Henry Hub à 9,57 €/MWh, plus de sept fois moins cher que le gaz européen.</p>
+      <p style="margin-bottom:0"><strong>Macro :</strong> hausses de taux de la BCE (10/09) et de la Fed (16/09), euro de 1,149 à 1,139 $. <strong>Impact commercial :</strong> le prix repère CRE d'octobre est publié à 0,1456 €/kWh TTC pour le chauffage (+8% vs septembre) : nos prix fixes HTT bloqués 2 ans restent un argument fort face aux offres indexées.</p>
+    </div>
+    <div class="kpis">
+<div class="kpi"><div class="kpi-l">PEG oct.-26</div><div class="kpi-v">71,00</div><div class="kpi-d up">−10,1% /MWh</div></div>
+<div class="kpi"><div class="kpi-l">PEG 2027</div><div class="kpi-v">55,95</div><div class="kpi-d up">−4,6% /MWh</div></div>
+<div class="kpi"><div class="kpi-l">PEG 2028</div><div class="kpi-v">37,82</div><div class="kpi-d dn">+2,3% /MWh</div></div>
+<div class="kpi"><div class="kpi-l">Élec oct.-26</div><div class="kpi-v">149,02</div><div class="kpi-d up">−3,9% /MWh</div></div>
+<div class="kpi"><div class="kpi-l">Brent</div><div class="kpi-v">91,59</div><div class="kpi-d dn">+1,3% /baril</div></div>
+<div class="kpi"><div class="kpi-l">CO2 EUA</div><div class="kpi-v">86,79</div><div class="kpi-d up">−0,1% /tonne</div></div>
+<div class="kpi"><div class="kpi-l">Charbon</div><div class="kpi-v">120,06</div><div class="kpi-d dn">+1,1% /tonne</div></div>
+<div class="kpi"><div class="kpi-l">PRVG sept. TTC</div><div class="kpi-v">0,1347</div><div class="kpi-d n0">€/kWh chauffage</div></div>
+    </div>
+  </div>
+
+  <div id="m-s39" style="display:none">
     <p class="lbl" style="margin-top:0">omnegy n°318 · 21 septembre 2026</p>
     <div class="brief">
       <p>Après la forte tension de la semaine précédente et des prix records lundi (PEG oct. 82,42 €/MWh, 2027 à 60,00 €/MWh — nouveau plus haut historique), les marchés se sont détendus en cours de semaine pour clôturer quasi stables. Les risques restent pourtant bien présents.</p>
@@ -129,6 +153,110 @@ footer{font-family:'DM Mono',monospace;font-size:10px;color:#888;padding:2rem;bo
   </div>
 </div>
 
+<!-- ======= ÉLEC ======= -->
+<div id="pg-elec" class="pg">
+  <div class="stabs">
+    <button class="stab on" id="stab-base" onclick="showSub('elec','base',this)">Base · 6 kVA · 3 000 kWh</button>
+    <button class="stab" id="stab-hphc" onclick="showSub('elec','hphc',this)">HPHC · 9 kVA · 6 500 kWh</button>
+  </div>
+
+  <div id="elec-base" style="display:block">
+    <div id="eb-s40" style="display:block">
+      <p class="lbl">paris 02 · enedis · base 6 kva · 3 000 kWh/an · cta 15,35 €/an · s40</p>
+      <div class="hero">
+        <div class="hero-rank"><div class="hr-n">21</div><div class="hr-l">/ 55 offres</div></div>
+        <div class="hero-m"><div class="hm-l">Facture TTC — Cocon Fixe (saisonnalisé)</div><div class="hm-v" style="color:#1a5cad">787 €</div><div class="hm-s dn">−1% vs TRV (791 €)</div></div>
+        <div class="hero-m"><div class="hm-l">kWh TTC — Cocon Fixe (saisonnalisé)</div><div class="hm-v">0,1990 €</div><div class="hm-s dn">−1% vs TRV (0,2002 €)</div></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Évolution du rang Octopus Cocon Fixe — Base 6 kVA</div>
+        <div class="card-s">Axe inversé — rang 1 = offre la moins chère · S39→S40 : 16→21 · S40 : tarifs issus de la GT OctoEco Fixe base (S39 : estimation dérivée du profil HPHC)</div>
+        <div style="height:150px"><canvas id="rankEB"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Comparatif facture TTC — top 15 · Base 6 kVA S40</div>
+        <div class="card-s">Paris 02 · Enedis · 3 000 kWh/an · TRV = 791 € · hors promo</div>
+        <div class="leg"><span class="leg-i"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span><span class="leg-i"><span class="leg-sq" style="background:#888"></span>TRV</span><span class="leg-i"><span class="leg-sq" style="background:#d0d0d0"></span>Concurrents</span><span class="leg-i"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>TRV 791 €</span></div>
+        <div style="height:500px"><canvas id="barEBS40"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Classement complet — Base 6 kVA S40</div>
+        <div class="card-s">Abo HTT = Abo TTC/1,20 − 15,35 € · kWh HTT = kWh TTC/1,20 − 0,03062 € · kWh effectif = (facture − abo)/conso · Octopus : GT · MNE 28/09/2026</div>
+        <div class="tw"><table id="tEBS40"></table></div>
+        <a class="sl" href="https://drive.google.com/drive/folders/1XW1qsULDIhaTAAHmxSbBun9OmA8TQaIh" target="_blank">↗ Dossier Drive élec S40</a>
+      </div>
+    </div>
+    <div id="eb-s39" style="display:none">
+      <p class="lbl">paris 02 · enedis · base 6 kva · 3 000 kWh/an · cta 15,35 €/an · s39</p>
+      <div class="hero">
+        <div class="hero-rank"><div class="hr-n">28</div><div class="hr-l">/ 54 offres</div></div>
+        <div class="hero-m"><div class="hm-l">Facture TTC — Eco Fixe Sept. 26</div><div class="hm-v" style="color:#1a5cad">796 €</div><div class="hm-s pp">+1% vs TRV (791 €)</div></div>
+        <div class="hero-m"><div class="hm-l">kWh TTC — Eco Fixe Sept. 26</div><div class="hm-v">0,2017 €</div><div class="hm-s pp">+1% vs TRV (0,2001 €)</div></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Comparatif facture TTC — top 15 · Base 6 kVA S39</div>
+        <div class="card-s">Paris 02 · Enedis · 3 000 kWh/an · TRV = 791 €</div>
+        <div class="leg"><span class="leg-i"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span><span class="leg-i"><span class="leg-sq" style="background:#888"></span>TRV</span><span class="leg-i"><span class="leg-sq" style="background:#d0d0d0"></span>Concurrents</span><span class="leg-i"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>TRV 791 €</span></div>
+        <div style="height:500px"><canvas id="barEBS39"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Classement complet — Base 6 kVA S39</div>
+        <div class="card-s">Abo HTT = Abo TTC/1,20 − 15,35 € · kWh HTT = kWh TTC/1,20 − 0,03062 € · MNE 21/09/2026</div>
+        <div class="tw"><table id="tEBS39"></table></div>
+        <a class="sl" href="https://docs.google.com/spreadsheets/d/17HoAJJxNyZQKeqgS2WQR4_IQNHfg08OXlnQRlraJ5Gk/edit" target="_blank">↗ Google Sheets S39</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="elec-hphc" style="display:none">
+    <div id="eh-s40" style="display:block">
+      <p class="lbl">paris 02 · enedis · hphc 9 kva · 6 500 kWh/an (hp 3 705 / hc 2 795) · cta 20,04 €/an · s40</p>
+      <div class="hero">
+        <div class="hero-rank"><div class="hr-n">31</div><div class="hr-l">/ 69 offres</div></div>
+        <div class="hero-m"><div class="hm-l">Facture TTC — Eco-Fixe Septembre 26</div><div class="hm-v" style="color:#1a5cad">1 486 €</div><div class="hm-s pp">+1% vs TRV (1 476 €)</div></div>
+        <div class="hero-m"><div class="hm-l">kWh HP TTC — Eco-Fixe Septembre 26</div><div class="hm-v">0,2160 €</div><div class="hm-s pp">+1% vs TRV (0,2142 €)</div></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Évolution du rang Octopus Eco-Fixe Septembre 26 — HPHC 9 kVA</div>
+        <div class="card-s">Axe inversé — rang 1 = offre la moins chère · S39→S40 : 31→31</div>
+        <div style="height:150px"><canvas id="rankEH"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Comparatif facture TTC — top 15 · HPHC 9 kVA S40</div>
+        <div class="card-s">Paris 02 · Enedis · 6 500 kWh/an (HP 3 705 / HC 2 795) · TRV = 1 476 € · hors promo</div>
+        <div class="leg"><span class="leg-i"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span><span class="leg-i"><span class="leg-sq" style="background:#888"></span>TRV</span><span class="leg-i"><span class="leg-sq" style="background:#d0d0d0"></span>Concurrents</span><span class="leg-i"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>TRV 1 476 €</span></div>
+        <div style="height:500px"><canvas id="barEHS40"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Classement complet — HPHC 9 kVA S40</div>
+        <div class="card-s">Abo HTT = Abo TTC/1,20 − 20,04 € · kWh HTT = kWh TTC/1,20 − 0,03062 € · multi-plages : kWh moyen pondéré = (facture − abo)/conso · Octopus : GT · MNE 28/09/2026</div>
+        <div class="tw"><table id="tEHS40"></table></div>
+        <a class="sl" href="https://drive.google.com/drive/folders/1XW1qsULDIhaTAAHmxSbBun9OmA8TQaIh" target="_blank">↗ Dossier Drive élec S40</a>
+      </div>
+    </div>
+    <div id="eh-s39" style="display:none">
+      <p class="lbl">paris 02 · enedis · hphc 9 kva · 6 500 kWh/an (hp 3 705 / hc 2 795) · cta 20,04 €/an · s39</p>
+      <div class="hero">
+        <div class="hero-rank"><div class="hr-n">31</div><div class="hr-l">/ 69 offres</div></div>
+        <div class="hero-m"><div class="hm-l">Facture TTC — Eco Fixe Sept. 26</div><div class="hm-v" style="color:#1a5cad">1 486 €</div><div class="hm-s pp">+1% vs TRV (1 476 €)</div></div>
+        <div class="hero-m"><div class="hm-l">kWh HP TTC — Eco Fixe Sept. 26</div><div class="hm-v">0,2160 €</div><div class="hm-s pp">+1% vs TRV (0,2142 €)</div></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Comparatif facture TTC — top 15 · HPHC 9 kVA S39</div>
+        <div class="card-s">Paris 02 · Enedis · 6 500 kWh/an (HP 3 705 / HC 2 795) · TRV = 1 476 €</div>
+        <div class="leg"><span class="leg-i"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span><span class="leg-i"><span class="leg-sq" style="background:#888"></span>TRV</span><span class="leg-i"><span class="leg-sq" style="background:#d0d0d0"></span>Concurrents</span><span class="leg-i"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>TRV 1 476 €</span></div>
+        <div style="height:500px"><canvas id="barEHS39"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Classement complet — HPHC 9 kVA S39</div>
+        <div class="card-s">Abo HTT = Abo TTC/1,20 − 20,04 € · kWh HTT = kWh TTC/1,20 − 0,03062 € · MNE 21/09/2026</div>
+        <div class="tw"><table id="tEHS39"></table></div>
+        <a class="sl" href="https://docs.google.com/spreadsheets/d/17HoAJJxNyZQKeqgS2WQR4_IQNHfg08OXlnQRlraJ5Gk/edit" target="_blank">↗ Google Sheets S39</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ======= GAZ ======= -->
 <div id="pg-gaz" class="pg">
   <div class="stabs">
@@ -137,17 +265,37 @@ footer{font-family:'DM Mono',monospace;font-size:10px;color:#888;padding:2rem;bo
   </div>
 
   <div id="gaz-chauf" style="display:block">
-    <div id="gc-s39" style="display:block">
+    <div id="gc-s40" style="display:block">
+      <p class="lbl">paris 02 · zone 2 · chauffage · cta 48,70 €/an · s40</p>
+      <div class="hero">
+        <div class="hero-rank"><div class="hr-n">5</div><div class="hr-l">/ 28 offres</div></div>
+        <div class="hero-m"><div class="hm-l">Facture annuelle TTC</div><div class="hm-v" style="color:#1a5cad">2 115 €</div><div class="hm-s dn">−3% vs PRVG sept. (2 176 €)</div></div>
+        <div class="hero-m"><div class="hm-l">kWh TTC</div><div class="hm-v">0,1302 €</div><div class="hm-s dn">−3% vs PRVG sept. (0,13474 €)</div></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Évolution du rang Octopus — chauffage</div>
+        <div class="card-s">Axe inversé — rang 1 = offre la moins chère · S38→S39→S40 : 6→5→5</div>
+        <div style="height:150px"><canvas id="rankGC"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Comparatif facture TTC — top 15 · chauffage S40</div>
+        <div class="card-s">Paris 02 · Zone 2 · 13 480 kWh/an · PRVG sept. = 2 176 €</div>
+        <div class="leg"><span class="leg-i"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span><span class="leg-i"><span class="leg-sq" style="background:#d0d0d0"></span>Concurrents</span><span class="leg-i"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>PRVG 2 176 €</span></div>
+        <div style="height:420px"><canvas id="barGCS40"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Classement complet — chauffage S40</div>
+        <div class="card-s">Abo HTT = Abo TTC/1,20 − 48,70 € · kWh HTT = kWh TTC/1,20 − 0,01666 € · Octopus : GT Gaz Fixe -4% sept. 2026 · PRVG moyen CRE sept. · MNE 28/09/2026</div>
+        <div class="tw"><table id="tGCS40"></table></div>
+        <a class="sl" href="https://docs.google.com/spreadsheets/d/1owkXGmx_hnjxx0jx1hp1YXsgEI4_-dFnIlyqUqJ-Gh4/edit" target="_blank">↗ Google Sheets gaz S40</a>
+      </div>
+    </div>
+    <div id="gc-s39" style="display:none">
       <p class="lbl">paris 02 · zone 2 · chauffage · cta 48,70 €/an · s39</p>
       <div class="hero">
         <div class="hero-rank"><div class="hr-n">5</div><div class="hr-l">/ 29 offres</div></div>
         <div class="hero-m"><div class="hm-l">Facture annuelle TTC</div><div class="hm-v" style="color:#1a5cad">2 115 €</div><div class="hm-s dn">−3% vs PRVG sept. (2 177 €)</div></div>
         <div class="hero-m"><div class="hm-l">kWh TTC</div><div class="hm-v">0,1302 €</div><div class="hm-s dn">−3% vs PRVG sept.</div></div>
-      </div>
-      <div class="card">
-        <div class="card-t">Évolution du rang Octopus — chauffage</div>
-        <div class="card-s">Axe inversé — rang 1 = offre la moins chère · S38→S39 : 6→5</div>
-        <div style="height:150px"><canvas id="rankGC"></canvas></div>
       </div>
       <div class="card">
         <div class="card-t">Comparatif facture TTC — top 15 · chauffage S39</div>
@@ -185,7 +333,27 @@ footer{font-family:'DM Mono',monospace;font-size:10px;color:#888;padding:2rem;bo
   </div>
 
   <div id="gaz-cuis" style="display:none">
-    <div id="gu-s39" style="display:block">
+    <div id="gu-s40" style="display:block">
+      <p class="lbl">paris 02 · zone 2 · cuisson / eau chaude · cta 14,20 €/an · s40</p>
+      <div class="hero">
+        <div class="hero-rank"><div class="hr-n">4</div><div class="hr-l">/ 29 offres</div></div>
+        <div class="hero-m"><div class="hm-l">Facture annuelle TTC</div><div class="hm-v" style="color:#1a5cad">356 €</div><div class="hm-s dn">−2% vs PRVG sept. (363 €)</div></div>
+        <div class="hero-m"><div class="hm-l">kWh TTC</div><div class="hm-v">0,1617 €</div><div class="hm-s dn">−4% vs PRVG sept. (0,16757 €)</div></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Comparatif facture TTC — top 15 · cuisson S40</div>
+        <div class="card-s">Paris 02 · Zone 2 · 1 260 kWh/an · PRVG sept. = 363 €</div>
+        <div class="leg"><span class="leg-i"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span><span class="leg-i"><span class="leg-sq" style="background:#d0d0d0"></span>Concurrents</span><span class="leg-i"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>PRVG 363 €</span></div>
+        <div style="height:420px"><canvas id="barGUS40"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Classement complet — cuisson S40</div>
+        <div class="card-s">Abo HTT = Abo TTC/1,20 − 14,20 € · kWh HTT = kWh TTC/1,20 − 0,01666 € · Octopus : GT Gaz Fixe -4% sept. 2026 · PRVG moyen CRE sept. · MNE 28/09/2026</div>
+        <div class="tw"><table id="tGUS40"></table></div>
+        <a class="sl" href="https://docs.google.com/spreadsheets/d/1owkXGmx_hnjxx0jx1hp1YXsgEI4_-dFnIlyqUqJ-Gh4/edit" target="_blank">↗ Google Sheets gaz S40</a>
+      </div>
+    </div>
+    <div id="gu-s39" style="display:none">
       <p class="lbl">paris 02 · zone 2 · cuisson / eau chaude · cta 14,20 €/an · s39</p>
       <div class="hero">
         <div class="hero-rank"><div class="hr-n">4</div><div class="hr-l">/ 26 offres</div></div>
@@ -207,70 +375,6 @@ footer{font-family:'DM Mono',monospace;font-size:10px;color:#888;padding:2rem;bo
     </div>
     <div id="gu-s38" style="display:none">
       <div class="unavail">Données cuisson non disponibles pour S38 — profil ajouté à partir de S39.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ======= ÉLEC ======= -->
-<div id="pg-elec" class="pg">
-  <div class="stabs">
-    <button class="stab on" id="stab-base" onclick="showSub('elec','base',this)">Base · 6 kVA · 3 000 kWh</button>
-    <button class="stab" id="stab-hphc" onclick="showSub('elec','hphc',this)">HPHC · 9 kVA · 6 500 kWh</button>
-  </div>
-
-  <div id="elec-base" style="display:block">
-    <div id="eb-s39" style="display:block">
-      <p class="lbl">paris 02 · enedis · base 6 kva · 3 000 kWh/an · cta 15,35 €/an · s39</p>
-      <div class="hero">
-        <div class="hero-rank"><div class="hr-n">28</div><div class="hr-l">/ 54 offres</div></div>
-        <div class="hero-m"><div class="hm-l">Facture TTC — Eco Fixe Sept. 26</div><div class="hm-v" style="color:#1a5cad">796 €</div><div class="hm-s pp">+1% vs TRV (791 €)</div></div>
-        <div class="hero-m"><div class="hm-l">kWh TTC — Eco Fixe Sept. 26</div><div class="hm-v">0,2017 €</div><div class="hm-s pp">+1% vs TRV (0,2001 €)</div></div>
-      </div>
-      <div class="card">
-        <div class="card-t">Évolution du rang Octopus Eco Fixe — Base 6 kVA</div>
-        <div class="card-s">Axe inversé — rang 1 = offre la moins chère · données disponibles depuis S39</div>
-        <div style="height:150px"><canvas id="rankEB"></canvas></div>
-      </div>
-      <div class="card">
-        <div class="card-t">Comparatif facture TTC — top 15 · Base 6 kVA S39</div>
-        <div class="card-s">Paris 02 · Enedis · 3 000 kWh/an · TRV = 791 €</div>
-        <div class="leg"><span class="leg-i"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span><span class="leg-i"><span class="leg-sq" style="background:#888"></span>TRV</span><span class="leg-i"><span class="leg-sq" style="background:#d0d0d0"></span>Concurrents</span><span class="leg-i"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>TRV 791 €</span></div>
-        <div style="height:500px"><canvas id="barEBS39"></canvas></div>
-      </div>
-      <div class="card">
-        <div class="card-t">Classement complet — Base 6 kVA S39</div>
-        <div class="card-s">Abo HTT = Abo TTC/1,20 − 15,35 € · kWh HTT = kWh TTC/1,20 − 0,03062 € · MNE 21/09/2026</div>
-        <div class="tw"><table id="tEBS39"></table></div>
-        <a class="sl" href="https://docs.google.com/spreadsheets/d/17HoAJJxNyZQKeqgS2WQR4_IQNHfg08OXlnQRlraJ5Gk/edit" target="_blank">↗ Google Sheets S39</a>
-      </div>
-    </div>
-  </div>
-
-  <div id="elec-hphc" style="display:none">
-    <div id="eh-s39" style="display:block">
-      <p class="lbl">paris 02 · enedis · hphc 9 kva · 6 500 kWh/an (hp 3 705 / hc 2 795) · cta 20,04 €/an · s39</p>
-      <div class="hero">
-        <div class="hero-rank"><div class="hr-n">31</div><div class="hr-l">/ 69 offres</div></div>
-        <div class="hero-m"><div class="hm-l">Facture TTC — Eco Fixe Sept. 26</div><div class="hm-v" style="color:#1a5cad">1 486 €</div><div class="hm-s pp">+1% vs TRV (1 476 €)</div></div>
-        <div class="hero-m"><div class="hm-l">kWh HP TTC — Eco Fixe Sept. 26</div><div class="hm-v">0,2160 €</div><div class="hm-s pp">+1% vs TRV (0,2142 €)</div></div>
-      </div>
-      <div class="card">
-        <div class="card-t">Évolution du rang Octopus Eco Fixe — HPHC 9 kVA</div>
-        <div class="card-s">Axe inversé — rang 1 = offre la moins chère · données disponibles depuis S39</div>
-        <div style="height:150px"><canvas id="rankEH"></canvas></div>
-      </div>
-      <div class="card">
-        <div class="card-t">Comparatif facture TTC — top 15 · HPHC 9 kVA S39</div>
-        <div class="card-s">Paris 02 · Enedis · 6 500 kWh/an (HP 3 705 / HC 2 795) · TRV = 1 476 €</div>
-        <div class="leg"><span class="leg-i"><span class="leg-sq" style="background:#1a5cad"></span>Octopus</span><span class="leg-i"><span class="leg-sq" style="background:#888"></span>TRV</span><span class="leg-i"><span class="leg-sq" style="background:#d0d0d0"></span>Concurrents</span><span class="leg-i"><span class="leg-ln" style="background:rgba(192,57,43,.6)"></span>TRV 1 476 €</span></div>
-        <div style="height:500px"><canvas id="barEHS39"></canvas></div>
-      </div>
-      <div class="card">
-        <div class="card-t">Classement complet — HPHC 9 kVA S39</div>
-        <div class="card-s">Abo HTT = Abo TTC/1,20 − 20,04 € · kWh HTT = kWh TTC/1,20 − 0,03062 € · MNE 21/09/2026</div>
-        <div class="tw"><table id="tEHS39"></table></div>
-        <a class="sl" href="https://docs.google.com/spreadsheets/d/17HoAJJxNyZQKeqgS2WQR4_IQNHfg08OXlnQRlraJ5Gk/edit" target="_blank">↗ Google Sheets S39</a>
-      </div>
     </div>
   </div>
 </div>
@@ -516,6 +620,201 @@ const dEH=[
 {f:"Papernest",o:"Offre 100% Renouvelable Papernest",t:"Fixe 1 an",v:"100%",aT:674.78,hpT:0.2566,hcT:0.1965,fT:2175}
 ];
 
+// ===== DONNÉES S40 (28/09/2026) =====
+const PRVG_C40={aT:359.63,kT:0.13474,fT:2176};
+const PRVG_T40={aT:152.11,kT:0.16757,fT:363};
+const dGCS40=[
+{f:"Engie",o:"Gaz Référence 3 ans (5% Gaz vert)",t:"Fixe 3 ans",v:"5%",aT:360.79,kT:0.1176,fT:1947},
+{f:"EDF",o:"Avantage Gaz 2 ans",t:"Fixe 2 ans",v:"0%",aT:294.83,kT:0.1245,fT:1973,pr:true,pf:1923},
+{f:"Synelva",o:"Objectif Gaz",t:"Fixe 2 ans",v:"0%",aT:370.69,kT:0.1255,fT:2062},
+{f:"Ekwateur",o:"Gaz 85% Naturel/15% Renouvelable - 1 an",t:"Fixe 1 an",v:"15%",aT:517.44,kT:0.1182,fT:2111},
+{f:"Octopus",o:"Eco-Conso Gaz Fixe",t:"Fixe 2 ans",v:"0%",aT:360.84,kT:0.13015,fT:2115,comm:"GT Gaz Fixe -4% sept. 2026 · zone 2"},
+{f:"Gaz de Bordeaux",o:"Novafixe Biogaz",t:"Fixe 2 ans",v:"20%",aT:360.79,kT:0.1357,fT:2190},
+{f:"Plenitude",o:"Plenifix 1 an Gaz",t:"Fixe 1 an",v:"0%",aT:387.43,kT:0.1347,fT:2204},
+{f:"Gaz de Bordeaux",o:"Novaflex Gaz - Septembre",t:"Indexée",v:"0%",aT:360.79,kT:0.1371,fT:2209},
+{f:"Engie",o:"Gaz Adapt 1 an (5% Gaz vert)",t:"Fixe 1 an",v:"5%",aT:387.85,kT:0.1372,fT:2238},
+{f:"Happ-e",o:"Happ-e Gaz de Engie",t:"Indexée",v:"0%",aT:387.85,kT:0.138,fT:2248},
+{f:"Alterna",o:"Mon Gaz Naturel Indexée T2",t:"Indexée",v:"100%",aT:389.54,kT:0.1386,fT:2257},
+{f:"TotalEnergies",o:"Offre Fixe 2 ans Gaz",t:"Fixe 2 ans",v:"0%",aT:360.74,kT:0.1412,fT:2264},
+{f:"TotalEnergies",o:"Offre Spéciale Gaz",t:"Indexée",v:"0%",aT:360.74,kT:0.1428,fT:2285},
+{f:"Dyneff",o:"Contrat+ Gaz Vert 15% - 1 an",t:"Fixe 1 an",v:"15%",aT:469.26,kT:0.1355,fT:2296},
+{f:"EDF",o:"Avantage Gaz Optimisé - Octobre",t:"Indexée",v:"0%",aT:366.18,kT:0.1442,fT:2310},
+{f:"OHM",o:"Gaz Extra Eco",t:"Fixe 1 an",v:"0%",aT:359.58,kT:0.1452,fT:2316},
+{f:"Mint énergie",o:"Biogaz Online",t:"Indexée 1 an",v:"5%",aT:360.79,kT:0.1462,fT:2332},
+{f:"Alterna",o:"Mon Biogaz Français - T2",t:"Fixe 1 an",v:"100%",aT:389.54,kT:0.1458,fT:2354,pr:true,pf:2388},
+{f:"Gaz de Bordeaux",o:"Novaflex Gaz - Octobre",t:"Indexée",v:"0%",aT:360.79,kT:0.1479,fT:2354},
+{f:"OHM",o:"Classique Gaz",t:"Indexée",v:"10%",aT:359.57,kT:0.1514,fT:2401},
+{f:"GeG",o:"Mon Offre Gaz - Fixe 3 ans",t:"Fixe 3 ans",v:"0%",aT:586.56,kT:0.1354,fT:2412},
+{f:"Dyneff",o:"Contrat+ Gaz Vert 55% - 1 an",t:"Fixe 1 an",v:"55%",aT:469.26,kT:0.1475,fT:2457},
+{f:"OHM",o:"Gaz Fixe 2 ans",t:"Fixe 2 ans",v:"0%",aT:359.58,kT:0.1577,fT:2485},
+{f:"Mint énergie",o:"Biogaz Smart",t:"Indexée 3 ans",v:"15%",aT:360.79,kT:0.159,fT:2503,pr:true,pf:2463},
+{f:"Ilek",o:"Offre Énrfixe+ Gaz",t:"Fixe 2 ans",v:"100%",aT:438.36,kT:0.1554,fT:2533},
+{f:"OHM",o:"Gaz Premi'Ohm",t:"Fixe 3 ans",v:"0%",aT:359.58,kT:0.1639,fT:2569},
+{f:"Dyneff",o:"Contrat+ Gaz Vert 100% - 1 an",t:"Fixe 1 an",v:"100%",aT:469.26,kT:0.161,fT:2639},
+{f:"GeG",o:"Mon Offre Biogaz - Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:586.56,kT:0.1642,fT:2800}
+];
+const dGUS40=[
+{f:"EDF",o:"Avantage Gaz 2 ans",t:"Fixe 2 ans",v:"0%",aT:124.76,kT:0.1567,fT:322,pr:true,pf:272},
+{f:"Engie",o:"Gaz Référence 3 ans (5% Gaz vert)",t:"Fixe 3 ans",v:"5%",aT:152.46,kT:0.1469,fT:338},
+{f:"Synelva",o:"Objectif Gaz",t:"Fixe 2 ans",v:"0%",aT:147.7,kT:0.1642,fT:355},
+{f:"Octopus",o:"Eco-Conso Gaz Fixe",t:"Fixe 2 ans",v:"0%",aT:152.4,kT:0.16166,fT:356,comm:"GT Gaz Fixe -4% sept. 2026 · zone 2"},
+{f:"Engie",o:"Gaz Adapt 1 an (5% Gaz vert)",t:"Fixe 1 an",v:"5%",aT:152.46,kT:0.1753,fT:373},
+{f:"Happ-e",o:"Happ-e Gaz de Engie",t:"Indexée",v:"0%",aT:152.46,kT:0.1759,fT:374},
+{f:"TotalEnergies",o:"Offre Spéciale Gaz",t:"Indexée",v:"0%",aT:152.41,kT:0.1768,fT:375},
+{f:"Gaz de Bordeaux",o:"Novafixe Biogaz",t:"Fixe 2 ans",v:"20%",aT:152.46,kT:0.1774,fT:376},
+{f:"OHM",o:"Gaz Extra Eco",t:"Fixe 1 an",v:"0%",aT:152.06,kT:0.178,fT:376},
+{f:"TotalEnergies",o:"Offre Fixe 2 ans Gaz",t:"Fixe 2 ans",v:"0%",aT:152.41,kT:0.1772,fT:376},
+{f:"EDF",o:"Avantage Gaz Optimisé - Octobre",t:"Indexée",v:"0%",aT:152.7,kT:0.1779,fT:377},
+{f:"Gaz de Bordeaux",o:"Novaflex Gaz - Septembre",t:"Indexée",v:"0%",aT:152.46,kT:0.1783,fT:377},
+{f:"Mint énergie",o:"Biogaz Online",t:"Indexée 1 an",v:"5%",aT:152.46,kT:0.1783,fT:377},
+{f:"OHM",o:"Classique Gaz",t:"Indexée",v:"10%",aT:152.06,kT:0.1859,fT:386},
+{f:"Dyneff",o:"Contrat+ Gaz Vert 15% - 1 an",t:"Fixe 1 an",v:"15%",aT:163.48,kT:0.1772,fT:387},
+{f:"Mint énergie",o:"Biogaz Classic",t:"Indexée 2 ans",v:"10%",aT:152.46,kT:0.1862,fT:387,pr:true,pf:357},
+{f:"GeG",o:"Mon Offre Gaz - Fixe 3 ans",t:"Fixe 3 ans",v:"0%",aT:131.87,kT:0.2034,fT:388},
+{f:"Alterna",o:"Mon Gaz Naturel Indexée T1",t:"Indexée",v:"100%",aT:174.01,kT:0.1704,fT:389},
+{f:"Plenitude",o:"Plenifix 1 an Gaz",t:"Fixe 1 an",v:"0%",aT:179.1,kT:0.1676,fT:390},
+{f:"Gaz de Bordeaux",o:"Novaflex Gaz - Octobre",t:"Indexée",v:"0%",aT:152.46,kT:0.1891,fT:391},
+{f:"OHM",o:"Gaz Fixe 2 ans",t:"Fixe 2 ans",v:"0%",aT:152.06,kT:0.1938,fT:396},
+{f:"Mint énergie",o:"Biogaz Smart",t:"Indexée 3 ans",v:"15%",aT:152.46,kT:0.1941,fT:397,pr:true,pf:357},
+{f:"Dyneff",o:"Contrat+ Gaz Vert 55% - 1 an",t:"Fixe 1 an",v:"55%",aT:163.48,kT:0.1892,fT:402},
+{f:"OHM",o:"Gaz Premi'Ohm",t:"Fixe 3 ans",v:"0%",aT:152.06,kT:0.2017,fT:406},
+{f:"Alterna",o:"Mon Biogaz Français - T1",t:"Fixe 1 an",v:"100%",aT:174.01,kT:0.1861,fT:408},
+{f:"Dyneff",o:"Contrat+ Gaz Vert 100% - 1 an",t:"Fixe 1 an",v:"100%",aT:163.48,kT:0.2027,fT:419},
+{f:"GeG",o:"Mon Offre Biogaz - Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:131.87,kT:0.2322,fT:424},
+{f:"Ekwateur",o:"Gaz 85% Naturel/15% Renouvelable - 1 an",t:"Fixe 1 an",v:"15%",aT:243.84,kT:0.154,fT:438},
+{f:"Ilek",o:"Offre Énrfixe+ Gaz",t:"Fixe 2 ans",v:"100%",aT:218.08,kT:0.191,fT:459}
+];
+const TRV_B40={aT:190.36,kT:0.2002,fT:791};
+const TRV_H40={aT:238.61,hpT:0.2142,hcT:0.1589,fT:1476};
+const dEB40=[
+{f:"Gaz de Bordeaux",o:"Novafixe Elec",t:"Fixe 2 ans",v:"100%",aT:190.36,kT:0.1805,fT:732},
+{f:"Mint énergie",o:"Online & Green",t:"Indexée 1 an",v:"25%",aT:190.36,kT:0.1822,fT:737},
+{f:"GeG",o:"Mon Offre Elec Verte - Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:190.81,kT:0.1837,fT:742},
+{f:"TotalEnergies",o:"Offre Access Electricité",t:"Indexée 3 ans",v:"0%",aT:190.36,kT:0.1839,fT:742},
+{f:"GeG",o:"Mon Offre Elec Verte Direct Producteur - Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:208.01,kT:0.1837,fT:759},
+{f:"Dyneff",o:"Contrat+ Electricité",t:"Indexée",v:"0%",aT:187.79,kT:0.1907,fT:760},
+{f:"EDF",o:"Zen Fixe",t:"Fixe 1 an",v:"0%",aT:206.63,kT:0.1848,fT:761,pr:true,pf:661},
+{f:"Energie d'ici",o:"100% Locale & Renouvelable Vertvolt Très Engagé",t:"Fixe",v:"100%",aT:189.0,kT:0.1913,fT:763,comm:"Multi-plage HP/HC été/hiver — kWh moyen pondéré sur conso annuelle"},
+{f:"Gaz de Bordeaux",o:"Novaflex Elec",t:"Indexée",v:"100%",aT:190.36,kT:0.1919,fT:766},
+{f:"Primeo énergie",o:"Offre Essentielle Verte",t:"Indexée",v:"100%",aT:190.36,kT:0.1919,fT:766},
+{f:"Alterna",o:"Mon Electricité Heures Super Creuses - Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:211.96,kT:0.1853,fT:768,comm:"Multi-plage HP/HC/HSC été/hiver — kWh moyen pondéré"},
+{f:"EDF",o:"Zen Online",t:"Indexée",v:"0%",aT:190.36,kT:0.1925,fT:768},
+{f:"Mint énergie",o:"Classic & Green",t:"Fixe 1 an",v:"50%",aT:188.34,kT:0.1936,fT:769,pr:true,pf:694},
+{f:"Plenitude",o:"Plenifix 1 an Electricité",t:"Fixe 1 an",v:"100%",aT:219.61,kT:0.1838,fT:771},
+{f:"La Bellenergie",o:"Prudence - Électricité Verte - Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:184.3,kT:0.1969,fT:775},
+{f:"Octopus",o:"Drive Pack Fixe",t:"Fixe 2 ans",v:"100%",aT:190.32,kT:0.1968,fT:781,isO:true,comm:"Offre véhicule électrique — prix maison, forfait Juste Maison non inclus (GT Drive Pack Fixe août 26)",ve:true},
+{f:"Octopus",o:"Intelligent Octopus (VE)",t:"Fixe VE",v:"100%",aT:190.32,kT:0.1968,fT:781,isO:true,comm:"Offre véhicule électrique — prix maison",ve:true},
+{f:"Dyneff",o:"Contrat+ Electricité Verte",t:"Indexée",v:"100%",aT:187.79,kT:0.1984,fT:783},
+{f:"Ekwateur",o:"Électricité 100% Renouvelable - Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:238.68,kT:0.1821,fT:785,comm:"Profil 9 kVA affiché dans le comparateur (hors profil 6 kVA standard)"},
+{f:"EDF",o:"Zen Week-End Plus",t:"Fixe",v:"0%",aT:190.36,kT:0.1985,fT:786,pr:true,pf:686,comm:"Multi-plage semaine/WE/1 jour — kWh moyen pondéré"},
+{f:"Octopus",o:"Cocon Fixe (saisonnalisé)",t:"Fixe 2 ans saisonnalisé",v:"100%",aT:190.32,kT:0.199,fT:787,isO:true,comm:"Saisonnalisé — été 0,1919 € / hiver 0,2050 € TTC (GT OctoEco Fixe base), pondération 46% été / 54% hiver (convention interne, non officielle CRE/RTE)"},
+{f:"Alpiq",o:"Offre Electricite Serenite",t:"Indexée",v:"0%",aT:190.36,kT:0.1992,fT:788},
+{f:"Alterna",o:"Mon Electricité Française - Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:211.96,kT:0.192,fT:788},
+{f:"Alterna",o:"Mon Electricité Française Indexée",t:"Indexée",v:"100%",aT:211.96,kT:0.192,fT:788},
+{f:"EDF",o:"Vert Electrique Week-End",t:"Fixe",v:"100%",aT:190.36,kT:0.1999,fT:790,pr:true,pf:690,comm:"Multi-plage semaine/WE — kWh moyen pondéré"},
+{f:"TRV / Eco Conso",o:"Tarif Bleu - Réglementé",t:"TRV",v:"0%",aT:190.36,kT:0.2002,fT:791,isTRV:true,comm:"Ligne de référence"},
+{f:"TotalEnergies",o:"Offre Heures Eco Electricité",t:"Indexée",v:"0%",aT:190.36,kT:0.2002,fT:791},
+{f:"Octopus",o:"Eco-Fixe Septembre 26",t:"Fixe 2 ans",v:"100%",aT:190.32,kT:0.2017,fT:795,isO:true,comm:"GT Eco Fixe septembre 26"},
+{f:"EDF",o:"Vert Electrique",t:"Fixe",v:"100%",aT:190.36,kT:0.2022,fT:797,pr:true,pf:697},
+{f:"Energie d'ici",o:"100% Locale & Renouvelable Vertvolt Très Engagé (v2)",t:"Fixe",v:"100%",aT:197.2,kT:0.1999,fT:797},
+{f:"EDF",o:"Vert Electrique Régional",t:"Fixe",v:"100%",aT:190.36,kT:0.2035,fT:801,pr:true,pf:701},
+{f:"Alterna",o:"Mon Electricité du Coin - Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:211.96,kT:0.1967,fT:802},
+{f:"La Bellenergie",o:"Offre Constance - Fixe 2 ans",t:"Fixe 2 ans",v:"100%",aT:214.4,kT:0.1969,fT:805},
+{f:"La Bellenergie",o:"Offre Prudence avec Producteur ENR - Vertvolt",t:"Fixe 1 an",v:"100%",aT:184.3,kT:0.2069,fT:805},
+{f:"Urban Solar",o:"Particulier avec Centrale Photovoltaïque",t:"Fixe",v:"100%",aT:205.0,kT:0.2,fT:805,comm:"Offre autoconsommateurs — batterie virtuelle"},
+{f:"Alpiq",o:"Offre Electricite Serenite 100% Verte",t:"Indexée",v:"0%",aT:190.36,kT:0.2052,fT:806},
+{f:"Engie",o:"Elec Référence Verte 3 ans",t:"Fixe 3 ans",v:"100%",aT:186.98,kT:0.21,fT:817},
+{f:"OHM",o:"OHM Sérénité Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:173.16,kT:0.2146,fT:817},
+{f:"Octopus",o:"Eco-conso fixe 3 ans Septembre 26",t:"Fixe 3 ans",v:"100%",aT:190.32,kT:0.2099,fT:820,isO:true,comm:"Fixe 3 ans — disponible tous compteurs"},
+{f:"EDF",o:"Zen Week-End",t:"Fixe",v:"0%",aT:190.36,kT:0.2105,fT:822,pr:true,pf:722,comm:"Multi-plage semaine/WE — kWh moyen pondéré"},
+{f:"Mint énergie",o:"Smart & Green",t:"Fixe 2 ans",v:"100%",aT:227.22,kT:0.2016,fT:832,pr:true,pf:757},
+{f:"La Bellenergie",o:"Offre Garance - Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:244.36,kT:0.1969,fT:835},
+{f:"La Bellenergie",o:"Offre Constance avec Producteur ENR - Vertvolt",t:"Fixe 2 ans",v:"100%",aT:214.4,kT:0.2069,fT:835},
+{f:"Urban Solar",o:"Essentielle - SMB Particulier",t:"Fixe",v:"100%",aT:191.42,kT:0.2179,fT:845},
+{f:"Engie",o:"Elec Adapt 1 an",t:"Indexée 1 an",v:"100%",aT:190.36,kT:0.2212,fT:854},
+{f:"OHM",o:"OHM Fixe 2 ans",t:"Fixe 2 ans",v:"100%",aT:190.36,kT:0.2212,fT:854},
+{f:"Happ-e",o:"Offre Electricité Happ-e 1 an",t:"Fixe 1 an",v:"12%",aT:185.03,kT:0.2257,fT:862},
+{f:"La Bellenergie",o:"Offre Garance avec Producteur ENR - Vertvolt",t:"Fixe 3 ans",v:"100%",aT:244.36,kT:0.2069,fT:865},
+{f:"OHM",o:"OHM Premi'Ohm",t:"Fixe 3 ans",v:"100%",aT:190.36,kT:0.2249,fT:865},
+{f:"TotalEnergies",o:"Offre Fixe 2 ans Electricité",t:"Fixe 2 ans",v:"0%",aT:190.36,kT:0.2269,fT:871},
+{f:"Happ-e",o:"Offre Electricité Happ-e 1 an - Option Vertelec+",t:"Fixe 1 an",v:"100%",aT:220.88,kT:0.2257,fT:898},
+{f:"Enercoop",o:"Offre Base",t:"Fixe",v:"100%",aT:181.72,kT:0.2541,fT:944},
+{f:"Ilek",o:"Offre Énrfixe+ Élec'",t:"Fixe 2 ans",v:"100%",aT:301.24,kT:0.2173,fT:953},
+{f:"Sélia",o:"Mon Contrat Elec Vert Fixe",t:"Fixe",v:"100%",aT:190.36,kT:0.2735,fT:1011},
+{f:"Papernest",o:"Offre 100% Renouvelable Papernest",t:"Fixe 1 an",v:"100%",aT:387.72,kT:0.2984,fT:1283}
+];
+const dEH40=[
+{f:"EDF",o:"Tempo",t:"Fixe",v:"0%",aT:236.45,hpT:0.1713,hcT:0.1713,fT:1350,comm:"Tarif Tempo 3 couleurs (22 j rouges) — non comparable HP/HC classique, kWh moyen pondéré sur facture"},
+{f:"Gaz de Bordeaux",o:"Novafixe Elec",t:"Fixe 2 ans",v:"100%",aT:238.61,hpT:0.1929,hcT:0.1442,fT:1357},
+{f:"EDF",o:"Zen Estival",t:"Fixe",v:"0%",aT:238.61,hpT:0.1727,hcT:0.1727,fT:1361,pr:true,pf:1261,comm:"6 plages — kWh moyen pondéré"},
+{f:"Mint énergie",o:"Online & Green",t:"Indexée 1 an",v:"25%",aT:241.96,hpT:0.1947,hcT:0.1455,fT:1370},
+{f:"TotalEnergies",o:"Offre Access Electricité",t:"Indexée 3 ans",v:"0%",aT:241.96,hpT:0.1965,hcT:0.1467,fT:1380},
+{f:"Plenitude",o:"Plenifix 1 an Electricité",t:"Fixe 1 an",v:"100%",aT:268.63,hpT:0.1965,hcT:0.1467,fT:1407},
+{f:"Dyneff",o:"Contrat+ Electricité",t:"Indexée",v:"0%",aT:234.71,hpT:0.1965,hcT:0.1603,fT:1411},
+{f:"GeG",o:"Mon Offre Elec Verte - Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:239.83,hpT:0.1983,hcT:0.1583,fT:1417},
+{f:"Primeo énergie",o:"Offre Essentielle Verte",t:"Indexée",v:"100%",aT:238.61,hpT:0.2053,hcT:0.1528,fT:1426},
+{f:"Gaz de Bordeaux",o:"Novaflex Elec",t:"Indexée",v:"100%",aT:238.61,hpT:0.2054,hcT:0.1528,fT:1427},
+{f:"Dyneff",o:"Contrat+ Electricité Verte",t:"Indexée",v:"100%",aT:234.71,hpT:0.1995,hcT:0.1633,fT:1430},
+{f:"EDF",o:"Zen Online",t:"Indexée",v:"0%",aT:238.61,hpT:0.2059,hcT:0.1531,fT:1430},
+{f:"GeG",o:"Mon Offre Elec Verte Direct Producteur - Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:261.29,hpT:0.1983,hcT:0.1579,fT:1437},
+{f:"Mint énergie",o:"Classic & Green",t:"Fixe 1 an",v:"50%",aT:238.79,hpT:0.2062,hcT:0.1576,fT:1443,pr:true,pf:1368},
+{f:"EDF",o:"Zen Fixe",t:"Fixe 1 an",v:"0%",aT:297.22,hpT:0.1966,hcT:0.1507,fT:1447,pr:true,pf:1347},
+{f:"La Bellenergie",o:"Prudence - Électricité Verte - Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:235.9,hpT:0.2106,hcT:0.1565,fT:1454},
+{f:"Octopus",o:"Drive Pack Fixe",t:"Fixe 2 ans",v:"100%",aT:238.56,hpT:0.2106,hcT:0.1565,fT:1456,isO:true,comm:"Offre véhicule électrique — prix maison, forfait Juste Maison non inclus (GT Drive Pack Fixe août 26)",ve:true},
+{f:"Alterna",o:"Mon Electricité Française - Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:269.98,hpT:0.2053,hcT:0.1528,fT:1458},
+{f:"Alterna",o:"Mon Electricité Française Indexée",t:"Indexée",v:"100%",aT:269.98,hpT:0.2053,hcT:0.1528,fT:1458},
+{f:"Octopus",o:"Intelligent Octopus (VE)",t:"Fixe VE",v:"100%",aT:241.92,hpT:0.2106,hcT:0.1565,fT:1460,isO:true,comm:"Offre véhicule électrique — prix maison",ve:true},
+{f:"Octopus",o:"Octopus Go",t:"Fixe VE",v:"100%",aT:241.92,hpT:0.2302,hcT:0.1335,fT:1468,isO:true,comm:"Offre véhicule électrique heures creuses renforcées — prix maison",ve:true},
+{f:"Alpiq",o:"Offre Electricite Serenite",t:"Indexée",v:"0%",aT:238.61,hpT:0.2133,hcT:0.1583,fT:1471},
+{f:"Alterna",o:"Mon Electricité Heures Super Creuses - Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:267.41,hpT:0.1856,hcT:0.1856,fT:1474,comm:"6 plages — kWh moyen pondéré"},
+{f:"EDF",o:"Zen Week-End Plus",t:"Fixe",v:"0%",aT:238.61,hpT:0.1904,hcT:0.1904,fT:1476,pr:true,pf:1376,comm:"6 plages — kWh moyen pondéré"},
+{f:"TRV / Eco Conso",o:"Tarif Bleu - Réglementé",t:"TRV",v:"0%",aT:238.61,hpT:0.2142,hcT:0.1589,fT:1476,isTRV:true,comm:"Ligne de référence"},
+{f:"Energie d'ici",o:"100% Locale & Renouvelable Vertvolt Très Engagé",t:"Fixe",v:"100%",aT:257.84,hpT:0.1876,hcT:0.1876,fT:1477,comm:"4 plages — kWh moyen pondéré"},
+{f:"TotalEnergies",o:"Offre Charge'Heures Electricité",t:"Fixe",v:"100%",aT:238.79,hpT:0.1906,hcT:0.1906,fT:1478,comm:"3 plages — kWh moyen pondéré"},
+{f:"EDF",o:"Vert Electrique Week-End",t:"Fixe",v:"100%",aT:238.61,hpT:0.1908,hcT:0.1908,fT:1479,pr:true,pf:1379,comm:"4 plages — kWh moyen pondéré"},
+{f:"TotalEnergies",o:"Offre Heures Eco Electricité",t:"Indexée",v:"0%",aT:241.96,hpT:0.2142,hcT:0.1589,fT:1480},
+{f:"La Bellenergie",o:"Offre Constance - Fixe 2 ans",t:"Fixe 2 ans",v:"100%",aT:266.02,hpT:0.2106,hcT:0.1565,fT:1484},
+{f:"Octopus",o:"Eco-Fixe Septembre 26",t:"Fixe 2 ans",v:"100%",aT:238.56,hpT:0.216,hcT:0.1601,fT:1486,isO:true,comm:"GT Eco Fixe septembre 26"},
+{f:"EDF",o:"Vert Electrique",t:"Fixe",v:"100%",aT:238.61,hpT:0.2206,hcT:0.1543,fT:1487,pr:true,pf:1387},
+{f:"Alterna",o:"Mon Electricité du Coin",t:"Fixe 1 an",v:"100%",aT:270.76,hpT:0.2106,hcT:0.1565,fT:1489},
+{f:"Urban Solar",o:"Particulier avec Centrale Photovoltaïque",t:"Fixe",v:"100%",aT:257.82,hpT:0.2142,hcT:0.1589,fT:1496,comm:"Offre autoconsommateurs — batterie virtuelle"},
+{f:"EDF",o:"Vert Electrique Régional",t:"Fixe",v:"100%",aT:238.61,hpT:0.2237,hcT:0.156,fT:1504,pr:true,pf:1404},
+{f:"Energie d'ici",o:"100% Locale & Renouvelable Vertvolt Très Engagé (v2)",t:"Fixe",v:"100%",aT:275.35,hpT:0.1896,hcT:0.1896,fT:1508,comm:"2 plages — kWh moyen pondéré"},
+{f:"Octopus",o:"Cocon Fixe (saisonnalisé)",t:"Fixe 2 ans saisonnalisé",v:"100%",aT:241.92,hpT:0.2192,hcT:0.1623,fT:1508,isO:true,comm:"Saisonnalisé — répartition réelle HP été 1 704,3 / HC été 1 285,7 / HP hiver 2 000,7 / HC hiver 1 509,3 kWh (HP été 0,1876 / HC été 0,1405 / HP hiver 0,2461 / HC hiver 0,1809 €)"},
+{f:"Alpiq",o:"Offre Electricite Serenite 100% Verte",t:"Indexée",v:"0%",aT:238.61,hpT:0.2193,hcT:0.1643,fT:1510},
+{f:"EDF",o:"Zen Week-End Option Flex",t:"Fixe",v:"0%",aT:238.61,hpT:0.1962,hcT:0.1962,fT:1514,pr:true,pf:1414,comm:"6 plages — kWh moyen pondéré"},
+{f:"La Bellenergie",o:"Offre Garance - Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:295.94,hpT:0.2106,hcT:0.1565,fT:1514},
+{f:"EDF",o:"Vert Electrique Auto",t:"Fixe",v:"100%",aT:238.61,hpT:0.2404,hcT:0.1386,fT:1517,pr:true,pf:1417,comm:"Offre dédiée véhicule électrique"},
+{f:"Mint énergie",o:"Smart & Green",t:"Fixe 2 ans",v:"100%",aT:265.0,hpT:0.2147,hcT:0.1636,fT:1518,pr:true,pf:1443},
+{f:"La Bellenergie",o:"Offre Prudence avec Producteur ENR - Vertvolt",t:"Fixe 1 an",v:"100%",aT:235.9,hpT:0.2206,hcT:0.1665,fT:1518},
+{f:"TotalEnergies",o:"Offre Heures Eco+ Electricité",t:"Fixe",v:"0%",aT:238.79,hpT:0.1979,hcT:0.1979,fT:1525,comm:"3 plages — kWh moyen pondéré"},
+{f:"EDF",o:"Zen Week-End",t:"Fixe",v:"0%",aT:238.61,hpT:0.199,hcT:0.199,fT:1532,pr:true,pf:1432,comm:"4 plages — kWh moyen pondéré"},
+{f:"Octopus",o:"Eco-conso fixe 3 ans Septembre 26",t:"Fixe 3 ans",v:"100%",aT:238.56,hpT:0.2249,hcT:0.1662,fT:1536,isO:true,comm:"Fixe 3 ans — disponible tous compteurs"},
+{f:"Engie",o:"Elec Référence Verte 3 ans",t:"Fixe 3 ans",v:"100%",aT:230.12,hpT:0.2217,hcT:0.174,fT:1538},
+{f:"OHM",o:"OHM Sérénité Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:220.73,hpT:0.2302,hcT:0.1699,fT:1548},
+{f:"La Bellenergie",o:"Offre Constance avec Producteur ENR - Vertvolt",t:"Fixe 2 ans",v:"100%",aT:266.02,hpT:0.2206,hcT:0.1665,fT:1549},
+{f:"OHM",o:"OHM Week End",t:"Fixe",v:"0%",aT:246.48,hpT:0.2005,hcT:0.2005,fT:1550,comm:"3 plages — kWh moyen pondéré"},
+{f:"La Bellenergie",o:"Offre Garance avec Producteur ENR - Vertvolt",t:"Fixe 3 ans",v:"100%",aT:295.94,hpT:0.2206,hcT:0.1665,fT:1578},
+{f:"Ekwateur",o:"Électricité 100% Renouvelable - Fixe 1 an (12 kVA)",t:"Fixe 1 an",v:"100%",aT:285.12,hpT:0.2193,hcT:0.1721,fT:1579,comm:"Profil 12 kVA affiché dans le comparateur"},
+{f:"Ilek",o:"Offre Voiture Électrique",t:"Fixe",v:"100%",aT:471.06,hpT:0.172,hcT:0.172,fT:1589,comm:"Offre dédiée véhicule électrique"},
+{f:"Engie",o:"Elec Adapt 1 an",t:"Indexée 1 an",v:"100%",aT:238.61,hpT:0.237,hcT:0.1746,fT:1605},
+{f:"OHM",o:"OHM Fixe 2 ans",t:"Fixe 2 ans",v:"100%",aT:242.18,hpT:0.2373,hcT:0.1747,fT:1610},
+{f:"Urban Solar",o:"Essentielle - SMB Particulier",t:"Fixe",v:"100%",aT:244.24,hpT:0.2377,hcT:0.175,fT:1614},
+{f:"OHM",o:"OHM Premi'Ohm",t:"Fixe 3 ans",v:"100%",aT:238.61,hpT:0.2412,hcT:0.1775,fT:1628},
+{f:"Happ-e",o:"Offre Electricité Happ-e 1 an",t:"Fixe 1 an",v:"12%",aT:228.0,hpT:0.2381,hcT:0.1863,fT:1631},
+{f:"TotalEnergies",o:"Offre Fixe 2 ans Electricité",t:"Fixe 2 ans",v:"0%",aT:241.96,hpT:0.2435,hcT:0.1791,fT:1645},
+{f:"Engie",o:"Elec'Car 1 an avec option Elec'Car+",t:"Fixe VE",v:"100%",aT:238.61,hpT:0.2668,hcT:0.1518,fT:1651,pr:true,pf:1598,comm:"Offre dédiée véhicule électrique"},
+{f:"Happ-e",o:"Offre Electricité Happ-e 1 an - Option Vertelec+",t:"Fixe 1 an",v:"100%",aT:263.86,hpT:0.2381,hcT:0.1863,fT:1667},
+{f:"Ekwateur",o:"Électricité 100% Renouvelable Exclusive Voiture Électrique (12 kVA)",t:"Fixe VE",v:"100%",aT:364.08,hpT:0.2229,hcT:0.1757,fT:1681,comm:"Offre dédiée véhicule électrique — Profil 12 kVA affiché dans le comparateur"},
+{f:"Enercoop",o:"Flexibilité - 2 Saisons + Jour de Pointe",t:"Fixe",v:"100%",aT:240.05,hpT:0.2231,hcT:0.2231,fT:1690,comm:"5 plages — kWh moyen pondéré"},
+{f:"Enercoop",o:"Flexibilité - 2 Saisons",t:"Fixe",v:"100%",aT:253.01,hpT:0.2243,hcT:0.2243,fT:1711,comm:"4 plages — kWh moyen pondéré"},
+{f:"Ilek",o:"Offre Énrfixe+ Élec'",t:"Fixe 2 ans",v:"100%",aT:471.06,hpT:0.2314,hcT:0.1761,fT:1820},
+{f:"Enercoop",o:"Flexibilité - Heures Creuses",t:"Fixe",v:"100%",aT:288.43,hpT:0.2776,hcT:0.1898,fT:1848},
+{f:"Enercoop",o:"Flexibilité - Nuit & Week-End",t:"Fixe",v:"100%",aT:245.81,hpT:0.3064,hcT:0.1729,fT:1864},
+{f:"Sélia",o:"Mon Contrat Elec Vert Fixe",t:"Fixe",v:"100%",aT:238.61,hpT:0.2941,hcT:0.2139,fT:1926},
+{f:"Papernest",o:"Offre 100% Renouvelable Papernest",t:"Fixe 1 an",v:"100%",aT:674.78,hpT:0.3202,hcT:0.2453,fT:2547}
+];
+
 // =========================================================
 // UTILITAIRES
 // =========================================================
@@ -550,6 +849,7 @@ function mkTableGaz(data,cta,acc,prvg,conso,tblId){
     <th colspan="4" class="g">kWh</th>
     <th colspan="4" class="g">Facture totale</th>
     <th rowspan="2">Avec promo</th>
+    <th rowspan="2" class="l" style="text-align:left">Commentaire</th>
   </tr><tr>
     <th>HTT</th><th>%</th><th>TTC</th><th>%</th>
     <th>HTT</th><th>%</th><th>TTC</th><th>%</th>
@@ -573,7 +873,7 @@ function mkTableGaz(data,cta,acc,prvg,conso,tblId){
   document.getElementById(tblId).innerHTML=h+'<tbody>'+rows+'</tbody>';
 }
 
-function mkTableElecB(tblId){
+function mkTableElecB(tblId,dEB,TRV_B){
   const paH=TRV_B.aT/TVAE-CTA6,pkH=TRV_B.kT/TVAE-ACCEL,pfH=Math.round(paH+pkH*CB);
   const h=`<thead><tr>
     <th rowspan="2" class="l" style="text-align:left">#</th>
@@ -584,6 +884,7 @@ function mkTableElecB(tblId){
     <th colspan="4" class="g">kWh Base</th>
     <th colspan="4" class="g">Facture totale</th>
     <th rowspan="2">Avec promo</th>
+    <th rowspan="2" class="l" style="text-align:left">Commentaire</th>
   </tr><tr>
     <th>HTT</th><th>%</th><th>TTC</th><th>%</th>
     <th>HTT</th><th>%</th><th>TTC</th><th>%</th>
@@ -607,7 +908,7 @@ function mkTableElecB(tblId){
   document.getElementById(tblId).innerHTML=h+'<tbody>'+rows+'</tbody>';
 }
 
-function mkTableElecH(tblId){
+function mkTableElecH(tblId,dEH,TRV_H){
   const paH=TRV_H.aT/TVAE-CTA9,phpH=TRV_H.hpT/TVAE-ACCEL,phcH=TRV_H.hcT/TVAE-ACCEL;
   const pfH=Math.round(paH+phpH*HP+phcH*HC);
   const h=`<thead><tr>
@@ -620,6 +921,7 @@ function mkTableElecH(tblId){
     <th colspan="4" class="g">kWh HC</th>
     <th colspan="4" class="g">Facture totale</th>
     <th rowspan="2">Avec promo</th>
+    <th rowspan="2" class="l" style="text-align:left">Commentaire</th>
   </tr><tr>
     <th>HTT</th><th>%</th><th>TTC</th><th>%</th>
     <th>HTT</th><th>%</th><th>TTC</th><th>%</th>
@@ -641,13 +943,13 @@ function mkTableElecH(tblId){
       <td>${fk4(r.hcT)}</td><td>${fp(pc(r.hcT,TRV_H.hcT))}</td>
       <td>${fe(fH,0)}</td><td>${fp(pc(fH,pfH))}</td>
       <td>${fe(r.fT,0)}</td><td>${fp(pc(r.fT,TRV_H.fT))}</td>
-      <td>${r.pr&&r.pf?fe(r.pf,0):''}</td>
+      <td>${r.pr&&r.pf?fe(r.pf,0):''}</td><td class="l" style="font-size:10px;color:#888;max-width:200px;white-space:normal">${r.comm||''}</td>
     </tr>`;
   }).join('');
   document.getElementById(tblId).innerHTML=h+'<tbody>'+rows+'</tbody>';
 }
 
-function mkBarElecB(id){
+function mkBarElecB(id,dEB,TRV_B){
   const s=dEB.slice().sort((a,b)=>a.fT-b.fT).slice(0,15);
   new Chart(document.getElementById(id),{type:'bar',data:{
     labels:s.map(r=>r.f+(r.f==='Octopus'?' ★':r.isTRV?' (TRV)':'')),
@@ -662,7 +964,7 @@ function mkBarElecB(id){
   }});
 }
 
-function mkBarElecH(id){
+function mkBarElecH(id,dEH,TRV_H){
   const s=dEH.slice().sort((a,b)=>a.fT-b.fT).slice(0,15);
   new Chart(document.getElementById(id),{type:'bar',data:{
     labels:s.map(r=>r.f+(r.f==='Octopus'?' ★':r.isTRV?' (TRV)':'')),
@@ -684,7 +986,7 @@ function mkRank(id,labels,data,total){
   },options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'Rang '+c.raw+' / '+total}}},
     scales:{
-      y:{reverse:true,min:1,max:Math.min(total,15),grid:{color:'#efefef'},ticks:{stepSize:2,callback:v=>'#'+v,font:{size:11},color:'#888'},border:{color:'#e2e2e2'}},
+      y:{reverse:true,min:1,max:Math.max(Math.min(total,15),Math.max.apply(null,data)+2),grid:{color:'#efefef'},ticks:{stepSize:2,callback:v=>'#'+v,font:{size:11},color:'#888'},border:{color:'#e2e2e2'}},
       x:{grid:{display:false},ticks:{font:{size:11},color:'#888'},border:{color:'#e2e2e2'}}
     }
   }});
@@ -697,16 +999,22 @@ function mkRank(id,labels,data,total){
 mkTableGaz(dGCS39,CTA_C,ACCE,PRVG_C,13480,'tGCS39');
 mkTableGaz(dGCS38,CTA_C,ACCE,PRVG_C,13480,'tGCS38');
 mkTableGaz(dGUS39,CTA_T1,ACCE,PRVG_T1,1260,'tGUS39');
+mkTableGaz(dGCS40,CTA_C,ACCE,PRVG_C40,13480,'tGCS40');
+mkTableGaz(dGUS40,CTA_T1,ACCE,PRVG_T40,1260,'tGUS40');
 
 // Les charts gaz aussi (pg-gaz n'est pas encore visible mais on les init quand même via window.onload)
 window.addEventListener('load', function(){
   mkBarGaz('barGCS39',dGCS39,PRVG_C.fT);
   mkBarGaz('barGCS38',dGCS38,PRVG_C.fT);
   mkBarGaz('barGUS39',dGUS39,PRVG_T1.fT);
-  mkRank('rankGC',['S38','S39'],[6,5],29);
+  mkBarGaz('barGCS40',dGCS40,PRVG_C40.fT);
+  mkBarGaz('barGUS40',dGUS40,PRVG_T40.fT);
+  mkRank('rankGC',['S38','S39','S40'],[6,5,5],28);
   // Tables élec aussi
-  mkTableElecB('tEBS39');
-  mkTableElecH('tEHS39');
+  mkTableElecB('tEBS39',dEB,TRV_B);
+  mkTableElecH('tEHS39',dEH,TRV_H);
+  mkTableElecB('tEBS40',dEB40,TRV_B40);
+  mkTableElecH('tEHS40',dEH40,TRV_H40);
 });
 
 // =========================================================
@@ -721,10 +1029,12 @@ function showPage(id, btn){
   btn.classList.add('on');
   if(id==='elec' && !elecChartsBuilt){
     elecChartsBuilt=true;
-    mkBarElecB('barEBS39');
-    mkBarElecH('barEHS39');
-    mkRank('rankEB',['S39'],[16],29);
-    mkRank('rankEH',['S39'],[20],30);
+    mkBarElecB('barEBS39',dEB,TRV_B);
+    mkBarElecH('barEHS39',dEH,TRV_H);
+    mkBarElecB('barEBS40',dEB40,TRV_B40);
+    mkBarElecH('barEHS40',dEH40,TRV_H40);
+    mkRank('rankEB',['S39','S40'],[16,21],55);
+    mkRank('rankEH',['S39','S40'],[31,31],69);
   }
 }
 
@@ -745,27 +1055,26 @@ function showSub(page, sub, btn){
     document.getElementById('stab-hphc').classList.remove('on');
     if(!elecChartsBuilt){
       elecChartsBuilt=true;
-      mkBarElecB('barEBS39');
-      mkBarElecH('barEHS39');
-      mkRank('rankEB',['S39'],[16],29);
-      mkRank('rankEH',['S39'],[20],30);
+      mkBarElecB('barEBS39',dEB,TRV_B);
+      mkBarElecH('barEHS39',dEH,TRV_H);
+      mkBarElecB('barEBS40',dEB40,TRV_B40);
+      mkBarElecH('barEHS40',dEH40,TRV_H40);
+      mkRank('rankEB',['S39','S40'],[16,21],55);
+      mkRank('rankEH',['S39','S40'],[31,31],69);
     }
   }
   btn.classList.add('on');
 }
 
 function sw(w){
-  const other = w==='s39'?'s38':'s39';
-  // Marché
-  document.getElementById('m-'+w).style.display='block';
-  document.getElementById('m-'+other).style.display='none';
-  // Gaz chauffage
-  document.getElementById('gc-'+w).style.display='block';
-  document.getElementById('gc-'+other).style.display='none';
-  // Gaz cuisson
-  document.getElementById('gu-'+w).style.display='block';
-  document.getElementById('gu-'+other).style.display='none';
-  // Élec (une seule semaine pour l'instant)
+  const all=['s40','s39','s38'];
+  all.forEach(function(x){
+    const on = (x===w) ? 'block' : 'none';
+    ['m-','gc-','gu-','eb-','eh-'].forEach(function(p){
+      const el=document.getElementById(p+x);
+      if(el) el.style.display=on;
+    });
+  });
 }
 
 // Init : afficher pg-marche correctement
