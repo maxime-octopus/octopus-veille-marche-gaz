@@ -183,7 +183,7 @@ footer{font-family:'DM Mono',monospace;font-size:10px;color:#888;padding:2rem;bo
         <div class="card-t">Classement complet — Base 6 kVA S40</div>
         <div class="card-s">Abo HTT = Abo TTC/1,20 − 15,35 € · kWh HTT = kWh TTC/1,20 − 0,03062 € · kWh effectif = (facture − abo)/conso · Octopus : GT · MNE 28/09/2026</div>
         <div class="tw"><table id="tEBS40"></table></div>
-        <a class="sl" href="https://docs.google.com/spreadsheets/d/1RpXDKUSN7YGFgBWfqZLnipb2DhnMb7TN0c22ElfM_Ro/edit" target="_blank">↗ Google Sheets élec S40</a>
+        <a class="sl" href="https://docs.google.com/spreadsheets/d/1-8ryIRGI5HkSpkFFU2WLhLnSRi1XsH7N3V65Zd1GO8s/edit" target="_blank">↗ Google Sheets élec S40</a>
       </div>
     </div>
     <div id="eb-s39" style="display:none">
@@ -231,7 +231,7 @@ footer{font-family:'DM Mono',monospace;font-size:10px;color:#888;padding:2rem;bo
         <div class="card-t">Classement complet — HPHC 9 kVA S40</div>
         <div class="card-s">Abo HTT = Abo TTC/1,20 − 20,04 € · kWh HTT = kWh TTC/1,20 − 0,03062 € · multi-plages : kWh moyen pondéré = (facture − abo)/conso · Octopus : GT · MNE 28/09/2026</div>
         <div class="tw"><table id="tEHS40"></table></div>
-        <a class="sl" href="https://docs.google.com/spreadsheets/d/1RpXDKUSN7YGFgBWfqZLnipb2DhnMb7TN0c22ElfM_Ro/edit" target="_blank">↗ Google Sheets élec S40</a>
+        <a class="sl" href="https://docs.google.com/spreadsheets/d/1-8ryIRGI5HkSpkFFU2WLhLnSRi1XsH7N3V65Zd1GO8s/edit" target="_blank">↗ Google Sheets élec S40</a>
       </div>
     </div>
     <div id="eh-s39" style="display:none">
@@ -761,10 +761,10 @@ const dEH40=[
 {f:"EDF",o:"Zen Fixe",t:"Fixe 1 an",v:"0%",aT:297.22,hpT:0.1966,hcT:0.1507,fT:1447,pr:true,pf:1347},
 {f:"La Bellenergie",o:"Prudence - Électricité Verte - Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:235.9,hpT:0.2106,hcT:0.1565,fT:1454},
 {f:"Octopus",o:"Drive Pack Fixe",t:"Fixe 2 ans",v:"100%",aT:238.56,hpT:0.2106,hcT:0.1565,fT:1456,isO:true,comm:"Offre véhicule électrique — prix maison, forfait Juste Maison non inclus (GT Drive Pack Fixe août 26)",ve:true},
+{f:"Octopus",o:"Intelligent Octopus (VE)",t:"Fixe VE",v:"100%",aT:238.56,hpT:0.2106,hcT:0.1565,fT:1456,isO:true,comm:"Offre véhicule électrique — prix maison",ve:true},
 {f:"Alterna",o:"Mon Electricité Française - Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:269.98,hpT:0.2053,hcT:0.1528,fT:1458},
 {f:"Alterna",o:"Mon Electricité Française Indexée",t:"Indexée",v:"100%",aT:269.98,hpT:0.2053,hcT:0.1528,fT:1458},
-{f:"Octopus",o:"Intelligent Octopus (VE)",t:"Fixe VE",v:"100%",aT:241.92,hpT:0.2106,hcT:0.1565,fT:1460,isO:true,comm:"Offre véhicule électrique — prix maison",ve:true},
-{f:"Octopus",o:"Octopus Go",t:"Fixe VE",v:"100%",aT:241.92,hpT:0.2302,hcT:0.1335,fT:1468,isO:true,comm:"Offre véhicule électrique heures creuses renforcées — prix maison",ve:true},
+{f:"Octopus",o:"Octopus Go",t:"Fixe VE",v:"100%",aT:238.56,hpT:0.2302,hcT:0.1335,fT:1465,isO:true,comm:"Offre véhicule électrique heures creuses renforcées — prix maison",ve:true},
 {f:"Alpiq",o:"Offre Electricite Serenite",t:"Indexée",v:"0%",aT:238.61,hpT:0.2133,hcT:0.1583,fT:1471},
 {f:"Alterna",o:"Mon Electricité Heures Super Creuses - Fixe 1 an",t:"Fixe 1 an",v:"100%",aT:267.41,hpT:0.1856,hcT:0.1856,fT:1474,comm:"6 plages — kWh moyen pondéré"},
 {f:"EDF",o:"Zen Week-End Plus",t:"Fixe",v:"0%",aT:238.61,hpT:0.1904,hcT:0.1904,fT:1476,pr:true,pf:1376,comm:"6 plages — kWh moyen pondéré"},
@@ -779,8 +779,8 @@ const dEH40=[
 {f:"Alterna",o:"Mon Electricité du Coin",t:"Fixe 1 an",v:"100%",aT:270.76,hpT:0.2106,hcT:0.1565,fT:1489},
 {f:"Urban Solar",o:"Particulier avec Centrale Photovoltaïque",t:"Fixe",v:"100%",aT:257.82,hpT:0.2142,hcT:0.1589,fT:1496,comm:"Offre autoconsommateurs — batterie virtuelle"},
 {f:"EDF",o:"Vert Electrique Régional",t:"Fixe",v:"100%",aT:238.61,hpT:0.2237,hcT:0.156,fT:1504,pr:true,pf:1404},
+{f:"Octopus",o:"Cocon Fixe (saisonnalisé)",t:"Fixe 2 ans saisonnalisé",v:"100%",aT:238.56,hpT:0.2192,hcT:0.1623,fT:1504,isO:true,comm:"Saisonnalisé — répartition réelle HP été 1 704,3 / HC été 1 285,7 / HP hiver 2 000,7 / HC hiver 1 509,3 kWh (HP été 0,1876 / HC été 0,1405 / HP hiver 0,2461 / HC hiver 0,1809 €)"},
 {f:"Energie d'ici",o:"100% Locale & Renouvelable Vertvolt Très Engagé (v2)",t:"Fixe",v:"100%",aT:275.35,hpT:0.1896,hcT:0.1896,fT:1508,comm:"2 plages — kWh moyen pondéré"},
-{f:"Octopus",o:"Cocon Fixe (saisonnalisé)",t:"Fixe 2 ans saisonnalisé",v:"100%",aT:241.92,hpT:0.2192,hcT:0.1623,fT:1508,isO:true,comm:"Saisonnalisé — répartition réelle HP été 1 704,3 / HC été 1 285,7 / HP hiver 2 000,7 / HC hiver 1 509,3 kWh (HP été 0,1876 / HC été 0,1405 / HP hiver 0,2461 / HC hiver 0,1809 €)"},
 {f:"Alpiq",o:"Offre Electricite Serenite 100% Verte",t:"Indexée",v:"0%",aT:238.61,hpT:0.2193,hcT:0.1643,fT:1510},
 {f:"EDF",o:"Zen Week-End Option Flex",t:"Fixe",v:"0%",aT:238.61,hpT:0.1962,hcT:0.1962,fT:1514,pr:true,pf:1414,comm:"6 plages — kWh moyen pondéré"},
 {f:"La Bellenergie",o:"Offre Garance - Fixe 3 ans",t:"Fixe 3 ans",v:"100%",aT:295.94,hpT:0.2106,hcT:0.1565,fT:1514},
