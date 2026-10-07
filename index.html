@@ -414,6 +414,13 @@ footer{font-family:'DM Mono',monospace;font-size:10px;color:#888;padding:2rem;bo
         <a class="sl" href="https://docs.google.com/spreadsheets/d/1c7ELAJCFhnknmPBaCaYMvC9wXl_pkc4p4-ntBixhvcc/edit?gid=1778747057#gid=1778747057" target="_blank">↗ Google Sheets S38</a>
       </div>
     </div>
+    <div class="card">
+      <div class="card-t">Historique des factures annuelles TTC — client chauffage 13 480 kWh</div>
+      <div class="card-s">Meilleure offre de chaque fournisseur, avant promo · Octopus = meilleure offre hors véhicule électrique · dernière mise à jour : S41 (06/10/2026)</div>
+      <div style="height:480px"><canvas id="histGaz"></canvas></div>
+      <a class="sl" href="https://docs.google.com/spreadsheets/d/1e9G-zcExjSup8vKzaOHurDhou3jCw0KjbN2K34Gbzkk/edit?gid=1441966736#gid=1441966736" target="_blank">↗ Google Sheets historique gaz</a>
+    </div>
+
   </div>
 
   <div id="gaz-cuis" style="display:none">
@@ -1321,6 +1328,7 @@ window.addEventListener('load', function(){
   mkBarGaz('barGUS40',dGUS40,PRVG_T40.fT);
   mkBarGaz('barGCS41',dGCS41,PRVG_C41.fT);
   mkBarGaz('barGUS41',dGUS41,PRVG_T41.fT);
+  mkHistGaz();
   mkRank('rankGC',['S38','S39','S40','S41'],[6,5,5,16],30);
   // Tables élec aussi
   mkTableElecB('tEBS39',dEB,TRV_B);
@@ -1330,6 +1338,26 @@ window.addEventListener('load', function(){
   mkTableElecB('tEBS41',dEB41,TRV_B41);
   mkTableElecH('tEHS41',dEH41,TRV_H41);
 });
+
+const dHG={labels:["08/01/2025", "13/02/2025", "05/03/2025", "04/04/2025", "10/06/2025", "03/07/2025", "13/08/2025", "11/09/2025", "07/10/2025", "25/11/2025", "09/12/2025", "06/01/2026", "09/02/2026", "09/03/2026", "07/04/2026", "04/05/2026", "02/06/2026", "13/07/2026", "24/08/2026", "14/09/2026", "21/09/2026", "28/09/2026", "06/10/2026"],series:{"Octo":[1667.09, 1772.64, 1778.3, 1811.06, 1733.55, 1715.85, 1747.86, 1714.7, 1678.44, 1679.65, 1705.53, 1672.78, 1646.36, 1761.19, 2089.45, 1965.43, 1906.52, 1965, 2010, 2114, 2115, 2115, 2391],"Total":[1758.89, 1762.97, 1836.24, 1837.59, 1761.59, 1754.78, 1786.67, 1752.97, 1693.66, 1685.57, 1685.57, 1686.54, 1658.23, 1618.0, 1618.0, 1709.0, 1860.0, 2010, 2021, 2135, 2135, 2264, 2264],"EDF":[1731.71, 1731.71, 1731.71, 1769.45, 1769.45, 1689.15, 1697.35, 1697.35, 1665.73, 1665.73, 1665.73, 1707.2, 1695.15, 1723.38, 1734.12, 1742.04, 1742.04, 1969, 1973, 1973, 1973, 1973, 2151],"Engie":[1840.63, 1886.46, 1906.68, 1792.1, 1836.56, 1806.85, 1855.48, 1813.83, 1741.04, 1796.17, 1742.25, 1704.13, 1683.91, 1697.39, 1795.8, 1954.86, 1915.77, 1966, 1941, 1947, 1947, 1947, 2211],"Plenitude":[null, 1861.83, 1861.83, 1904.97, 1724.34, 1774.2, 1786.02, 1786.02, 1725.36, 1783.32, 1786.31, 1789.98, 1715.84, 1694.28, 1752.91, 1752.91, 1796.72, 2151, 2118, 2204, 2204, 2204, 2350]}};
+function mkHistGaz(){
+  const C={Octo:'#ff00ff',Total:'#ff0000',EDF:'#6aa84f',Engie:'#f1c232',Plenitude:'#0000ff'};
+  const ds=Object.keys(dHG.series).map(function(n){
+    const o=(n==='Octo');
+    return {label:n,data:dHG.series[n],borderColor:C[n],backgroundColor:C[n],borderWidth:o?2.5:2,borderDash:o?[]:[2,3],
+            stepped:'after',pointRadius:0,pointHoverRadius:4,fill:false,spanGaps:true,order:o?0:1};
+  });
+  new Chart(document.getElementById('histGaz'),{type:'line',data:{labels:dHG.labels,datasets:ds},options:{
+    responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+    plugins:{
+      title:{display:true,text:'Comparaison facture annuelle TTC - client chauffage 13480 kWh',color:'#434343',font:{size:18,family:'Arial',weight:'normal'},padding:{bottom:6}},
+      legend:{position:'top',labels:{usePointStyle:true,pointStyle:'rect',boxWidth:10,boxHeight:10,font:{size:12},color:'#444'}},
+      tooltip:{callbacks:{label:function(c){return c.dataset.label+' : '+(c.raw==null?'n.c.':Math.round(c.raw).toLocaleString('fr-FR')+' €');}}}},
+    scales:{
+      x:{title:{display:true,text:'Date',color:'#444',font:{size:12,weight:'bold'}},grid:{display:false},ticks:{maxRotation:45,minRotation:45,font:{size:10},color:'#666'},border:{color:'#e2e2e2'}},
+      y:{min:1600,grid:{color:'#e8e8e8'},ticks:{callback:function(v){return v.toLocaleString('fr-FR')+' €';},font:{size:11},color:'#666'},border:{color:'#e2e2e2'}}}
+  }});
+}
 
 // =========================================================
 // NAVIGATION
