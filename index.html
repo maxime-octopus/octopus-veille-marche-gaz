@@ -250,6 +250,13 @@ footer{font-family:'DM Mono',monospace;font-size:10px;color:#888;padding:2rem;bo
         <a class="sl" href="https://docs.google.com/spreadsheets/d/17HoAJJxNyZQKeqgS2WQR4_IQNHfg08OXlnQRlraJ5Gk/edit" target="_blank">↗ Google Sheets S39</a>
       </div>
     </div>
+    <div class="card">
+      <div class="card-t">Historique des factures annuelles TTC — client Base 6 kVA, 3 MWh</div>
+      <div class="card-s">Meilleure offre de chaque fournisseur, avant promo · Octopus = meilleure offre hors véhicule électrique · dernière mise à jour : S41 (06/10/2026)</div>
+      <div style="height:480px"><canvas id="histElec"></canvas></div>
+      <a class="sl" href="https://docs.google.com/spreadsheets/d/1EPUsXT4j-pM4sdo1L6jAEwv6N5sUVuErsOsrBqUeFyQ/edit?gid=322544373#gid=322544373" target="_blank">↗ Google Sheets historique élec (12 fournisseurs)</a>
+    </div>
+
   </div>
 
   <div id="elec-hphc" style="display:none">
@@ -1359,6 +1366,26 @@ function mkHistGaz(){
   }});
 }
 
+const dHE={labels:["07/01/2025", "17/01/2025", "07/02/2025", "14/02/2025", "21/02/2025", "28/02/2025", "06/03/2025", "14/03/2025", "21/03/2025", "28/03/2025", "04/04/2025", "17/04/2025", "02/05/2025", "09/05/2025", "16/05/2025", "23/05/2025", "09/06/2025", "27/06/2025", "04/07/2025", "25/07/2025", "31/07/2025", "12/08/2025", "21/08/2025", "03/09/2025", "11/09/2025", "22/09/2025", "29/09/2025", "06/10/2025", "13/10/2025", "20/10/2025", "03/11/2025", "10/11/2025", "25/11/2025", "01/12/2025", "08/12/2025", "15/12/2025", "22/12/2025", "05/01/2026", "12/01/2026", "19/01/2026", "26/01/2026", "02/02/2026", "09/02/2026", "16/02/2026", "23/02/2026", "02/03/2026", "09/03/2026", "23/03/2026", "31/03/2026", "07/04/2026", "13/04/2026", "20/04/2026", "27/04/2026", "04/05/2026", "18/05/2026", "25/05/2026", "01/06/2026", "15/06/2026", "22/06/2026", "29/06/2026", "08/07/2026", "13/07/2026", "27/07/2026", "10/08/2026", "24/08/2026", "21/09/2026", "28/09/2026", "06/10/2026"],series:{"Octo":[735, 735, 745, 745, 755, 755, 755, 755, 755, 755, 755, 755, 755, 755, 755, 755, 755, 740, 740, 740, 740, 745, 742, 742, 742, 742, 742, 742, 742, 742, 742, 742, 742, 752, 752, 752, 752, 752, 752, 752, 712, 746, 747, 747, 747, 747, 747, 761, 761, 761, 761, 761, 761, 761, 761, 761, 779, 761, 761, 761, 761, 761, 761, 786, 786, 790, 790, 794],"Total":[735, 703, 762, 755, 750, 750, 736, 736, 736, 736, 736, 726, 726, 726, 726, 726, 726, 746, 712, 746, 767, 712, 712, 712, 712, 712, 712, 712, 712, 712, 712, 712, 712, 712, 712, 712, 712, 712, 712, 712, 712, 712, 712, 712, 723, 723, 723, 723, 723, 723, 723, 723, 723, 723, 723, 723, 723, 723, 723, 723, 723, 723, 723, 742, 742, 742, 742, 742],"EDF":[678, 678, 741, 741, 741, 741, 740, 740, 740, 740, 740, 740, 740, 740, 740, 740, 740, 740, 740, 740, 740, 742, 742, 742, 742, 742, 742, 742, 742, 742, 742, 742, 742, 742, 742, 742, 742, 715, 715, 715, 715, 710, 710, 710, 710, 710, 710, 710, 710, 696, 696, 696, 696, 696, 696, 696, 743, 743, 743, 643, 643, 643, 643, 657, 657, 761, 761, 768],"Engie":[751, 751, 776, 781, 789, 789, 822, 822, 822, 822, 822, 822, 811, 811, 811, 811, 822, 822, 822, 826, 826, 840, 840, 835, 835, 835, 835, 822, 822, 822, 822, 833, 822, 832, 817, 832, 832, 816, 816, 816, 790, 781, 781, 781, 781, 779, 779, 808, 808, 796, 796, 796, 776, 784, 784, 784, 784, 786, 786, 786, 800, 800, 800, 775, 775, 817, 817, 826],"Plenitude":[null, null, null, null, 746, 746, 766, 766, 711, 711, 751, 751, 722, 722, 722, 722, 722, 722, 722, 722, 722, 752, 752, 752, 752, 752, 752, 771, 771, 771, 771, 771, 771, 824, 824, 824, 824, 824, 776, 776, 776, 761, 761, 761, 737, 737, 737, 737, 737, 737, 737, 775, 775, 775, 780, 780, 780, 780, 780, 780, 780, 780, 780, 810, 810, 771, 771, 771]}};
+function mkHistElec(){
+  const C={Octo:'#ff00ff',Total:'#ff0000',EDF:'#6aa84f',Engie:'#f1c232',Plenitude:'#0000ff'};
+  const ds=Object.keys(dHE.series).map(function(n){
+    const o=(n==='Octo');
+    return {label:n,data:dHE.series[n],borderColor:C[n],backgroundColor:C[n],borderWidth:o?2.5:2,borderDash:o?[]:[2,3],
+            stepped:'after',pointRadius:0,pointHoverRadius:4,fill:false,spanGaps:true,order:o?0:1};
+  });
+  new Chart(document.getElementById('histElec'),{type:'line',data:{labels:dHE.labels,datasets:ds},options:{
+    responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+    plugins:{
+      title:{display:true,text:'Comparaison facture annuelle TTC - client Base 6 kVA, 3 MWh',color:'#434343',font:{size:18,family:'Arial',weight:'normal'},padding:{bottom:6}},
+      legend:{position:'top',labels:{usePointStyle:true,pointStyle:'rect',boxWidth:10,boxHeight:10,font:{size:12},color:'#444'}},
+      tooltip:{callbacks:{label:function(c){return c.dataset.label+' : '+(c.raw==null?'n.c.':Math.round(c.raw).toLocaleString('fr-FR')+' €');}}}},
+    scales:{
+      x:{title:{display:true,text:'Date',color:'#444',font:{size:12,weight:'bold'}},grid:{display:false},ticks:{maxRotation:60,minRotation:45,autoSkip:true,maxTicksLimit:26,font:{size:10},color:'#666'},border:{color:'#e2e2e2'}},
+      y:{min:650,max:850,grid:{color:'#e8e8e8'},ticks:{callback:function(v){return v.toLocaleString('fr-FR')+' €';},font:{size:11},color:'#666'},border:{color:'#e2e2e2'}}}
+  }});
+}
+
 // =========================================================
 // NAVIGATION
 // =========================================================
@@ -1378,7 +1405,7 @@ function showPage(id, btn){
     mkBarElecB('barEBS41',dEB41,TRV_B41);
     mkBarElecH('barEHS41',dEH41,TRV_H41);
     mkRank('rankEB',['S39','S40','S41'],[16,24,27],58);
-    mkRank('rankEH',['S39','S40','S41'],[31,31,35],72);
+    mkRank('rankEH',['S39','S40','S41'],[31,31,35],72); mkHistElec();
   }
 }
 
@@ -1406,7 +1433,7 @@ function showSub(page, sub, btn){
       mkBarElecB('barEBS41',dEB41,TRV_B41);
       mkBarElecH('barEHS41',dEH41,TRV_H41);
       mkRank('rankEB',['S39','S40','S41'],[16,24,27],58);
-      mkRank('rankEH',['S39','S40','S41'],[31,31,35],72);
+      mkRank('rankEH',['S39','S40','S41'],[31,31,35],72); mkHistElec();
     }
   }
   btn.classList.add('on');
