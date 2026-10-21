@@ -465,7 +465,7 @@ footer{font-family:'DM Mono',monospace;font-size:10px;color:#888;padding:2rem;bo
 <!-- ======= GAZ ======= -->
 <div id="pg-gaz" class="pg">
   <div class="stabs">
-    <button class="stab on" id="stab-chauf" onclick="showSub('gaz','chauf',this)">Chauffage · 13 480 kWh</button>
+    <button class="stab on" id="stab-chauf" onclick="showSub('gaz','chauf',this)">Chauffage · 11 000 kWh</button>
     <button class="stab" id="stab-cuis" onclick="showSub('gaz','cuis',this)">Cuisson / eau chaude · 1 260 kWh</button>
   </div>
 
@@ -2107,6 +2107,9 @@ function sw(w){
       if(el) el.style.display=on;
     });
   });
+  // profil chauffage : 13 480 kWh jusqu'à la S42, 11 000 kWh à partir de la S43
+  const sc=document.getElementById('stab-chauf');
+  if(sc) sc.textContent = (parseInt(w.slice(1),10)>=43) ? 'Chauffage · 11 000 kWh' : 'Chauffage · 13 480 kWh';
 }
 
 // Init : afficher pg-marche correctement
